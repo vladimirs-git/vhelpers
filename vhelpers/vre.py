@@ -1,14 +1,14 @@
-"""Helpers for string processing."""
+"""Helpers for regex processing."""
 
 import re
 
 from vhelpers.types_ import T2Str, T3Str, T4Str
 
 
-def findall1(pattern: str, string: str, flags: int = 0) -> str:
-    """Parse the first item of re.findall.
+def find1(pattern: str, string: str, flags: int = 0) -> str:
+    """Parse 1 item using findall.
 
-    Group with parentheses in pattern is required.
+    1 group with parentheses in pattern is required.
     If nothing is found, return 1 empty string.
 
     :param pattern: The regular expression pattern to search for.
@@ -16,20 +16,21 @@ def findall1(pattern: str, string: str, flags: int = 0) -> str:
     :param flags: Optional flags to modify the behavior of the search.
     :return: The interested substring, or an empty string if nothing is found.
     :example:
-        findall1(pattern="a(b)cde", string="abcde") -> "b"
+        find1(pattern="a(b)cde", string="abcde") -> "b"
     """
-    result = (re.findall(pattern=pattern, string=string, flags=flags) or [""])[0]
+    empty = ""
+    result = (re.findall(pattern=pattern, string=string, flags=flags) or [empty])[0]
     if isinstance(result, str):
         return result
     if isinstance(result, tuple):
         return result[0]
-    return ""
+    return empty
 
 
-def findall2(pattern: str, string: str, flags: int = 0) -> T2Str:
-    """Parse 2 items of re.findall().
+def find2(pattern: str, string: str, flags: int = 0) -> T2Str:
+    """Parse 2 items using findall.
 
-    Group with parentheses in pattern is required.
+    2 groups with parentheses in pattern is required.
     If nothing is found, return 2 empty strings.
 
     :param pattern: The regular expression pattern.
@@ -37,18 +38,19 @@ def findall2(pattern: str, string: str, flags: int = 0) -> T2Str:
     :param flags: Optional flags to modify the behavior of the search.
     :return: A tuple with two interested substrings, or empty strings if nothing is found.
     :example:
-        findall2(pattern="a(b)(c)de", string="abcde") -> ("b", "c")
+        find2(pattern="a(b)(c)de", string="abcde") -> ("b", "c")
     """
-    result = (re.findall(pattern=pattern, string=string, flags=flags) or [("", "")])[0]
+    empty = ("", "")
+    result = (re.findall(pattern=pattern, string=string, flags=flags) or [empty])[0]
     if isinstance(result, tuple) and len(result) >= 2:
         return result[0], result[1]
-    return "", ""
+    return empty
 
 
-def findall3(pattern: str, string: str, flags: int = 0) -> T3Str:
-    """Parse 3 items of re.findall().
+def find3(pattern: str, string: str, flags: int = 0) -> T3Str:
+    """Parse 3 items using findall.
 
-    Group with parentheses in pattern is required.
+    3 groups with parentheses in pattern is required.
     If nothing is found, returns 3 empty strings.
 
     :param pattern: The regular expression pattern.
@@ -56,18 +58,19 @@ def findall3(pattern: str, string: str, flags: int = 0) -> T3Str:
     :param flags: Optional flags to modify the behavior of the search.
     :return: A tuple with three interested substrings, or empty strings if nothing is found.
     :example:
-        findall3(pattern="a(b)(c)(d)e", string="abcde") -> ("b", "c", "d")
+        find3(pattern="a(b)(c)(d)e", string="abcde") -> ("b", "c", "d")
     """
-    result = (re.findall(pattern=pattern, string=string, flags=flags) or [("", "", "")])[0]
+    empty = ("", "", "")
+    result = (re.findall(pattern=pattern, string=string, flags=flags) or [empty])[0]
     if isinstance(result, tuple) and len(result) >= 3:
         return result[0], result[1], result[2]
-    return "", "", ""
+    return empty
 
 
-def findall4(pattern: str, string: str, flags: int = 0) -> tuple:
-    """Parse 4 items of re.findall().
+def find4(pattern: str, string: str, flags: int = 0) -> T4Str:
+    """Parse 4 items using findall.
 
-    Group with parentheses in pattern is required.
+    4 groups with parentheses in pattern is required.
     If nothing is found, return 4 empty strings.
 
     :param pattern: The regular expression pattern.
@@ -75,9 +78,10 @@ def findall4(pattern: str, string: str, flags: int = 0) -> tuple:
     :param flags: Optional flags to modify the behavior of the search.
     :return: A tuple with three interested substrings, or empty strings if nothing is found.
     :example:
-        findall4(pattern="a(b)(c)(d)(e)", string="abcde") -> ("b", "c", "d", "e")
+        find4(pattern="a(b)(c)(d)(e)", string="abcde") -> ("b", "c", "d", "e")
     """
-    result = (re.findall(pattern=pattern, string=string, flags=flags) or [("", "", "")])[0]
+    empty = ("", "", "", "")
+    result = (re.findall(pattern=pattern, string=string, flags=flags) or [empty])[0]
     if isinstance(result, tuple) and len(result) >= 4:
         return result[0], result[1], result[2], result[3]
-    return "", "", "", ""
+    return empty

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import tomli
 
-import vhelpers
+from vhelpers import vre, vpath, vdate
 
 
 def _make_pyproject_d(root: Path) -> dict:
@@ -25,7 +25,7 @@ def test_version__readme():
     package = PYPROJECT["tool"]["poetry"]["name"].replace("_", "-")
     readme_file = PYPROJECT["tool"]["poetry"]["readme"]
     dwl_url = PYPROJECT["tool"]["poetry"]["urls"]["Download URL"]
-    readme_text = Path.joinpath(ROOT, readme_file).read_text()
+    readme_text = Path.joinpath(ROOT, readme_file).read_text(encoding="utf-8")
     version_exp = PYPROJECT["tool"]["poetry"]["version"]
 
     for source, text in [
@@ -48,18 +48,18 @@ def test_version__changelog():
     """Version in CHANGELOG."""
     version_toml = PYPROJECT["tool"]["poetry"]["version"]
     path = Path.joinpath(ROOT, "CHANGELOG.rst")
-    text = path.read_text()
+    text = path.read_text(encoding="utf-8")
     regex = r"(.+)\s\(\d\d\d\d-\d\d-\d\d\)$"
-    version_log = vhelpers.findall1(regex, text, re.M)
+    version_log = vre.find1(regex, text, re.M)
     assert version_toml == version_log, f"version in {path=}"
 
 
 def test_last_modified_date():
     """Last modified date in CHANGELOG."""
     path = Path.joinpath(ROOT, "CHANGELOG.rst")
-    text = path.read_text()
+    text = path.read_text(encoding="utf-8")
     regex = r".+\((\d\d\d\d-\d\d-\d\d)\)$"
-    date_log = vhelpers.findall1(regex, text, re.M)
-    files = vhelpers.get_files(root=str(ROOT), ext=".py")
-    last_modified = vhelpers.last_modified_date(files)
-    assert last_modified == date_log, f"last modified file"
+    date_log = vre.find1(regex, text, re.M)
+    files = vpath.get_files(root=str(ROOT), ext=".py")
+    last_modified = vdate.last_modified_date(files)
+    assert last_modified == date_log, "last modified file"

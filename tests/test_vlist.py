@@ -1,7 +1,11 @@
-"""Parameterized data for list_.py."""
+"""Unittests vlist.py."""
 from datetime import date
 
-LIST_ = [
+import pytest
+
+from vhelpers import vlist
+
+FROM_ANY = [
     ([], []),
     (tuple(), []),
     (set(), []),
@@ -24,3 +28,19 @@ NO_DUPL = [
     ([["a"], ["b"], ["a"]], [["a"], ["b"]]),
     ([{"a": 1}, {"b": 2}, {"a": 1}], [{"a": 1}, {"b": 2}]),
 ]
+
+
+@pytest.mark.parametrize("items, expected", FROM_ANY)
+def test_from_any(items, expected):
+    """from_any."""
+    actual = vlist.from_any(items=items)
+    if isinstance(items, set):
+        actual.sort()
+    assert actual == expected
+
+
+@pytest.mark.parametrize("items, expected", NO_DUPL)
+def test_no_dupl(items, expected):
+    """no_dupl."""
+    actual = vlist.no_dupl(items=items)
+    assert actual == expected

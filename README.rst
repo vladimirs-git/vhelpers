@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.0.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.1.tar.gz
 
 or install the package from github.com repository
 
@@ -40,8 +40,10 @@ Usage
 For easy navigation, functions are grouped by some key concept, mostly based on their return data type.
 For more details, please refer to the `./examples`_ directory where you will find numerous examples.
 
-dict_
+
+vdict
 =====
+Helpers for dictionary processing.
 
 
 pop_d(key, data)
@@ -60,59 +62,50 @@ Return
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vdict
 
+    # Pop the specified item from the data by key.
     data = {1: "a", 2: "b"}
-    assert vhelpers.pop_d(key=1, data=data) == "a"
+    assert vdict.pop_d(key=1, data=data) == "a"
     assert data == {2: "b"}
-    assert vhelpers.pop_d(key=3, data=data) is None
+    # If key is absent in data, do nothing and return None.
+    assert vdict.pop_d(key=3, data=data) is None
     assert data == {2: "b"}
 
 
-dict_to_params(params_d)
-------------------------
-Convert a dictionary to a list of tuples.
-
-=========== ====== =================================================================================
-Parameter   Type   Description
-=========== ====== =================================================================================
-params_d    *dict* A dictionary with keys and values.
-=========== ====== =================================================================================
-
-Return
-      *list[tuple[str, any]* A list of tuples. If params_d is empty, returns an empty list.
-
-.. code:: python
-
-    import vhelpers
-
-    assert vhelpers.dict_to_params(params_d={"a": [1, 1]}) == [("a", 1), ("a", 1)]
-
-
-params_to_dict(params)
-----------------------
-Convert a list of tuples to a dictionary.  If the key already exists in the dictionary and its value
-is a list, the new value will be appended to the list. If the key already exists in the dictionary
-and its value is not a list, the new value will replace the existing value.
-
-=========== ====== =================================================================================
-Parameter   Type   Description
-=========== ====== =================================================================================
-params      *list* A list of tuples.
-=========== ====== =================================================================================
-
-Return
-      *dict* A dictionary with keys and values.
-
-.. code:: python
-
-    import vhelpers
-
-    assert vhelpers.params_to_dict(params=[("a", 1), ("a", 1)]) == {"a": [1, 1]}
-
-
-list_
+vlist
 =====
+Helpers for list processing.
+
+
+from_any(items)
+---------------
+Convert the input items into a list.
+If items is a list, set or tuple, simply change its type to list.
+Otherwise, create a list with the value as its first item.
+If items is None return an empty list.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+items       *list* The items to be converted into a list.
+=========== ====== =================================================================================
+
+Return
+      *list* The converted list.
+
+.. code:: python
+
+    from vhelpers import vlist
+
+    # Convert the input items into a list.
+    #  If items is a list, set or tuple, simply change its type to list
+    assert vlist.from_any(items=(1, 2)) == [1, 2]
+    # Otherwise, create a list with the value as its first item.
+    assert vlist.from_any(items=1) == [1]
+    # If items is None return an empty list.
+    assert vlist.from_any(items=None) == []
+
 
 
 no_dupl(items)
@@ -132,39 +125,61 @@ Return
 
     import vhelpers
 
-    assert vhelpers.no_dupl(items=[1, 2, 1]) == [1, 2]
+    # Remove duplicates from a list of items.
+    assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
 
 
-to_list(items)
---------------
-Convert the input items into a list.
+vparams
+=======
+Helpers for parameters processing.
+Parameters are typically included in the query string of a URL,
+which is the part of a URL that comes after the question mark "?" character.
+
+
+from_dict(params_d)
+-------------------
+Convert a dictionary to a list of parameters.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
 =========== ====== =================================================================================
-items       *Any*  The items to be converted into a list.
+params_d    *dict* A dictionary with keys and values.
 =========== ====== =================================================================================
 
 Return
-      *list* The converted list x.
+      *list[tuple[str, Any]]* A list of parameters. If params_d is empty, returns an empty list.
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vparams
 
-    assert vhelpers.to_list(items=(1, 2)) == [1, 2]
-    assert vhelpers.to_list(items=None) == []
-    assert vhelpers.to_list(items=1) == [1]
-
-
-str_
-====
+    # Convert a dictionary to a list of parameters.
+    assert vparams.from_dict(params_d={"a": [1, 1]}) == [("a", 1), ("a", 1)]
 
 
-findall1(pattern, string, flags)
---------------------------------
-Parse the first item of re.findall.  Group with parentheses in pattern is required. If nothing is
-found, return 1 empty string.
+to_dict(params)
+---------------
+Convert a list of parameters to a dictionary.
+
+=========== ======================== ===============================================================
+Parameter   Type                     Description
+=========== ======================== ===============================================================
+params      *list[tuple[str, Any]]*  A list of parameters.
+=========== ======================== ===============================================================
+
+Return
+      *dict* A dictionary where key is param name.
+
+
+vre
+===
+Helpers for regex processing.
+
+
+find1(pattern, string, flags)
+-----------------------------
+Parse 1 item using findall. 1 group with parentheses in pattern is required. If nothing is found,
+return 1 empty string.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
@@ -179,77 +194,79 @@ Return
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vre
 
-    assert vhelpers.findall1(pattern="a(b)cde", string="abcde") == "b"
+    assert vre.find1(pattern="a(b)cde", string="abcde") == "b"
 
-findall2(pattern, string, flags)
---------------------------------
-Parse 2 items of re.findall(). Group with parentheses in pattern is required. If nothing is found,
+
+find2(pattern, string, flags)
+-----------------------------
+Parse 2 items using findall. 2 groups with parentheses in pattern is required. If nothing is found,
 return 2 empty strings.
 
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 Parameter   Type   Description
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 pattern     *str*  The regular expression pattern.
 string      *str*  The string to search within.
 flags       *int*  Optional flags to modify the behavior of the search.
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 
 Return
-      *tuple[str, str]* A tuple with two interested substrings, or empty strings if nothing is found.
+      *Tuple[str, str]* A tuple with two interested substrings, or empty strings if nothing is found.
+
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vre
 
-    assert vhelpers.findall2(pattern="a(b)(c)de", string="abcde") == ("b", "c")
+    assert vre.find2(pattern="a(b)(c)de", string="abcde") == ("b", "c")
 
 
-findall3(pattern, string, flags)
---------------------------------
-Parse 3 items of re.findall(). Group with parentheses in pattern is required. If nothing is found,
+find3(pattern, string, flags)
+-----------------------------
+Parse 3 items using findall. 3 groups with parentheses in pattern is required. If nothing is found,
 returns 3 empty strings.
 
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 Parameter   Type   Description
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 pattern     *str*  The regular expression pattern.
 string      *str*  The string to search within.
 flags       *int*  Optional flags to modify the behavior of the search.
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 
 Return
-      *tuple[str, str, str]* A tuple with three interested substrings, or empty strings if nothing is found.
+      *Tuple[str, str, str]* A tuple with three interested substrings, or empty strings if nothing is found.
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vre
 
-    assert vhelpers.findall3(pattern="a(b)(c)(d)e", string="abcde") == ("b", "c", "d")
+    assert vre.find3(pattern="a(b)(c)(d)e", string="abcde") == ("b", "c", "d")
 
 
-findall4(pattern, string, flags)
---------------------------------
-Parse 4 items of re.findall(). Group with parentheses in pattern is required. If nothing is found,
+find4(pattern, string, flags)
+-----------------------------
+Parse 4 items using findall. 4 groups with parentheses in pattern is required. If nothing is found,
 return 4 empty strings.
 
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 Parameter   Type   Description
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 pattern     *str*  The regular expression pattern.
 string      *str*  The string to search within.
 flags       *int*  Optional flags to modify the behavior of the search.
-=========== ====== =================================================================================
+=========== ====== ==================================================================================
 
 Return
-      *tuple[str, str, str, str]* A tuple with three interested substrings, or empty strings if nothing is found.
+      *Tuple[str, str, str, str]* A tuple with three interested substrings, or empty strings if nothing is found.
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vre
 
-    assert vhelpers.findall4(pattern="a(b)(c)(d)(e)", string="abcde") == ("b", "c", "d", "e")
+    assert vre.find4(pattern="a(b)(c)(d)(e)", string="abcde") == ("b", "c", "d", "e")
 
 
 .. _`./examples`: ./examples

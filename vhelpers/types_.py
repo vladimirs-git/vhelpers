@@ -1,6 +1,6 @@
 """Typing."""
-from typing import Any, Dict, List, Sequence, Set, Tuple, TypeVar, Union
 from datetime import date
+from typing import Any, Dict, List, Sequence, Set, Tuple, TypeVar, Union
 
 # 1 level
 DAny = Dict[str, Any]
@@ -12,7 +12,6 @@ T2Str = Tuple[str, str]
 T3Str = Tuple[str, str, str]
 T4Str = Tuple[str, str, str, str]
 TList = (list, set, tuple)
-
 
 # 2 level
 LParam = List[Param]
