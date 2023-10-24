@@ -301,7 +301,7 @@ host_cmds(items)
 ----------------
 Create commands in YAML format. Where the hostname is the key and the list of commands is the value.
 
-=========== ======================================= ================================================
+=========== ======================================== ===============================================
 Parameter   Type                                     Description
 =========== ======================================== ===============================================
 items       *List[Tuple[str, str, Union[str, List]*  List of tuples that contain: hostname, parent command, children commands.
