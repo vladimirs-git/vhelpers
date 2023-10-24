@@ -31,7 +31,7 @@ NO_DUPL = [
 
 
 @pytest.mark.parametrize("items, expected", FROM_ANY)
-def test_from_any(items, expected):
+def test__from_any(items, expected):
     """from_any."""
     actual = vlist.from_any(items=items)
     if isinstance(items, set):
@@ -40,7 +40,7 @@ def test_from_any(items, expected):
 
 
 @pytest.mark.parametrize("items, expected", NO_DUPL)
-def test_no_dupl(items, expected):
+def test__no_dupl(items, expected):
     """no_dupl."""
     actual = vlist.no_dupl(items=items)
     assert actual == expected

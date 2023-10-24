@@ -51,56 +51,56 @@ ERRORS = [
 
 
 @pytest.mark.parametrize("pattern, string, flags, expected", FIND1)
-def test_find1(pattern, string, flags, expected):
+def test__find1(pattern, string, flags, expected):
     """find1."""
     actual = vre.find1(pattern=pattern, string=string, flags=flags)
     assert actual == expected
 
 
 @pytest.mark.parametrize("pattern, string, flags, error", ERRORS)
-def test_find1__invalid(pattern, string, flags, error):
+def test__find1__invalid(pattern, string, flags, error):
     """find1."""
     with pytest.raises(error):
         vre.find1(pattern=pattern, string=string, flags=flags)
 
 
 @pytest.mark.parametrize("pattern, string, flags, expected", FIND2)
-def test_find2(pattern, string, flags, expected):
+def test__find2(pattern, string, flags, expected):
     """find2."""
     actual = vre.find2(pattern=pattern, string=string, flags=flags)
     assert actual == expected
 
 
 @pytest.mark.parametrize("pattern, string, flags, error", ERRORS)
-def test_find2__invalid(pattern, string, flags, error):
+def test__find2__invalid(pattern, string, flags, error):
     """find2."""
     with pytest.raises(error):
         vre.find2(pattern=pattern, string=string, flags=flags)
 
 
 @pytest.mark.parametrize("pattern, string, flags, expected", FIND3)
-def test_find3(pattern, string, flags, expected):
+def test__find3(pattern, string, flags, expected):
     """find3."""
     actual = vre.find3(pattern=pattern, string=string, flags=flags)
     assert actual == expected
 
 
 @pytest.mark.parametrize("pattern, string, flags, error", ERRORS)
-def test_find3__invalid(pattern, string, flags, error):
+def test__find3__invalid(pattern, string, flags, error):
     """find3."""
     with pytest.raises(error):
         vre.find3(pattern=pattern, string=string, flags=flags)
 
 
 @pytest.mark.parametrize("pattern, string, flags, expected", FIND4)
-def test_find4(pattern, string, flags, expected):
+def test__find4(pattern, string, flags, expected):
     """find4."""
     actual = vre.find4(pattern=pattern, string=string, flags=flags)
     assert actual == expected
 
 
 @pytest.mark.parametrize("pattern, string, flags, error", ERRORS)
-def test_find4__invalid(pattern, string, flags, error):
+def test__find4__invalid(pattern, string, flags, error):
     """find4."""
     with pytest.raises(error):
         vre.find4(pattern=pattern, string=string, flags=flags)

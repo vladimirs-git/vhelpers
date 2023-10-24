@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.3.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.4.tar.gz
 
 or install the package from github.com repository
 
@@ -290,6 +290,62 @@ Return
     from vhelpers import vre
 
     assert vre.find4(pattern="a(b)(c)(d)(e)", string="abcde") == ("b", "c", "d", "e")
+
+
+vyml
+====
+Helpers for YAML processing.
+
+
+host_cmds(items)
+----------------
+Create commands in YAML format. Where the hostname is the key and the list of commands is the value.
+
+=========== =========================================== ============================================
+Parameter   Type                                        Description
+=========== =========================================== ============================================
+items       *List[Tuple[str, str, Union[str, List[str]* List of tuples that contain: hostname, parent command, children commands.
+=========== =========================================== ============================================
+
+Return
+      *str* YAML formatted commands.
+
+.. code:: python
+
+    from vhelpers import vyml
+
+    # Create commands in YAML format.
+    items = [("router1", "interface Ethernet1/1", ["description text", "shutdown"])]
+    result = """
+    ---
+    router1: |
+     interface Ethernet1/1
+      description text
+      shutdown
+    """.strip()
+    assert vyml.host_cmds(items) == result
+
+
+cmd_cmds(cmd, cmds)
+-------------------
+Join parent command and children commands using indentation.
+
+=========== ====================== =================================================================
+Parameter   Type                   Description
+=========== ====================== =================================================================
+cmd         *str*                  Parent command.
+cmds        *Union[str, List[str]* Children commands.
+=========== ====================== =================================================================
+
+Return
+      *str* YAML formatted commands with indentation.
+
+.. code:: python
+
+    from vhelpers import vyml
+
+    result = """ interface Ethernet1/1\n  description text\n  shutdown"""
+    assert vyml.cmd_cmds(cmd="interface Ethernet1/1", cmds=["description text", "shutdown"]) == result
 
 
 .. _`./examples`: ./examples
