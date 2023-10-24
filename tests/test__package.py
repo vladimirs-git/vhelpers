@@ -3,30 +3,19 @@
 import re
 from pathlib import Path
 
-import tomli
+from vhelpers import vdate, vdict, vpath, vre
 
-from vhelpers import vre, vpath, vdate
-
-
-def _make_pyproject_d(root: Path) -> dict:
-    """Return data of pyproject.toml."""
-    path = Path.joinpath(root, "pyproject.toml")
-    fh = path.open(mode="rb")
-    pyproject_d = tomli.load(fh)
-    return pyproject_d
-
-
-ROOT = Path(__file__).parent.parent.resolve()
-PYPROJECT = _make_pyproject_d(ROOT)
+ROOT = Path(__file__).parent.parent
+PYPROJECT_D = vdict.pyproject_d(ROOT)
 
 
 def test_version__readme():
     """Version in README, URL."""
-    package = PYPROJECT["tool"]["poetry"]["name"].replace("_", "-")
-    readme_file = PYPROJECT["tool"]["poetry"]["readme"]
-    dwl_url = PYPROJECT["tool"]["poetry"]["urls"]["Download URL"]
+    package = PYPROJECT_D["tool"]["poetry"]["name"].replace("_", "-")
+    readme_file = PYPROJECT_D["tool"]["poetry"]["readme"]
+    dwl_url = PYPROJECT_D["tool"]["poetry"]["urls"]["Download URL"]
     readme_text = Path.joinpath(ROOT, readme_file).read_text(encoding="utf-8")
-    version_exp = PYPROJECT["tool"]["poetry"]["version"]
+    version_exp = PYPROJECT_D["tool"]["poetry"]["version"]
 
     for source, text in [
         (readme_file, readme_text),
@@ -46,7 +35,7 @@ def test_version__readme():
 
 def test_version__changelog():
     """Version in CHANGELOG."""
-    version_toml = PYPROJECT["tool"]["poetry"]["version"]
+    version_toml = PYPROJECT_D["tool"]["poetry"]["version"]
     path = Path.joinpath(ROOT, "CHANGELOG.rst")
     text = path.read_text(encoding="utf-8")
     regex = r"(.+)\s\(\d\d\d\d-\d\d-\d\d\)$"
@@ -60,6 +49,6 @@ def test_last_modified_date():
     text = path.read_text(encoding="utf-8")
     regex = r".+\((\d\d\d\d-\d\d-\d\d)\)$"
     date_log = vre.find1(regex, text, re.M)
-    files = vpath.get_files(root=str(ROOT), ext=".py")
+    files = vpath.get_files(ROOT, ext=".py")
     last_modified = vdate.last_modified_date(files)
     assert last_modified == date_log, "last modified file"

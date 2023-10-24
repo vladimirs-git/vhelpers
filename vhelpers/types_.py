@@ -1,5 +1,6 @@
 """Typing."""
 from datetime import date
+from pathlib import Path
 from typing import Any, Dict, List, Sequence, Set, Tuple, TypeVar, Union
 
 # 1 level
@@ -12,15 +13,16 @@ T2Str = Tuple[str, str]
 T3Str = Tuple[str, str, str]
 T4Str = Tuple[str, str, str, str]
 TList = (list, set, tuple)
+UPath = Union[Path, str]
 
 # 2 level
 LParam = List[Param]
 LT = List[T]
-ST = Set[T]
-TT = Tuple[T]
 SParam = Set[Param]
+ST = Set[T]
 SeqT = Sequence[T]
 TParam = Tuple[Param, ...]
+TT = Tuple[T]
 
 # 3 level
 UParam = Union[LParam, SParam, TParam]

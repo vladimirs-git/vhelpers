@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.1.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.2.tar.gz
 
 or install the package from github.com repository
 
@@ -46,8 +46,8 @@ vdict
 Helpers for dictionary processing.
 
 
-pop_d(key, data)
-----------------
+pop(key, data)
+--------------
 Pop the specified item from the data by key.  If key is absent in data, do nothing and return None.
 
 =========== ====== =================================================================================
@@ -66,11 +66,34 @@ Return
 
     # Pop the specified item from the data by key.
     data = {1: "a", 2: "b"}
-    assert vdict.pop_d(key=1, data=data) == "a"
+    assert vdict.pop(key=1, data=data) == "a"
     assert data == {2: "b"}
     # If key is absent in data, do nothing and return None.
-    assert vdict.pop_d(key=3, data=data) is None
+    assert vdict.pop(key=3, data=data) is None
     assert data == {2: "b"}
+
+
+pyproject_d(root)
+-----------------
+Convert pyproject.toml to a dictionary.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+root        *Union[Path, str]*  The root directory or path to the pyproject.toml file.
+=========== =================== ====================================================================
+
+Return
+      *Dict[str, Any]* A dictionary containing the data from pyproject.toml.
+
+.. code:: python
+
+    from vhelpers import vdict
+    from pathlib import Path
+
+    root = Path(__file__).parent.parent
+    data = vdict.pyproject_d(root)
+    assert data["tool"]["poetry"]["name"] == "vhelpers"
 
 
 vlist
@@ -129,8 +152,8 @@ Return
     assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
 
 
-vparams
-=======
+vparam
+======
 Helpers for parameters processing.
 Parameters are typically included in the query string of a URL,
 which is the part of a URL that comes after the question mark "?" character.
@@ -151,10 +174,10 @@ Return
 
 .. code:: python
 
-    from vhelpers import vparams
+    from vhelpers import vparam
 
     # Convert a dictionary to a list of parameters.
-    assert vparams.from_dict(params_d={"a": [1, 1]}) == [("a", 1), ("a", 1)]
+    assert vparam.from_dict(params_d={"a": [1, 1]}) == [("a", 1), ("a", 1)]
 
 
 to_dict(params)
@@ -204,13 +227,13 @@ find2(pattern, string, flags)
 Parse 2 items using findall. 2 groups with parentheses in pattern is required. If nothing is found,
 return 2 empty strings.
 
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 Parameter   Type   Description
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 pattern     *str*  The regular expression pattern.
 string      *str*  The string to search within.
 flags       *int*  Optional flags to modify the behavior of the search.
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 
 Return
       *Tuple[str, str]* A tuple with two interested substrings, or empty strings if nothing is found.
@@ -228,13 +251,13 @@ find3(pattern, string, flags)
 Parse 3 items using findall. 3 groups with parentheses in pattern is required. If nothing is found,
 returns 3 empty strings.
 
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 Parameter   Type   Description
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 pattern     *str*  The regular expression pattern.
 string      *str*  The string to search within.
 flags       *int*  Optional flags to modify the behavior of the search.
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 
 Return
       *Tuple[str, str, str]* A tuple with three interested substrings, or empty strings if nothing is found.
@@ -251,13 +274,13 @@ find4(pattern, string, flags)
 Parse 4 items using findall. 4 groups with parentheses in pattern is required. If nothing is found,
 return 4 empty strings.
 
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 Parameter   Type   Description
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 pattern     *str*  The regular expression pattern.
 string      *str*  The string to search within.
 flags       *int*  Optional flags to modify the behavior of the search.
-=========== ====== ==================================================================================
+=========== ====== =================================================================================
 
 Return
       *Tuple[str, str, str, str]* A tuple with three interested substrings, or empty strings if nothing is found.

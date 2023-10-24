@@ -4,6 +4,6 @@
 CHANGELOG
 =========
 
-0.1.1 (2023-10-22)
+0.1.2 (2023-10-22)
 ------------------
-* [new] vhelpers vdict, vlist, vparams, vre
+* [new] vhelpers vdict, vlist, vparam, vre

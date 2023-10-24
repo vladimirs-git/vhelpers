@@ -1,7 +1,7 @@
-"""Unittests vparams.py."""
+"""Unittests vparam.py."""
 import pytest
 
-from vhelpers import vparams
+from vhelpers import vparam
 
 FROM_DICT = [
     ({}, []),
@@ -23,12 +23,12 @@ TO_DICT = [
 @pytest.mark.parametrize("params_d, expected", FROM_DICT)
 def test_from_dict(params_d, expected):
     """from_dict."""
-    actual = vparams.from_dict(params_d=params_d)
+    actual = vparam.from_dict(params_d=params_d)
     assert actual == expected
 
 
 @pytest.mark.parametrize("params_, expected", TO_DICT)
 def test_to_dict(params_, expected):
     """to_dict."""
-    actual = vparams.to_dict(params=params_)
+    actual = vparam.to_dict(params=params_)
     assert actual == expected
