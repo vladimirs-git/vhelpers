@@ -301,11 +301,11 @@ host_cmds(items)
 ----------------
 Create commands in YAML format. Where the hostname is the key and the list of commands is the value.
 
-=========== =========================================== ============================================
-Parameter   Type                                        Description
-=========== =========================================== ============================================
-items       *List[Tuple[str, str, Union[str, List[str]* List of tuples that contain: hostname, parent command, children commands.
-=========== =========================================== ============================================
+=========== ======================================= ================================================
+Parameter   Type                                     Description
+=========== ======================================== ===============================================
+items       *List[Tuple[str, str, Union[str, List]*  List of tuples that contain: hostname, parent command, children commands.
+=========== ======================================== ===============================================
 
 Return
       *str* YAML formatted commands.
@@ -330,12 +330,12 @@ cmd_cmds(cmd, cmds)
 -------------------
 Join parent command and children commands using indentation.
 
-=========== ====================== =================================================================
-Parameter   Type                   Description
-=========== ====================== =================================================================
-cmd         *str*                  Parent command.
-cmds        *Union[str, List[str]* Children commands.
-=========== ====================== =================================================================
+=========== ================== =====================================================================
+Parameter   Type               Description
+=========== ================== =====================================================================
+cmd         *str*              Parent command.
+cmds        *Union[str, List]* Children commands.
+=========== ================== =====================================================================
 
 Return
       *str* YAML formatted commands with indentation.
