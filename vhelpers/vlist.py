@@ -1,8 +1,10 @@
 """Helpers for list processing."""
 
+import re
+from string import punctuation
 from typing import Any
 
-from vhelpers.types_ import SeqT, LT, TList
+from vhelpers.types_ import SeqT, LT, TList, LStr
 
 
 def from_any(items: Any) -> list:
@@ -39,3 +41,23 @@ def no_dupl(items: SeqT) -> LT:
         if item not in items_:
             items_.append(item)
     return items_
+
+
+def split(text: str, chars: str = "", ignore: str = "") -> LStr:
+    """Split string by punctuation chars.
+
+    :param text: Text to split by punctuation.
+    :param chars: Extra punctuation chars.
+    :param ignore: Ignore punctuation chars.
+    :return: Values without punctuation.
+    :example:
+        split(text="1; 2_3-4X5,6", chars="_X", ignore=",") -> ["1", "2", "3", "4", "5,6"]
+    """
+    punctuation_ = punctuation + chars
+    for ignore_char in ignore:
+        punctuation_ = punctuation_.replace(ignore_char, "")
+    punctuation_ = punctuation_.replace("-", "\\-")
+    punctuation_ = r"[\s{}]+".format(punctuation_)
+    items: LStr = re.split(punctuation_, text)
+    items = [s for s in items if s]
+    return items

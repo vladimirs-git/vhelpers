@@ -11,3 +11,6 @@ assert vlist.from_any(items=None) == []
 
 # Remove duplicates from a list of items.
 assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
+
+# Split string by punctuation chars.
+assert vlist.split(text="1; 2_3-4X5,6", chars="_X", ignore=",") == ["1", "2", "3", "4", "5,6"]

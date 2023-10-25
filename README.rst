@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.4.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.5.tar.gz
 
 or install the package from github.com repository
 
@@ -130,7 +130,6 @@ Return
     assert vlist.from_any(items=None) == []
 
 
-
 no_dupl(items)
 --------------
 Remove duplicates from a list of items.
@@ -146,10 +145,32 @@ Return
 
 .. code:: python
 
-    import vhelpers
+    from vhelpers import vlist
 
     # Remove duplicates from a list of items.
     assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
+
+
+split(text, chars, ignore)
+--------------------------
+Split string by punctuation chars.
+
+=========== ====== ====================================================================================
+Parameter   Type   Description
+=========== ====== ====================================================================================
+text        *str*  Text to split by punctuation.
+chars       *str*  Extra punctuation chars.
+ignore      *str*  Ignore punctuation chars.
+=========== ====== ====================================================================================
+
+Return
+      *LStr* Values without punctuation.
+
+.. code:: python
+
+    from vhelpers import vlist
+
+    assert vlist.split(text="1; 2_3-4X5,6", chars="_X", ignore=",") == ["1", "2", "3", "4", "5,6"]
 
 
 vparam
