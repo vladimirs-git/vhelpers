@@ -20,9 +20,9 @@ from vhelpers import vlist
     (None, []),
     (date(2000, 12, 31), [date(2000, 12, 31)])
 ])
-def test__from_any(items, expected):
-    """vlist.from_any()."""
-    actual = vlist.from_any(items=items)
+def test__to_list(items, expected):
+    """vlist.to_list()."""
+    actual = vlist.to_list(items=items)
     if isinstance(items, set):
         actual.sort()
     assert actual == expected

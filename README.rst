@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.6.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.7.tar.gz
 
 or install the package from github.com repository
 
@@ -127,9 +127,9 @@ vlist
 Helpers for list processing.
 
 
-from_any(items)
----------------
-Convert the input items into a list.
+to_list(items)
+--------------
+Convert the input items from any into a list.
 If items is a list, set or tuple, simply change its type to list.
 Otherwise, create a list with the value as its first item.
 If items is None return an empty list.
@@ -149,11 +149,11 @@ Return
 
     # Convert the input items into a list.
     #  If items is a list, set or tuple, simply change its type to list
-    assert vlist.from_any(items=(1, 2)) == [1, 2]
+    assert vlist.to_list(items=(1, 2)) == [1, 2]
     # Otherwise, create a list with the value as its first item.
-    assert vlist.from_any(items=1) == [1]
+    assert vlist.to_list(items=1) == [1]
     # If items is None return an empty list.
-    assert vlist.from_any(items=None) == []
+    assert vlist.to_list(items=None) == []
 
 
 no_dupl(items)

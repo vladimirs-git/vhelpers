@@ -4,6 +4,11 @@
 CHANGELOG
 =========
 
+0.1.7 (2023-10-26)
+------------------
+* [change] vlist.from_any > to_list
+
+
 0.1.6 (2023-10-26)
 ------------------
 * [new] vint, vre.find1i

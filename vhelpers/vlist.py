@@ -7,8 +7,8 @@ from typing import Any
 from vhelpers.types_ import SeqT, LT, TList, LStr
 
 
-def from_any(items: Any) -> list:
-    """Convert the input items into a list.
+def to_list(items: Any) -> list:
+    """Convert the input items from any into a list.
 
     If items is a list, set or tuple, simply change its type to list.
     Otherwise, create a list with the value as its first item.
