@@ -18,7 +18,7 @@ from vhelpers.types_ import UStr, LT3Strs
      "---\nhost1: |\n cmdA\n  cmd1\n  cmd2\nhost2: |\n cmdB\n  cmd3\n  cmd4"),
 ])
 def test___host_cmds(items: LT3Strs, expected: str):
-    """host_cmds."""
+    """vyml.host_cmds()."""
     actual = vyml.host_cmds(items=items)
     assert actual == expected
 
@@ -30,6 +30,6 @@ def test___host_cmds(items: LT3Strs, expected: str):
     ("cmdA", ["cmd1", "cmd2"], " cmdA\n  cmd1\n  cmd2"),
 ])
 def test___cmd_cmds(cmd: str, cmds: UStr, expected: str):
-    """cmd_cmds."""
+    """vyml.cmd_cmds()."""
     actual = vyml.cmd_cmds(cmd=cmd, cmds=cmds)
     assert actual == expected

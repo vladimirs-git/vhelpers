@@ -5,11 +5,13 @@ from typing import Any, Dict, List, Sequence, Set, Tuple, TypeVar, Union
 
 # 1 level
 DAny = Dict[str, Any]
+IntStr = Union[int, str]
 LStr = List[str]
 Param = Tuple[str, Any]
 SDate = Set[date]
 SeqStr = Sequence[str]
 T = TypeVar("T")
+T2Int = Tuple[int, int]
 T2Str = Tuple[str, str]
 T3Str = Tuple[str, str, str]
 T4Str = Tuple[str, str, str, str]

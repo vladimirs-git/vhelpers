@@ -13,7 +13,7 @@ ROOT = Path(__file__).parent.parent
     (2, {1: 2}, None),
 ])
 def test__pop(key, data, expected):
-    """pop."""
+    """vdict.pop()."""
     actual = vdict.pop(key=key, data=data)
     assert actual == expected
 
@@ -23,7 +23,7 @@ def test__pop(key, data, expected):
     (str(ROOT), "vhelpers"),
 ])
 def test__pyproject_d(root, expected):
-    """pyproject_d."""
+    """vdict.pyproject_d()."""
     data = vdict.pyproject_d(root=root)
     actual = data["tool"]["poetry"]["name"]
     assert actual == expected

@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.5.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.6.tar.gz
 
 or install the package from github.com repository
 
@@ -94,6 +94,32 @@ Return
     root = Path(__file__).parent.parent
     data = vdict.pyproject_d(root)
     assert data["tool"]["poetry"]["name"] == "vhelpers"
+
+
+vint
+====
+Helpers for int processing.
+
+
+to_int(digit)
+-------------
+Convert string digit to integer.
+
+=========== ================= ======================================================================
+Parameter   Type              Description
+=========== ================= ======================================================================
+digit       *Union[int, str]* Digit, string ot integer.
+=========== ================= ======================================================================
+
+Return
+      *int* Integer or 0 if value is not digit.
+
+.. code:: python
+
+    from vhelpers import vint
+
+    assert vint.to_int(digit="1") == 1
+    assert vint.to_int(digit="a") == 0
 
 
 vlist
@@ -241,6 +267,7 @@ Return
     from vhelpers import vre
 
     assert vre.find1(pattern="a(b)cde", string="abcde") == "b"
+    assert vre.find1(pattern="a(b)cde", string="acde") == ""
 
 
 find2(pattern, string, flags)
@@ -265,6 +292,7 @@ Return
     from vhelpers import vre
 
     assert vre.find2(pattern="a(b)(c)de", string="abcde") == ("b", "c")
+    assert vre.find2(pattern="a(b)(c)de", string="acde") == ("", "")
 
 
 find3(pattern, string, flags)
@@ -288,6 +316,7 @@ Return
     from vhelpers import vre
 
     assert vre.find3(pattern="a(b)(c)(d)e", string="abcde") == ("b", "c", "d")
+    assert vre.find3(pattern="a(b)(c)(d)e", string="acde") == ("", "", "")
 
 
 find4(pattern, string, flags)
@@ -311,6 +340,79 @@ Return
     from vhelpers import vre
 
     assert vre.find4(pattern="a(b)(c)(d)(e)", string="abcde") == ("b", "c", "d", "e")
+    assert vre.find4(pattern="a(b)(c)(d)(e)", string="acde") == ("", "", "", "")
+
+
+
+find1i(pattern, string, flags)
+------------------------------
+Parse 1 digit using findall. 1 group with parentheses in pattern is required. If nothing is found,
+return 0.
+
+=========== ====== ====================================================================================
+Parameter   Type   Description
+=========== ====== ====================================================================================
+pattern     *str*  The regular expression pattern to search for.
+string      *str*  The string to search within.
+flags       *int*  Optional flags to modify the behavior of the search.
+=========== ====== ====================================================================================
+
+Return
+      *int* The interested integer, or 0 if nothing is found.
+
+.. code:: python
+
+    from vhelpers import vre
+
+    assert vre.find1i(pattern="a([0-9]+)b", string="a123b") == 123
+    assert vre.find1i(pattern="a([0-9]+)b", string="ab") == 0
+
+
+find2i(pattern, string, flags)
+------------------------------
+Parse 2 digits using findall. 2 groups with parentheses in pattern is required. If nothing is found,
+return tuple of 0.
+
+=========== ====== ====================================================================================
+Parameter   Type   Description
+=========== ====== ====================================================================================
+pattern     *str*  The regular expression pattern to search for.
+string      *str*  The string to search within.
+flags       *int*  Optional flags to modify the behavior of the search.
+=========== ====== ====================================================================================
+
+Return
+      *T2Int* The interested integers, or tuple of 0 if nothing is found.
+
+.. code:: python
+
+    from vhelpers import vre
+
+    assert vre.find2i(pattern="a([0-9])b([0-9])c", string="a1b2c") == (1, 2)
+    assert vre.find2i(pattern="a([0-9])b([0-9])c", string="a1bc") == (0, 0)
+
+
+find1s(patterns, string, flags)
+-------------------------------
+Parse 1st item that match one of regex in patterns. 1 group with parentheses in pattern is required.
+If nothing is found, return 1 empty string.
+
+=========== ======== =================================================================================
+Parameter   Type     Description
+=========== ======== =================================================================================
+patterns    *SeqStr* The list of regular expression patterns to search for.
+string      *str*    The string to search within.
+flags       *int*    Optional flags to modify the behavior of the search.
+=========== ======== =================================================================================
+
+Return
+      *str* The interested substring, or an empty string if nothing is found.
+
+.. code:: python
+
+    from vhelpers import vre
+
+    assert vre.find1s(patterns=["a(a)cde", "a(b)cde"], string="abcde") == "b"
 
 
 vyml

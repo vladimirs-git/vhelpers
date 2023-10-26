@@ -57,7 +57,7 @@ def split(text: str, chars: str = "", ignore: str = "") -> LStr:
     for ignore_char in ignore:
         punctuation_ = punctuation_.replace(ignore_char, "")
     punctuation_ = punctuation_.replace("-", "\\-")
-    punctuation_ = r"[\s{}]+".format(punctuation_)
+    punctuation_ = fr"[\s{punctuation_}]+"
     items: LStr = re.split(punctuation_, text)
     items = [s for s in items if s]
     return items
