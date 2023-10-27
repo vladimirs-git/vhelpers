@@ -7,6 +7,7 @@ from vhelpers import vlist
 from vhelpers import vparam
 from vhelpers import vpath
 from vhelpers import vre
+from vhelpers import vstr
 from vhelpers import vyml
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     "vparam",
     "vpath",
     "vre",
+    "vstr",
     "vyml",
 ]

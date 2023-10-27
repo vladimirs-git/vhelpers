@@ -26,7 +26,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.7.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.8.tar.gz
 
 or install the package from github.com repository
 
@@ -413,6 +413,30 @@ Return
     from vhelpers import vre
 
     assert vre.find1s(patterns=["a(a)cde", "a(b)cde"], string="abcde") == "b"
+
+
+vstr
+====
+
+repr_params(args, kwargs)
+-------------------------
+Create parameters for the __repr__() method.
+
+=========== ====== =========================================================================================
+Parameter   Type   Description
+=========== ====== =========================================================================================
+args               The positional arguments.
+kwargs             The keyword arguments.
+=========== ====== =========================================================================================
+
+Return
+      *str* A string representation of the parameters.
+
+.. code:: python
+
+    from vhelpers import vstr
+
+    assert vstr.repr_params("a", "b", c="c", d="d") == "'a', 'b', c='c', d='d'"
 
 
 vyml
