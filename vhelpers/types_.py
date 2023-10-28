@@ -1,12 +1,16 @@
 """Typing."""
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
-from typing import Any, Dict, List, Sequence, Set, Tuple, TypeVar, Union
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, TypeVar, Union
 
 # 1 level
 DAny = Dict[str, Any]
+DInt = Dict[str, int]
 IntStr = Union[int, str]
+LAny = List[Any]
 LStr = List[str]
+Dtime = datetime
+ODtime = Optional[datetime]
 Param = Tuple[str, Any]
 SDate = Set[date]
 SeqStr = Sequence[str]
@@ -20,6 +24,7 @@ UPath = Union[Path, str]
 
 # 2 level
 DLStr = Dict[str, LStr]
+LLAny = List[LAny]
 LParam = List[Param]
 LT = List[T]
 LT3Str = List[T3Str]

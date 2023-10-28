@@ -2,30 +2,25 @@
 
 import re
 from string import punctuation
-from typing import Any
+from typing import Any, Generator, Sequence
 
-from vhelpers.types_ import SeqT, LT, TList, LStr
+from vhelpers.types_ import SeqT, LT, TList, LStr, LAny, LLAny
 
 
-def to_list(items: Any) -> list:
-    """Convert the input items from any into a list.
+def flatten(items: Sequence, ignore_types=(str, bytes)) -> Generator:
+    """Convert a multidimensional list to a flattened list.
 
-    If items is a list, set or tuple, simply change its type to list.
-    Otherwise, create a list with the value as its first item.
-    If items is None return an empty list.
-
-    :param items: The items to be converted into a list.
-    :return: The converted list.
+    :param items: The list to be flattened.
+    :param ignore_types: Types to be ignored during flattening, defaults to (str, bytes)
+    :return: A generator that yields the flattened list.
     :example:
-        lst((1, 2)) -> [1, 2]
-        lst(1) -> [1]
-        lst(None) -> []
+        flatten([1, [2, [3]], 4, [5, [6]]]) -> [1, 2, 3, 4, 5, 6]
     """
-    if items is None:
-        return []
-    if not isinstance(items, TList):
-        return [items]
-    return list(items)
+    for item in items:
+        if isinstance(item, Sequence) and not isinstance(item, ignore_types):
+            yield from flatten(item)
+        else:
+            yield item
 
 
 def no_dupl(items: SeqT) -> LT:
@@ -61,3 +56,41 @@ def split(text: str, chars: str = "", ignore: str = "") -> LStr:
     items: LStr = re.split(punctuation_, text)
     items = [s for s in items if s]
     return items
+
+
+def to_list(items: Any) -> list:
+    """Convert the input items from any into a list.
+
+    If items is a list, set or tuple, simply change its type to list.
+    Otherwise, create a list with the value as its first item.
+    If items is None return an empty list.
+
+    :param items: The items to be converted into a list.
+    :return: The converted list.
+    :example:
+        lst((1, 2)) -> [1, 2]
+        lst(1) -> [1]
+        lst(None) -> []
+    """
+    if items is None:
+        return []
+    if not isinstance(items, TList):
+        return [items]
+    return list(items)
+
+
+def to_multi(items: LAny, count: int) -> LLAny:
+    """Convert a flat list into a multidimensional list.
+
+    Convert a list with the specified number of items in each inner list.
+
+    :param items: The flat list to convert.
+    :param count: The number of items to include in each inner list.
+    :return: A multidimensional list with the specified number of items in each inner list.
+    :example:
+        to_multi(items=[1, 2, 3, 4, 5], count=2) -> [[1, 2], [3, 4], [5]]
+    """
+    output_items = []
+    for i in range(0, len(items), count):
+        output_items.append(items[i:i + count])
+    return output_items

@@ -6,6 +6,39 @@ import pytest
 
 from vhelpers import vre
 
+TEXT = "a1\nb2\na1\nc3\nd4"
+
+
+@pytest.mark.parametrize("kwargs, expected", [
+    # empty
+    ({'text': "", 'start': "", 'end': "", 'strict': True}, ""),
+    ({'text': "", 'start': "", 'end': ""}, ""),
+    ({'text': "", 'start': "a1", 'end': "c3"}, ""),
+    # found
+    ({'text': TEXT, 'start': "", 'end': "c3"}, "a1\nb2\na1\n"),
+    ({'text': TEXT, 'start': "a1", 'end': "c3"}, "\nb2\na1\n"),
+    ({'text': TEXT, 'start': "b2", 'end': "c3"}, "\na1\n"),
+    ({'text': TEXT, 'start': "b2", 'end': "c3", 'w_start': True}, "b2\na1\n"),
+    ({'text': TEXT, 'start': "b2", 'end': "c3", 'w_start': True, 'w_end': True}, "b2\na1\nc3"),
+    ({'text': TEXT, 'start': "b2", 'end': "a1"}, "\n"),
+    # not found
+    ({'text': TEXT, 'start': "", 'end': ""}, ""),
+    ({'text': TEXT, 'start': "a1", 'end': ""}, ""),
+    ({'text': TEXT, 'start': "typo", 'end': "typo"}, ""),
+    # error
+    ({'text': TEXT, 'start': "a1", 'end': "typo", 'strict': True}, ValueError),
+    ({'text': TEXT, 'start': "typo", 'end': "c3", 'strict': True}, ValueError),
+    ({'text': TEXT, 'start': "typo", 'end': "typo", 'strict': True}, ValueError),
+])
+def test__between(kwargs: dict, expected: Any):
+    """vre.between()"""
+    if isinstance(expected, str):
+        actual = vre.between(**kwargs)
+        assert actual == expected
+    else:
+        with pytest.raises(expected):
+            vre.between(**kwargs)
+
 
 @pytest.mark.parametrize("pattern, string, flags, expected", [
     ("", "abcdef", 0, ""),
@@ -142,3 +175,27 @@ def test__find1s(patterns, string, flags, expected):
     else:
         with pytest.raises(expected):
             vre.find1s(patterns=patterns, string=string, flags=flags)
+
+
+@pytest.mark.parametrize("string, expected", [
+    ("", ""),
+    ("10.0.0.", ""),
+    ("10.0.0.1/32", "10.0.0.1"),
+    ("a10.0.0.1/24b10.0.0.2/24c", "10.0.0.1"),
+])
+def test_valid__find_ip(string: str, expected: str):
+    """vre.find_ip()"""
+    actual = vre.find_ip(string=string)
+    assert actual == expected
+
+
+@pytest.mark.parametrize("string, expected", [
+    ("", ""),
+    ("10.0.0.1_24", ""),
+    ("10.0.0.1/24", "10.0.0.1/24"),
+    ("a10.0.0.1/24b10.0.0.2/24c", "10.0.0.1/24"),
+])
+def test_valid__find_prefix(string: str, expected: str):
+    """vre.find_prefix()"""
+    actual = vre.find_prefix(string=string)
+    assert actual == expected

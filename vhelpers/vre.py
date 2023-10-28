@@ -6,6 +6,54 @@ from vhelpers import vint
 from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr
 
 
+def between(text: str,  # pylint: disable=too-many-arguments,too-many-locals
+            start: str,
+            end: str,
+            w_start: bool = False,
+            w_end: bool = False,
+            strict: bool = False) -> str:
+    r"""Find all substrings between the start and end regexes.
+
+    :param text: Text where need to find start and end.
+    :param start: Regex of start.
+    :param end: Regex of end.
+    :param w_start: True  - Returns text with matched start text,
+                    False - (default) Returns text without matched start text.
+    :param w_end: True  - Returns text with matched end text,
+                  False - (default) Returns text without matched end text.
+    :param strict: True  - Raises ValueError if absent start or end,
+                   False - Returns empty string if absent start or end.
+    :return: Text between start and end.
+    :example:
+        between(text="a1\nb2\nc3\nd4", start="b2", end="c3", w_start=True, w_end=True) -> "b2\nc3"
+    """
+    match_start = re.search(start, text, re.M)
+    if not match_start:
+        if strict:
+            raise ValueError("absent header in text")
+        return ""
+    header_start = match_start[0]
+    idx = match_start.end()
+    result_wo_start = text[idx:]
+
+    match_end = re.search(end, result_wo_start, re.M)
+    if not match_end:
+        if strict:
+            raise ValueError("absent footer in text")
+        return ""
+    header_end = match_end[0]
+    idx1 = match_end.start()
+    result_wo_end = result_wo_start[:idx1]
+
+    results = [
+        header_start if w_start else "",
+        result_wo_end,
+        header_end if w_end else "",
+    ]
+    result = "".join(results)
+    return result
+
+
 def find1(pattern: str, string: str, flags: int = 0) -> str:
     """Parse 1 item using findall.
 
@@ -143,3 +191,25 @@ def find1s(patterns: SeqStr, string: str, flags: int = 0) -> str:
         if result := find1(pattern, string, flags):
             return result
     return ""
+
+
+def find_ip(string: str) -> str:
+    """Parse 1st IP address from string. If nothing is found, returns an empty string.
+
+    :param string: String where need to find IP address.
+    :return: IP address.
+    :example:
+        find_ip("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1"
+    """
+    return find1(pattern=r"\d+\.\d+\.\d+\.\d+", string=string)
+
+
+def find_prefix(string: str) -> str:
+    """Parse 1st prefix from string. If nothing is found, returns an empty string.
+
+    :param string: String where need to find prefix.
+    :return: Prefix.
+    :example:
+        find_ip("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1/24"
+    """
+    return find1(pattern=r"\d+\.\d+\.\d+\.\d+/\d+", string=string)

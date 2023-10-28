@@ -50,5 +50,5 @@ def test__last_modified_date():
     regex = r".+\((\d\d\d\d-\d\d-\d\d)\)$"
     date_log = vre.find1(regex, text, re.M)
     files = vpath.get_files(ROOT, ext=".py")
-    last_modified = vdate.last_modified_date(files)
+    last_modified = vdate.last_modified(files)
     assert last_modified == date_log, "last modified file"
