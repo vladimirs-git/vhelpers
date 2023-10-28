@@ -18,7 +18,7 @@ from vhelpers import vlist
 ])
 def test__flatten(items, expected):
     """vlist.flatten()"""
-    actual = list(vlist.flatten(items))
+    actual = vlist.flatten(items)
     assert actual == expected
 
 

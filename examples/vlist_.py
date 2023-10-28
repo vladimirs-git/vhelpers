@@ -2,7 +2,7 @@
 from vhelpers import vlist
 
 # Convert a multidimensional list to a flattened list.
-assert list(vlist.flatten([1, [2, [3]], 4, [5, [6]]])) == [1, 2, 3, 4, 5, 6]
+assert vlist.flatten([1, [2, [3]], 4, [5, [6]]]) == [1, 2, 3, 4, 5, 6]
 
 # Remove duplicates from a list of items.
 assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]

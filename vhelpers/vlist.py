@@ -7,18 +7,27 @@ from typing import Any, Generator, Sequence
 from vhelpers.types_ import SeqT, LT, TList, LStr, LAny, LLAny
 
 
-def flatten(items: Sequence, ignore_types=(str, bytes)) -> Generator:
+def flatten(items: Sequence) -> list:
     """Convert a multidimensional list to a flattened list.
+
+    :param items: The list to be flattened.
+    :return: Flat list.
+    :example:
+        flatten([1, [2, [3]], 4, [5, [6]]]) -> [1, 2, 3, 4, 5, 6]
+    """
+    return list(_flatten(items))
+
+
+def _flatten(items: Sequence, ignore_types=(str, bytes)) -> Generator:
+    """Convert a multidimensional list to a flattened generator.
 
     :param items: The list to be flattened.
     :param ignore_types: Types to be ignored during flattening, defaults to (str, bytes)
     :return: A generator that yields the flattened list.
-    :example:
-        flatten([1, [2, [3]], 4, [5, [6]]]) -> [1, 2, 3, 4, 5, 6]
     """
     for item in items:
         if isinstance(item, Sequence) and not isinstance(item, ignore_types):
-            yield from flatten(item)
+            yield from _flatten(item)
         else:
             yield item
 
