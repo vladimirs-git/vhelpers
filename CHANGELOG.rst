@@ -8,6 +8,7 @@ CHANGELOG
 ------------------
 * [new] vlist.flatten(), vstr.reverse()
 
+
 0.1.8 (2023-10-27)
 ------------------
 * [new] vstr
