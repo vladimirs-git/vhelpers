@@ -4,8 +4,6 @@ vhelpers
 
 Often used functions in vladimirs-git projects.
 
-.. contents::
-
 
 Requirements
 ------------
@@ -39,6 +37,9 @@ Usage
 -----
 For easy navigation, functions are grouped by some key concept, mostly based on their return data type.
 For more details, please refer to the `./examples`_ directory where you will find numerous examples.
+
+.. contents::
+
 
 vdate
 =====
