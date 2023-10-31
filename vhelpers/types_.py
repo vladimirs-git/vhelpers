@@ -6,13 +6,14 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, TypeVar, Uni
 # 1 level
 DAny = Dict[str, Any]
 DInt = Dict[str, int]
+Dtime = datetime
 IntStr = Union[int, str]
 LAny = List[Any]
 LStr = List[str]
-Dtime = datetime
 ODtime = Optional[datetime]
 Param = Tuple[str, Any]
 SDate = Set[date]
+SStr = Set[str]
 SeqStr = Sequence[str]
 T = TypeVar("T")
 T2Int = Tuple[int, int]

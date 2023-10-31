@@ -4,6 +4,11 @@
 CHANGELOG
 =========
 
+0.1.10 (2023-10-31)
+------------------
+* [new] vlist.vlist.dupl()
+
+
 0.1.9 (2023-10-28)
 ------------------
 * [new] vlist.flatten(), vstr.reverse()

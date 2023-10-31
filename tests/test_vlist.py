@@ -1,9 +1,31 @@
 """Unittests vlist.py."""
 from datetime import date
+from typing import Any
 
 import pytest
 
 from vhelpers import vlist
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([], []),
+    ([1, 2, 1], [1]),
+    ((1, 2, 1), [1]),
+    (["1", "2", "1"], ["1"]),
+    ([{1}, {2}, {1}], [{1}]),
+    ([{1: 1}, {1: 2}, {1: 1}], [{1: 1}]),
+    ([{1: 1}, 1, "1", {1}], []),
+    ([{1: 1}, 1, "1", {1}, 1, {1}], [1, {1}]),
+    ({1: 1, 2: 1}, []),
+])
+def test__dupl(items: Any, expected: Any):
+    """vlist.dupl()"""
+    if isinstance(expected, list):
+        actual = vlist.dupl(items)
+        assert actual == expected
+    else:
+        with pytest.raises(expected):
+            vlist.dupl(items)
 
 
 @pytest.mark.parametrize("items, expected", [

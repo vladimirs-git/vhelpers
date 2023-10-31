@@ -1,6 +1,10 @@
 """Examples vlist.py."""
 from vhelpers import vlist
 
+# Find duplicates of the items.
+assert vlist.dupl([1, 2, 1]) == [1]
+assert vlist.dupl([{1}, {2}, {1}]) == [{1}]
+
 # Convert a multidimensional list to a flattened list.
 assert vlist.flatten([1, [2, [3]], 4, [5, [6]]]) == [1, 2, 3, 4, 5, 6]
 

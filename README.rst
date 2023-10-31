@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.9.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.10.tar.gz
 
 or install the package from github.com repository
 
@@ -177,6 +177,28 @@ Return
 vlist
 =====
 Helpers for list processing.
+
+
+
+dupl(items)
+-----------
+Find duplicates of the items.
+
+=========== ====== ===================================================================================
+Parameter   Type   Description
+=========== ====== ===================================================================================
+items       *list* A list of items where need to find duplicates.
+=========== ====== ===================================================================================
+
+Return
+      *list* A list of items with duplicates.
+
+.. code:: python
+
+    from vhelpers import vlist
+
+    assert vlist.dupl([1, 2, 1]) == [1]
+    assert vlist.dupl([{1}, {2}, {1}]) == [{1}]
 
 
 flatten(items, ignore_types)

@@ -7,6 +7,49 @@ from typing import Any, Generator, Sequence
 from vhelpers.types_ import SeqT, LT, TList, LStr, LAny, LLAny
 
 
+def dupl(items: SeqT) -> LT:
+    """Find duplicates of the items.
+
+    :param items: A list of items where need to find duplicates.
+    :return: A list of items with duplicates.
+    :example:
+        dupl([1, 2, 1]) -> [1]
+        dupl([{1}, {2}, {1}]) -> [{1}]
+    """
+    types = set()
+    is_hash_error = False
+    seen = set()
+    duplicates_hashable = set()
+    duplicates = []
+
+    for item in items:
+        types.add(type(item))
+
+        if isinstance(item, (int, str)):
+            hashable: Any = item
+        elif isinstance(item, dict):
+            hashable = tuple(item.items())
+        elif isinstance(item, set):
+            hashable = frozenset(item)
+        else:
+            try:
+                hashable = hash(item)
+            except TypeError:
+                is_hash_error = True
+                hashable = str(item)
+
+        if hashable in seen:
+            duplicates_hashable.add(hashable)
+            if item not in duplicates:
+                duplicates.append(item)
+        seen.add(hashable)
+
+    if is_hash_error and len(types) > 1:
+        raise TypeError(f"{types=} expected only one.")
+
+    return duplicates
+
+
 def flatten(items: Sequence) -> list:
     """Convert a multidimensional list to a flattened list.
 
