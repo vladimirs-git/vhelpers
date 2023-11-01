@@ -193,23 +193,23 @@ def find1s(patterns: SeqStr, string: str, flags: int = 0) -> str:
     return ""
 
 
-def find_ip(string: str) -> str:
+def ip(string: str) -> str:
     """Parse 1st IP address from string. If nothing is found, returns an empty string.
 
     :param string: String where need to find IP address.
     :return: IP address.
     :example:
-        find_ip("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1"
+        ip("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1"
     """
     return find1(pattern=r"\d+\.\d+\.\d+\.\d+", string=string)
 
 
-def find_prefix(string: str) -> str:
+def prefix(string: str) -> str:
     """Parse 1st prefix from string. If nothing is found, returns an empty string.
 
     :param string: String where need to find prefix.
     :return: Prefix.
     :example:
-        find_ip("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1/24"
+        prefix("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1/24"
     """
     return find1(pattern=r"\d+\.\d+\.\d+\.\d+/\d+", string=string)

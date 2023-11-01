@@ -3,6 +3,7 @@
 from vhelpers import vdate
 from vhelpers import vdict
 from vhelpers import vint
+from vhelpers import vip
 from vhelpers import vlist
 from vhelpers import vparam
 from vhelpers import vpath

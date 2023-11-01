@@ -25,5 +25,5 @@ assert vre.find2i(pattern="a([0-9])b([0-9])c", string="a1bc") == (0, 0)
 assert vre.find1s(patterns=["a(a)cde", "a(b)cde"], string="abcde") == "b"
 
 # Parse 1st IP address from string. If nothing is found, returns an empty string.
-assert vre.find_ip("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1"
-assert vre.find_prefix("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1/24"
+assert vre.ip("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1"
+assert vre.prefix("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1/24"

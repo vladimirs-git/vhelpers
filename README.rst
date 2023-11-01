@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.10.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.11.tar.gz
 
 or install the package from github.com repository
 
@@ -174,6 +174,51 @@ Return
     assert vint.to_int(digit="a") == 0
 
 
+vip
+===
+Helpers for ip addresses processing.
+
+
+ip_prefixlen(address)
+---------------------
+Convert IPv4 address with mask to address with prefix length.
+
+=========== ====== ====================================================================================
+Parameter   Type   Description
+=========== ====== ====================================================================================
+address     *str*  IP addresses with mask.
+=========== ====== ====================================================================================
+
+Return
+      *str* IP addresses with prefix length.
+
+.. code:: python
+
+    from vhelpers import vip
+
+    assert vip.ip_prefixlen(address="10.0.0.1 255.255.255.0") == "10.0.0.1/24"
+
+
+ips_prefixlen(addresses)
+------------------------
+Convert IPv4 addresses with mask to addresses with prefix length.
+
+=========== ============ ===========================================================================
+Parameter   Type         Description
+=========== ============ ===========================================================================
+addresses   *List[str]*  A list of IP addresses with mask.
+=========== ============ ===========================================================================
+
+Return
+      *List[str]* A list of IP addresses with prefix length.
+
+.. code:: python
+
+    from vhelpers import vip
+
+    assert vip.ips_prefixlen(addresses=["10.0.0.1 255.255.255.0"]) == ["10.0.0.1/24"]
+
+
 vlist
 =====
 Helpers for list processing.
@@ -256,7 +301,7 @@ ignore      *str*  Ignore punctuation chars.
 =========== ====== =================================================================================
 
 Return
-      *LStr* Values without punctuation.
+      *List[str]* Values without punctuation.
 
 .. code:: python
 
@@ -559,8 +604,8 @@ Return
     assert vre.find1s(patterns=["a(a)cde", "a(b)cde"], string="abcde") == "b"
 
 
-find_ip(string)
----------------
+ip(string)
+----------
 Parse 1st IP address from string. If nothing is found, returns an empty string.
 
 =========== ====== =================================================================================
@@ -576,11 +621,11 @@ Return
 
     from vhelpers import vre
 
-    assert vre.find_ip("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1"
+    assert vre.ip("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1"
 
 
-find_prefix(string)
--------------------
+prefix(string)
+--------------
 Parse 1st prefix from string. If nothing is found, returns an empty string.
 
 =========== ====== =================================================================================
@@ -596,7 +641,7 @@ Return
 
     from vhelpers import vre
 
-    assert vre.find_prefix("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1/24"
+    assert vre.prefix("text 10.0.0.1/24 10.0.0.2/24 text") == "10.0.0.1/24"
 
 
 vstr

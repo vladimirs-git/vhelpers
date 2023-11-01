@@ -183,9 +183,9 @@ def test__find1s(patterns, string, flags, expected):
     ("10.0.0.1/32", "10.0.0.1"),
     ("a10.0.0.1/24b10.0.0.2/24c", "10.0.0.1"),
 ])
-def test_valid__find_ip(string: str, expected: str):
-    """vre.find_ip()"""
-    actual = vre.find_ip(string=string)
+def test_valid__ip(string: str, expected: str):
+    """vre.ip()"""
+    actual = vre.ip(string=string)
     assert actual == expected
 
 
@@ -195,7 +195,7 @@ def test_valid__find_ip(string: str, expected: str):
     ("10.0.0.1/24", "10.0.0.1/24"),
     ("a10.0.0.1/24b10.0.0.2/24c", "10.0.0.1/24"),
 ])
-def test_valid__find_prefix(string: str, expected: str):
-    """vre.find_prefix()"""
-    actual = vre.find_prefix(string=string)
+def test_valid__prefix(string: str, expected: str):
+    """vre.prefix()"""
+    actual = vre.prefix(string=string)
     assert actual == expected
