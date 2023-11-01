@@ -647,6 +647,28 @@ Return
 vstr
 ====
 
+
+repr_info(args, kwargs)
+-----------------------
+Create info without qutes for the __repr__() method.
+
+=========== ====== =========================================================================================
+Parameter   Type   Description
+=========== ====== =========================================================================================
+args               The positional arguments.
+kwargs             The keyword arguments.
+=========== ====== =========================================================================================
+
+Return
+      *str* A string representation of the parameters.
+
+.. code:: python
+
+    from vhelpers import vstr
+
+    assert vstr.repr_params("a", "b", c="c", d="d") == "a, b, c=c, d=d"
+
+
 repr_params(args, kwargs)
 -------------------------
 Create parameters for the __repr__() method.

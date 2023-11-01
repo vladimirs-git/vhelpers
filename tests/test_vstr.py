@@ -11,6 +11,19 @@ SPEECH = "\""
 
 @pytest.mark.parametrize("args, kwargs, expected", [
     ([], {}, ""),
+    (["a"], {}, "a"),
+    ([], {"a": "a"}, "a=a"),
+    (["a", "b"], {"c": "c", "d": "d"}, "a, b, c=c, d=d"),
+])
+def test__repr_info(args: LStr, kwargs: DAny, expected: str):
+    """vstr.repr_info()"""
+    actual = vstr.repr_info(*args, **kwargs)
+    actual = actual.replace(APOSTROPHE, SPEECH)
+    assert actual == expected
+
+
+@pytest.mark.parametrize("args, kwargs, expected", [
+    ([], {}, ""),
     (["a"], {}, "\"a\""),
     ([], {"a": "a"}, "a=\"a\""),
     (["a", "b"], {"c": "c", "d": "d"}, "\"a\", \"b\", c=\"c\", d=\"d\""),
