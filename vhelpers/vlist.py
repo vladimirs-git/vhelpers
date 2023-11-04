@@ -4,10 +4,10 @@ import re
 from string import punctuation
 from typing import Any, Generator, Sequence
 
-from vhelpers.types_ import SeqT, LT, TList, LStr, LAny, LLAny
+from vhelpers.types_ import SeqTy, ListTy, TList, LStr, LAny, LLAny
 
 
-def dupl(items: SeqT) -> LT:
+def dupl(items: SeqTy) -> ListTy:
     """Find duplicates of the items.
 
     :param items: A list of items where need to find duplicates.
@@ -75,7 +75,7 @@ def _flatten(items: Sequence, ignore_types=(str, bytes)) -> Generator:
             yield item
 
 
-def no_dupl(items: SeqT) -> LT:
+def no_dupl(items: SeqTy) -> ListTy:
     """Remove duplicates from a list of items.
 
     :param items: A list of items.
@@ -83,11 +83,26 @@ def no_dupl(items: SeqT) -> LT:
     :example:
         no_dupl([1, 2, 1]) -> [1, 2]
     """
-    items_: LT = []
+    items_: ListTy = []
     for item in items:
         if item not in items_:
             items_.append(item)
     return items_
+
+
+def replace(items: list, item: Any, other: Any) -> None:
+    """Replace one item with another.
+
+    :param items: The list of items where need replace item.
+    :param item: The item to be replaced.
+    :param other: The item to replace with.
+    :return: None. Update items.
+    :example:
+        replace(items=[1, 2, 3], item=2, other=4) -> [1, 4, 3]
+    """
+    if item in items:
+        idx = items.index(item)
+        items[idx] = other
 
 
 def split(text: str, chars: str = "", ignore: str = "") -> LStr:

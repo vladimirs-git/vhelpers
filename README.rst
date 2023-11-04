@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.11.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.12.tar.gz
 
 or install the package from github.com repository
 
@@ -286,6 +286,28 @@ Return
 
     # Remove duplicates from a list of items.
     assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
+
+
+replace(items, item, other)
+---------------------------
+Replace one item with another.
+
+=========== ====== ===================================================================================
+Parameter   Type   Description
+=========== ====== ===================================================================================
+items       *list* The list of items where need replace item.
+item        *Any*  The item to be replaced.
+other       *Any*  The item to replace with.
+=========== ====== ===================================================================================
+
+Return
+      *None* Update items.
+
+.. code:: python
+
+    from vhelpers import vlist
+
+    assert vlist.replace(items=[1, 2, 3], item=2, other=4) == [1, 4, 3]
 
 
 split(text, chars, ignore)

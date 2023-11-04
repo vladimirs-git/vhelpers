@@ -27,18 +27,18 @@ UPath = Union[Path, str]
 DLStr = Dict[str, LStr]
 LLAny = List[LAny]
 LParam = List[Param]
-LT = List[T]
+ListTy = List[T]
 LT3Str = List[T3Str]
 SParam = Set[Param]
-ST = Set[T]
-SeqT = Sequence[T]
+SetTy = Set[T]
+SeqTy = Sequence[T]
 TParam = Tuple[Param, ...]
-TT = Tuple[T]
+TupleTy = Tuple[T]
 UStr = Union[str, SeqStr]
 
 # 3 level
 UParam = Union[LParam, SParam, TParam]
-UT = Union[LT, ST, TT]
+UTy = Union[ListTy, SetTy, TupleTy]
 T3Strs = Tuple[str, str, UStr]
 
 # 4 level

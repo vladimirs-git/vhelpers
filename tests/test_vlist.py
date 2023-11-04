@@ -58,6 +58,20 @@ def test__no_dupl(items, expected):
     assert actual == expected
 
 
+@pytest.mark.parametrize("items, item, other, expected", [
+    ([], None, None, []),
+    ([1], None, None, [1]),
+    ([None], None, None, [None]),
+    ([None], None, 1, [1]),
+    ([1, 2, 3], 2, 4, [1, 4, 3]),
+    ([1, {2: 2}, 3], {2: 2}, 4, [1, 4, 3]),
+])
+def test__replace(items: list, item: Any, other: Any, expected: list):
+    """vlist.replace()."""
+    vlist.replace(items=items, item=item, other=other)
+    assert items == expected
+
+
 @pytest.mark.parametrize("text, chars, ignore, expected", [
     ("a", "", "", ["a"]),
     ("a", "-", "", ["a"]),
