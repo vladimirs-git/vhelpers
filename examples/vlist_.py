@@ -12,7 +12,7 @@ assert vlist.flatten([1, [2, [3]], 4, [5, [6]]]) == [1, 2, 3, 4, 5, 6]
 assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
 
 # Replace one item with another.
-assert vlist.replace(items=[1, 2, 3], item=2, other=4) == [1, 4, 3]
+assert vlist.replace(items=[1, 2, 3], old=2, new=4) == [1, 4, 3]
 
 # Split string by punctuation chars.
 assert vlist.split(text="1; 2_3-4X5,6", chars="_X", ignore=",") == ["1", "2", "3", "4", "5,6"]

@@ -90,19 +90,19 @@ def no_dupl(items: SeqTy) -> ListTy:
     return items_
 
 
-def replace(items: list, item: Any, other: Any) -> None:
+def replace(items: list, old: Any, new: Any) -> None:
     """Replace one item with another.
 
     :param items: The list of items where need replace item.
-    :param item: The item to be replaced.
-    :param other: The item to replace with.
+    :param old: The item to be replaced.
+    :param new: The item to replace with.
     :return: None. Update items.
     :example:
-        replace(items=[1, 2, 3], item=2, other=4) -> [1, 4, 3]
+        replace(items=[1, 2, 3], old=2, new=4) -> [1, 4, 3]
     """
-    if item in items:
-        idx = items.index(item)
-        items[idx] = other
+    if old in items:
+        idx = items.index(old)
+        items[idx] = new
 
 
 def split(text: str, chars: str = "", ignore: str = "") -> LStr:
