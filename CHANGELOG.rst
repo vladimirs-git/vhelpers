@@ -4,6 +4,12 @@
 CHANGELOG
 =========
 
+0.1.14 (2023-11-26)
+-------------------
+* [new] vlist.is_in()
+* [fix] requirements tomli
+
+
 0.1.13 (2023-11-04)
 -------------------
 * [new] vlist.replace()

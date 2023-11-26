@@ -8,11 +8,17 @@ assert vlist.dupl([{1}, {2}, {1}]) == [{1}]
 # Convert a multidimensional list to a flattened list.
 assert vlist.flatten([1, [2, [3]], 4, [5, [6]]]) == [1, 2, 3, 4, 5, 6]
 
+# Check is one of items in the items1 is present in the items2.
+assert vlist.is_in(items1=[1, 2], items2=[2, 3]) is True
+assert vlist.is_in(items1=[1, 2], items2=[3, 4]) is False
+
 # Remove duplicates from a list of items.
 assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
 
 # Replace one item with another.
-assert vlist.replace(items=[1, 2, 3], old=2, new=4) == [1, 4, 3]
+items = [1, 2, 3]
+vlist.replace(items=items, old=2, new=4)
+assert items == [1, 4, 3]
 
 # Split string by punctuation chars.
 assert vlist.split(text="1; 2_3-4X5,6", chars="_X", ignore=",") == ["1", "2", "3", "4", "5,6"]

@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.13.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.14.tar.gz
 
 or install the package from github.com repository
 
@@ -265,6 +265,21 @@ Return
     from vhelpers import vlist
 
     assert vlist.flatten([1, [2, [3]], 4, [5, [6]]]) == [1, 2, 3, 4, 5, 6]
+
+
+is_in(items1, items2)
+---------------------
+Check if any item in items1 is present in items2.
+
+=========== ====== ===================================================================================
+Parameter   Type   Description
+=========== ====== ===================================================================================
+items1      *list* A list of items.
+items2      *list* A list of items.
+=========== ====== ===================================================================================
+
+Return
+      *bool* True if any item in items1 is present in items2, False otherwise.
 
 
 no_dupl(items)

@@ -44,6 +44,20 @@ def test__flatten(items, expected):
     assert actual == expected
 
 
+@pytest.mark.parametrize("items1, items2, expected", [
+    ([], [], False),
+    ([], [1], False),
+    ([1, 2], [], False),
+    ([1, 2], [3], False),
+    ([1, 2], [1, 3], True),
+    ([1, 2], [2, 3], True),
+])
+def test__is_in(items1, items2, expected):
+    """vlist.is_in()."""
+    actual = vlist.is_in(items1=items1, items2=items2)
+    assert actual == expected
+
+
 @pytest.mark.parametrize("items, expected", [
     ([], []),
     (["a", "b", "a"], ["a", "b"]),

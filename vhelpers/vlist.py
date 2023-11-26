@@ -75,6 +75,22 @@ def _flatten(items: Sequence, ignore_types=(str, bytes)) -> Generator:
             yield item
 
 
+def is_in(items1: list, items2: list) -> bool:
+    """Check if any item in items1 is present in items2.
+
+    :param items1: A list of items.
+    :param items2: A list of items.
+    :return: True if any item in items1 is present in items2, False otherwise.
+    :example:
+        is_in(items1=[1, 2], items2=[2, 3]) is True
+        is_in(items1=[1, 2], items2=[2, 3]) is True
+    """
+    for items in items1:
+        if items in items2:
+            return True
+    return False
+
+
 def no_dupl(items: SeqTy) -> ListTy:
     """Remove duplicates from a list of items.
 
@@ -98,7 +114,9 @@ def replace(items: list, old: Any, new: Any) -> None:
     :param new: The item to replace with.
     :return: None. Update items.
     :example:
-        replace(items=[1, 2, 3], old=2, new=4) -> [1, 4, 3]
+        items = [1, 2, 3]
+        vlist.replace(items=items, old=2, new=4)
+        assert items == [1, 4, 3]
     """
     if old in items:
         idx = items.index(old)
