@@ -37,9 +37,10 @@ TupleTy = Tuple[T]
 UStr = Union[str, SeqStr]
 
 # 3 level
+LListTy = List[ListTy]
+T3Strs = Tuple[str, str, UStr]
 UParam = Union[LParam, SParam, TParam]
 UTy = Union[ListTy, SetTy, TupleTy]
-T3Strs = Tuple[str, str, UStr]
 
 # 4 level
 LT3Strs = List[T3Strs]

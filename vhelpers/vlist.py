@@ -5,7 +5,7 @@ import re
 from string import punctuation
 from typing import Any, Generator, Sequence
 
-from vhelpers.types_ import SeqTy, ListTy, TList, LStr, LAny, LLAny
+from vhelpers.types_ import SeqTy, ListTy, TList, LStr, LAny, LLAny, LListTy
 
 
 def dupl(items: SeqTy) -> ListTy:
@@ -165,7 +165,7 @@ def to_list(items: Any) -> list:
     return list(items)
 
 
-def to_lists(items: SeqTy, count: int) -> ListTy:
+def to_lists(items: SeqTy, count: int) -> LListTy:
     """Convert a flat list into a multidimensional list with a fixed number of inner lists.
 
     :param items: The flat list to convert.
