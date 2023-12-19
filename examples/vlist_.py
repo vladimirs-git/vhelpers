@@ -31,5 +31,9 @@ assert vlist.to_list(items=1) == [1]
 # If items is None return an empty list.
 assert vlist.to_list(items=None) == []
 
+# Convert a flat list into a multidimensional list with a fixed number of inner lists.
+assert vlist.to_lists(items=[1, 2, 3, 4, 5], count=2) == [[1, 2, 3], [4, 5]]
+assert vlist.to_lists(items=(1, 2, 3, 4, 5), count=3) == [[1, 2], [3, 4], [5]]
+
 # Convert a flat list into a multidimensional list.
 assert vlist.to_multi(items=[1, 2, 3, 4, 5], count=2) == [[1, 2], [3, 4], [5]]

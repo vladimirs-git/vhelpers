@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.14.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.15.tar.gz
 
 or install the package from github.com repository
 
@@ -377,6 +377,29 @@ Return
     assert vlist.to_list(items=None) == []
 
 
+to_lists(items, count)
+----------------------
+Convert a flat list into a multidimensional list with a fixed number of inner lists.
+
+=========== ============ ===========================================================================
+Parameter   Type         Description
+=========== ============ ===========================================================================
+items       *list*       The flat list to convert.
+count       *int*        The number of inner lists.
+=========== ============ ===========================================================================
+
+Return
+      *List[List[Any]* A multidimensional list.
+
+.. code:: python
+
+    from vhelpers import vlist
+
+    # Convert a flat list into a multidimensional list with a fixed number of inner lists.
+    assert vlist.to_lists(items=[1, 2, 3, 4, 5], count=2) == [[1, 2, 3], [4, 5]]
+    assert vlist.to_lists(items=(1, 2, 3, 4, 5), count=3) == [[1, 2], [3, 4], [5]]
+
+
 to_multi(items, count)
 ----------------------
 Convert a flat list into a multidimensional list. Convert a list with the specified number of items
@@ -385,8 +408,8 @@ in each inner list.
 =========== ============ ===========================================================================
 Parameter   Type         Description
 =========== ============ ===========================================================================
-items       *list* The   flat list to convert.
-count       *Lis[list]*  The number of items to include in each inner list.
+items       *list*       The flat list to convert.
+count       *int*        The number of items to include in each inner list.
 =========== ============ ===========================================================================
 
 Return

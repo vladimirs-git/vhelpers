@@ -1,5 +1,6 @@
 """Helpers for list processing."""
 
+import math
 import re
 from string import punctuation
 from typing import Any, Generator, Sequence
@@ -164,6 +165,35 @@ def to_list(items: Any) -> list:
     return list(items)
 
 
+def to_lists(items: SeqTy, count: int) -> ListTy:
+    """Convert a flat list into a multidimensional list with a fixed number of inner lists.
+
+    :param items: The flat list to convert.
+    :param count: The number of inner lists.
+    :return: A multidimensional list.
+    :example:
+        to_lists(items=[1, 2, 3, 4, 5], count=2) -> [[1, 2, 3], [4, 5]]
+    """
+    count_ = int(count)
+    if count_ <= 0:
+        return []
+
+    length = int(math.ceil(len(items) / count_))
+
+    items_ = []
+    items = list(items)
+    while items:
+        piece = items[:length]
+        items_.append(piece)
+        items = items[length:]
+
+    if diff := count - len(items_):
+        empty_items: ListTy = [[] for _ in range(diff)]
+        items_.extend(empty_items)
+
+    return items_
+
+
 def to_multi(items: LAny, count: int) -> LLAny:
     """Convert a flat list into a multidimensional list.
 
@@ -175,7 +205,7 @@ def to_multi(items: LAny, count: int) -> LLAny:
     :example:
         to_multi(items=[1, 2, 3, 4, 5], count=2) -> [[1, 2], [3, 4], [5]]
     """
-    output_items = []
+    items_ = []
     for i in range(0, len(items), count):
-        output_items.append(items[i:i + count])
-    return output_items
+        items_.append(items[i:i + count])
+    return items_
