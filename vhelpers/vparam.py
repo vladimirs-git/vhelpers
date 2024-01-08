@@ -9,7 +9,7 @@ from vhelpers.types_ import DAny, LParam, TList, UParam
 
 def from_dict(params_d: DAny) -> LParam:
     """Convert a dictionary to a list of parameters.
-    
+
     :param params_d: A dictionary with keys and values.
     :return:  A list of parameters. If params_d is empty, returns an empty list.
     :example:
