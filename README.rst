@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.16.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.17.tar.gz
 
 or install the package from github.com repository
 
@@ -462,6 +462,31 @@ params      *list[tuple[str, Any]]*  A list of parameters.
 
 Return
       *dict* A dictionary where key is param name.
+
+
+vpath
+=====
+Helpers for path processing.
+
+get_files(root, ext)
+--------------------
+Get paths to files with interested extension in root directory.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+root        *str*  Root directory to search for files with required extension.
+ext         *str*  Extension, end of file name.
+=========== ====== =================================================================================
+
+Return
+      *List[str]* A list of paths with required extension.
+
+
+from_dict(params_d)
+-------------------
+Convert a dictionary to a list of parameters.
+
 
 
 vre

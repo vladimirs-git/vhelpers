@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vhelpers"
-version = "0.1.16"
+version = "0.1.17"
 description = "Often used functions in vladimirs-git projects"
 authors = ["Vladimir Prusakov <vladimir.prusakovs@gmail.com>"]
 readme = "README.rst"
@@ -35,16 +35,24 @@ restructuredtext-lint = "^1.4.0"
 ruff = "^0.1.8"
 tabulate = "^0.9.0"
 
-[tool.setuptools.package-data]
-vhelpers = ["py.typed"]
-
 [tool.poetry.extras]
 test = ["pytest"]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/vladimirs-git/vhelpers/issues"
-"Download URL" = "https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.16.tar.gz"
+"Download URL" = "https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.17.tar.gz"
 
+[tool.setuptools.package-data]
+vhelpers = ["py.typed"]
+
+[tool.pylint]
+max-line-length = 100
+disable = "fixme"
+
+[tool.pylint.message_control]
+enable = ["too-many-arguments", "too-many-locals"]
+max-args = 6
+max-locals = 16
 
 [tool.mypy]
 python_version = "3.8"

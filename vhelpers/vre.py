@@ -6,12 +6,14 @@ from vhelpers import vint
 from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr
 
 
-def between(text: str,  # pylint: disable=too-many-arguments,too-many-locals
-            start: str,
-            end: str,
-            w_start: bool = False,
-            w_end: bool = False,
-            strict: bool = False) -> str:
+def between(
+    text: str,
+    start: str,
+    end: str,
+    w_start: bool = False,
+    w_end: bool = False,
+    strict: bool = False,
+) -> str:
     r"""Find all substrings between the start and end regexes.
 
     :param text: Text where need to find start and end.

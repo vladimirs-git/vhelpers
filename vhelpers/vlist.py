@@ -138,7 +138,7 @@ def split(text: str, chars: str = "", ignore: str = "") -> LStr:
     for ignore_char in ignore:
         punctuation_ = punctuation_.replace(ignore_char, "")
     punctuation_ = punctuation_.replace("-", "\\-")
-    punctuation_ = fr"[\s{punctuation_}]+"
+    punctuation_ = rf"[\s{punctuation_}]+"
     items: LStr = re.split(punctuation_, text)
     items = [s for s in items if s]
     return items
@@ -207,5 +207,5 @@ def to_multi(items: LAny, count: int) -> LLAny:
     """
     items_ = []
     for i in range(0, len(items), count):
-        items_.append(items[i:i + count])
+        items_.append(items[i : i + count])
     return items_
