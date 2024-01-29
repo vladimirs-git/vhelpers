@@ -26,6 +26,7 @@ def between(
     :param strict: True  - Raises ValueError if absent start or end,
                    False - Returns empty string if absent start or end.
     :return: Text between start and end.
+
     :example:
         between(text="a1\nb2\nc3\nd4", start="b2", end="c3", w_start=True, w_end=True) -> "b2\nc3"
     """
@@ -66,6 +67,7 @@ def find1(pattern: str, string: str, flags: int = 0) -> str:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: The interested substring, or an empty string if nothing is found.
+
     :example:
         find1(pattern="a(b)cde", string="abcde") -> "b"
     """
@@ -88,6 +90,7 @@ def find2(pattern: str, string: str, flags: int = 0) -> T2Str:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: A tuple with two interested substrings, or empty strings if nothing is found.
+
     :example:
         find2(pattern="a(b)(c)de", string="abcde") -> ("b", "c")
     """
@@ -108,6 +111,7 @@ def find3(pattern: str, string: str, flags: int = 0) -> T3Str:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: A tuple with three interested substrings, or empty strings if nothing is found.
+
     :example:
         find3(pattern="a(b)(c)(d)e", string="abcde") -> ("b", "c", "d")
     """
@@ -128,6 +132,7 @@ def find4(pattern: str, string: str, flags: int = 0) -> T4Str:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: A tuple with three interested substrings, or empty strings if nothing is found.
+
     :example:
         find4(pattern="a(b)(c)(d)(e)", string="abcde") -> ("b", "c", "d", "e")
     """
@@ -148,6 +153,7 @@ def find1i(pattern: str, string: str, flags: int = 0) -> int:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: The interested integer, or 0 if nothing is found.
+
     :example:
         find1i(pattern="a([0-9]+)b", string="a123b") -> 123
     """
@@ -165,6 +171,7 @@ def find2i(pattern: str, string: str, flags: int = 0) -> T2Int:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: The interested integers, or tuple of 0 if nothing is found.
+
     :example:
         find2i(pattern="a([0-9])b([0-9])c", string="a1b2c") -> (1, 2)
     """
@@ -184,6 +191,7 @@ def find1s(patterns: SeqStr, string: str, flags: int = 0) -> str:
     :param string: The string to search within.
     :param flags: Optional flags to modify the behavior of the search.
     :return: The interested substring, or an empty string if nothing is found.
+
     :example:
         find1s(patterns=["a(a)cde", "a(b)cde"], string="abcde") -> "b"
     """
@@ -200,6 +208,7 @@ def ip(string: str) -> str:
 
     :param string: String where need to find IP address.
     :return: IP address.
+
     :example:
         ip("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1"
     """
@@ -211,6 +220,7 @@ def prefix(string: str) -> str:
 
     :param string: String where need to find prefix.
     :return: Prefix.
+
     :example:
         prefix("text 10.0.0.1/24 10.0.0.2/24 text") -> "10.0.0.1/24"
     """

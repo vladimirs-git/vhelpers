@@ -9,6 +9,7 @@ def host_cmds(items: LT3Strs) -> str:
     Where the hostname is the key and the list of commands is the value.
     :param items: List of tuples that contain: hostname, parent command, children commands.
     :return: YAML formatted commands.
+
     :example:
         items = [("router1", "interface Ethernet1/1", ["description text", "shutdown"])]
         host_cmds(items) -> "
@@ -38,6 +39,7 @@ def cmd_cmds(cmd: str = "", cmds: UStr = "") -> str:
     :param cmd: Parent command.
     :param cmds: Children commands.
     :return: YAML formatted commands with indentation.
+
     :example:
         cmd_cmds(cmd="cmdA", cmds=["cmd1", "cmd2"]) -> "
      cmdA

@@ -12,6 +12,7 @@ def aged(delta_: DInt) -> str:
 
     :param delta_: A dictionary containing the time difference in hours, minutes, and seconds.
     :return: A string representing the elapsed time in the format %H:%M:%S.
+
     :example:
         aged(hours=8810, minutes=3, seconds=4) -> "8810:03:04"
     """
@@ -28,6 +29,7 @@ def delta(start: Dtime, end: ODtime = None) -> DInt:
     :param end: The ending datetime object. If None, the current datetime is used.
     :return: A dictionary containing the elapsed hours, minutes, and seconds.
         If end is None, update data in object.
+
     :example:
         delta(start="2001-01-02 2:3:4") -> dict(hours=8810, minutes=3, seconds=4)
     """

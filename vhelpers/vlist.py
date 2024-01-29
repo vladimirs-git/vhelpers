@@ -13,6 +13,7 @@ def dupl(items: SeqTy) -> ListTy:
 
     :param items: A list of items where need to find duplicates.
     :return: A list of items with duplicates.
+
     :example:
         dupl([1, 2, 1]) -> [1]
         dupl([{1}, {2}, {1}]) -> [{1}]
@@ -56,6 +57,7 @@ def flatten(items: Sequence) -> list:
 
     :param items: The list to be flattened.
     :return: Flat list.
+
     :example:
         flatten([1, [2, [3]], 4, [5, [6]]]) -> [1, 2, 3, 4, 5, 6]
     """
@@ -82,6 +84,7 @@ def is_in(items1: list, items2: list) -> bool:
     :param items1: A list of items.
     :param items2: A list of items.
     :return: True if any item in items1 is present in items2, False otherwise.
+
     :example:
         is_in(items1=[1, 2], items2=[2, 3]) is True
         is_in(items1=[1, 2], items2=[2, 3]) is True
@@ -97,6 +100,7 @@ def no_dupl(items: SeqTy) -> ListTy:
 
     :param items: A list of items.
     :return: A list of items without duplicates.
+
     :example:
         no_dupl([1, 2, 1]) -> [1, 2]
     """
@@ -114,9 +118,10 @@ def replace(items: list, old: Any, new: Any) -> None:
     :param old: The item to be replaced.
     :param new: The item to replace with.
     :return: None. Update items.
+
     :example:
         items = [1, 2, 3]
-        vlist.replace(items=items, old=2, new=4)
+        replace(items=items, old=2, new=4)
         assert items == [1, 4, 3]
     """
     if old in items:
@@ -131,6 +136,7 @@ def split(text: str, chars: str = "", ignore: str = "") -> LStr:
     :param chars: Extra punctuation chars.
     :param ignore: Ignore punctuation chars.
     :return: Values without punctuation.
+
     :example:
         split(text="1; 2_3-4X5,6", chars="_X", ignore=",") -> ["1", "2", "3", "4", "5,6"]
     """
@@ -153,10 +159,11 @@ def to_list(items: Any) -> list:
 
     :param items: The items to be converted into a list.
     :return: The converted list.
+
     :example:
-        lst((1, 2)) -> [1, 2]
-        lst(1) -> [1]
-        lst(None) -> []
+        to_list((1, 2)) -> [1, 2]
+        to_list(1) -> [1]
+        to_list(None) -> []
     """
     if items is None:
         return []
@@ -171,6 +178,7 @@ def to_lists(items: SeqTy, count: int) -> LListTy:
     :param items: The flat list to convert.
     :param count: The number of inner lists.
     :return: A multidimensional list.
+
     :example:
         to_lists(items=[1, 2, 3, 4, 5], count=2) -> [[1, 2, 3], [4, 5]]
     """
@@ -194,6 +202,27 @@ def to_lists(items: SeqTy, count: int) -> LListTy:
     return items_
 
 
+def to_lstr(items: Any) -> LStr:
+    """Convert the input items from any into a list of string.
+
+    If items is a list, set or tuple, simply change its type to list.
+    If items is None or empty string return an empty list.
+
+    :param items: The items to be converted into a list of string.
+    :return: The converted list.
+
+    :example:
+        to_lstr([1, "2"]) -> ["1", "2"]
+        to_lstr(1) -> ["1"]
+        to_lstr("") -> []
+    """
+    if items in [None, ""]:
+        return []
+    if not isinstance(items, TList):
+        return [str(items)]
+    return [str(i) for i in items]
+
+
 def to_multi(items: LAny, count: int) -> LLAny:
     """Convert a flat list into a multidimensional list.
 
@@ -202,6 +231,7 @@ def to_multi(items: LAny, count: int) -> LLAny:
     :param items: The flat list to convert.
     :param count: The number of items to include in each inner list.
     :return: A multidimensional list with the specified number of items in each inner list.
+
     :example:
         to_multi(items=[1, 2, 3, 4, 5], count=2) -> [[1, 2], [3, 4], [5]]
     """

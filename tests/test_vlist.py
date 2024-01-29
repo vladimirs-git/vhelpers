@@ -151,6 +151,22 @@ def test__to_lists(items, count, expected):
     assert actual == expected
 
 
+@pytest.mark.parametrize("items, expected", [
+    ("", []),
+    (None, []),
+    ([], []),
+    ([1, "2"], ["1", "2"]),
+    ((1, "2"), ["1", "2"]),
+    (0, ["0"]),
+    ({0: 0}, ["{0: 0}"]),
+    (date(2000, 12, 31), ["2000-12-31"])
+])
+def test__to_lstr(items, expected):
+    """vlist.to_lstr()."""
+    actual = vlist.to_lstr(items=items)
+    assert actual == expected
+
+
 @pytest.mark.parametrize("items, count, expected", [
     ([], 1, []),
     ([1], 1, [[1]]),

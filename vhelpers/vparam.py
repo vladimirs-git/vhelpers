@@ -12,6 +12,7 @@ def from_dict(params_d: DAny) -> LParam:
 
     :param params_d: A dictionary with keys and values.
     :return:  A list of parameters. If params_d is empty, returns an empty list.
+
     :example:
         from_dict(params_d={"a": [1, 1]}) -> [("a", 1), ("a", 1)]
     """
@@ -30,6 +31,7 @@ def to_dict(params: UParam) -> DAny:
 
     :param params: A list of parameters.
     :return: A dictionary where key is param name.
+
     :example:
         to_dict(params=[("a", 1), ("a", 1)]) -> {"a": [1, 1]}
     """

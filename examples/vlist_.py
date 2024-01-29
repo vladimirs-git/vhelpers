@@ -35,5 +35,10 @@ assert vlist.to_list(items=None) == []
 assert vlist.to_lists(items=[1, 2, 3, 4, 5], count=2) == [[1, 2, 3], [4, 5]]
 assert vlist.to_lists(items=(1, 2, 3, 4, 5), count=3) == [[1, 2], [3, 4], [5]]
 
+# Convert the input items from any into a list of string.
+assert vlist.to_lstr(items=[1, "2"]) == ["1", "2"]
+assert vlist.to_lstr(1) == ["1"]
+assert vlist.to_lstr("") == []
+
 # Convert a flat list into a multidimensional list.
 assert vlist.to_multi(items=[1, 2, 3, 4, 5], count=2) == [[1, 2], [3, 4], [5]]

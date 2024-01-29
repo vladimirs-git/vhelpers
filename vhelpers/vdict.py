@@ -15,6 +15,7 @@ def pop(key: Any, data: dict) -> Any:
     :param key: The `key` to be popped from the `data`.
     :param data: The dictionary from which the key is to be popped.
     :return: The popped item if key is present in data, otherwise None.
+
     :example:
         pop(key=1, data={1: 2}) -> 2
         pop(key=3, data={1: 2}) -> None

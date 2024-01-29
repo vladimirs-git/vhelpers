@@ -7,7 +7,9 @@ def repr_info(*args, **kwargs) -> str:
     :param args: The positional arguments.
     :param kwargs: The keyword arguments.
     :return: A string representation of the parameters.
-    :example: repr_info("a", "b", c="c", d="d") -> "a, b, c=c, d=d"
+
+    :example:
+        repr_info("a", "b", c="c", d="d") -> "a, b, c=c, d=d"
     """
     args_ = ", ".join([f"{v!s}" for v in args if v])
     kwargs_ = ", ".join([f"{k}={v!s}" for k, v in kwargs.items() if v])
@@ -21,7 +23,9 @@ def repr_params(*args, **kwargs) -> str:
     :param args: The positional arguments.
     :param kwargs: The keyword arguments.
     :return: A string representation of the parameters.
-    :example: repr_params("a", "b", c="c", d="d") -> "'a', 'b', c='c', d='d'"
+
+    :example:
+        repr_params("a", "b", c="c", d="d") -> "'a', 'b', c='c', d='d'"
     """
     args_ = ", ".join([f"{v!r}" for v in args if v])
     kwargs_ = ", ".join([f"{k}={v!r}" for k, v in kwargs.items() if v])
@@ -34,6 +38,7 @@ def reverse(line: str) -> str:
 
     :param line: The input string.
     :return: The reversed string.
+
     :example:
         reverse("abc") -> "cba"
     """

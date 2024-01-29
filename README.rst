@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.17.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.2.0.tar.gz
 
 or install the package from github.com repository
 
@@ -347,7 +347,6 @@ Return
     assert vlist.split(text="1; 2_3-4X5,6", chars="_X", ignore=",") == ["1", "2", "3", "4", "5,6"]
 
 
-
 to_list(items)
 --------------
 Convert the input items from any into a list.
@@ -398,6 +397,31 @@ Return
     # Convert a flat list into a multidimensional list with a fixed number of inner lists.
     assert vlist.to_lists(items=[1, 2, 3, 4, 5], count=2) == [[1, 2, 3], [4, 5]]
     assert vlist.to_lists(items=(1, 2, 3, 4, 5), count=3) == [[1, 2], [3, 4], [5]]
+
+
+to_lstr(items)
+--------------
+Convert the input items from any into a list of string.
+If items is a list, set or tuple, simply change its type to list.
+If items is None or empty string return an empty list.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+items       *Any*  The items to be converted into a list of string.
+=========== ====== =================================================================================
+
+Return
+      *list* The converted list.
+
+.. code:: python
+
+    from vhelpers import vlist
+
+    # Convert the input items from any into a list of string.
+    assert vlist.to_lstr(items=[1, "2"]) == ["1", "2"]
+    assert vlist.to_lstr(1) == ["1"]
+    assert vlist.to_lstr("") == []
 
 
 to_multi(items, count)

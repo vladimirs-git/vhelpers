@@ -10,6 +10,7 @@ def ip_prefixlen(address: str) -> str:
 
     :param address: IP addresses with mask.
     :return: IP addresses with prefix length.
+
     :example:
         ip_prefixlen("10.0.0.1 255.255.255.0") -> "10.0.0.1/24"
     """
@@ -23,6 +24,7 @@ def ips_prefixlen(addresses: SeqStr) -> LStr:
 
     :param addresses: A list of IP addresses with mask.
     :return: A list of IP addresses with prefix length.
+
     :example:
         ips_prefixlen(["10.0.0.1 255.255.255.0"]) -> ["10.0.0.1/24"]
     """
