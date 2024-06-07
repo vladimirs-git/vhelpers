@@ -5,7 +5,26 @@ import re
 from string import punctuation
 from typing import Any, Generator, Sequence
 
+from vhelpers import vstr
 from vhelpers.types_ import SeqTy, ListTy, TList, LStr, LAny, LLAny, LListTy
+
+
+def cmd_value(key: str, cmds: LStr) -> str:
+    """Find value in list of commands by required key.
+
+    :param key: Key of required command.
+    :param cmds: Commands where need to find value.
+    :return: Value if key is found, empty string otherwise.
+
+    :example:
+        cmd_value("description", ["description VALUE"]) -> "VALUE"
+    """
+    value = ""
+    for cmd in cmds:
+        value = vstr.cmd_value(key, cmd)
+        if value:
+            break
+    return value
 
 
 def dupl(items: SeqTy) -> ListTy:

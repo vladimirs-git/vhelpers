@@ -9,6 +9,19 @@ APOSTROPHE = "'"
 SPEECH = "\""
 
 
+@pytest.mark.parametrize("cmd, expected", [
+    ("", ""),
+    ("description VALUE", "VALUE"),
+    ("description \tVALUE\t", "VALUE"),
+    ("descriptionTYPO", ""),
+    ("    description SPACES", ""),
+])
+def test__cmd_value(cmd, expected):
+    """vstr.cmd_value()."""
+    actual = vstr.cmd_value(key="description", cmd=cmd)
+    assert actual == expected
+
+
 @pytest.mark.parametrize("args, kwargs, expected", [
     ([], {}, ""),
     (["a"], {}, "a"),

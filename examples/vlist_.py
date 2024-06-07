@@ -1,6 +1,9 @@
 """Examples vlist.py."""
 from vhelpers import vlist
 
+# Find value in command by required key.
+assert vlist.cmd_value(key="description", cmds=["description VALUE"]) == "VALUE"
+
 # Find duplicates of the items.
 assert vlist.dupl([1, 2, 1]) == [1]
 assert vlist.dupl([{1}, {2}, {1}]) == [{1}]

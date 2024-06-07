@@ -1,6 +1,24 @@
 """Helpers for string processing."""
 
 
+def cmd_value(key: str, cmd: str) -> str:
+    """Find value in command by required key.
+
+    :param key: Key of required command.
+    :param cmd: Command where need to find value.
+    :return: Value if key is found, empty string otherwise.
+
+    :example:
+        cmd_value("description", "description VALUE") -> "VALUE"
+    """
+    key = f"{key} "
+    value = ""
+    if cmd.startswith(key):
+        cmd = cmd.replace(key, "", 1)
+        value = cmd.strip()
+    return value
+
+
 def repr_info(*args, **kwargs) -> str:
     """Create info without qutes for the __repr__() method.
 

@@ -4,9 +4,11 @@
 CHANGELOG
 =========
 
-0.1.19 (2024-05-24)
+0.1.19 (2024-06-07)
 -------------------
 * [new] vdict.filter_keys()
+* [new] vlist.cmd_value()
+* [new] vstr.cmd_value()
 
 
 0.1.18 (2024-01-29)

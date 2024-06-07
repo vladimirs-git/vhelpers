@@ -99,13 +99,13 @@ Helpers for dictionary processing.
 
 
 filter_keys(keys, data)
---------------
+-----------------------
 Pop the specified item from the data by key.  If key is absent in data, do nothing and return None.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
 =========== ====== =================================================================================
-keys         *list*  A list of keys that should be present in the filtered dictionary.
+keys        *list* A list of keys that should be present in the filtered dictionary.
 data        *dict* The original dictionary to filter.
 =========== ====== =================================================================================
 
@@ -247,6 +247,20 @@ vlist
 =====
 Helpers for list processing.
 
+
+cmd_value(key, cmds)
+--------------------
+Find value in list of commands by required key.
+
+=========== ====== ===================================================================================
+Parameter   Type   Description
+=========== ====== ===================================================================================
+key         *str*  Key of required command.
+cmds        *list* Commands where need to find value.
+=========== ====== ===================================================================================
+
+Return
+      *str* Value if key is found, empty string otherwise.
 
 
 dupl(items)
@@ -779,6 +793,21 @@ Return
 
 vstr
 ====
+
+
+cmd_value(key, cmd)
+-------------------
+Find value in command by required key.
+
+=========== ====== ===================================================================================
+Parameter   Type   Description
+=========== ====== ===================================================================================
+key         *str*  Key of required command.
+cmd         *str*  Command where need to find value.
+=========== ====== ===================================================================================
+
+Return
+      *str* Value if key is found, empty string otherwise.
 
 
 repr_info(args, kwargs)
