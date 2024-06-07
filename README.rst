@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.18.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.19.tar.gz
 
 or install the package from github.com repository
 
@@ -96,6 +96,30 @@ Return
 vdict
 =====
 Helpers for dictionary processing.
+
+
+filter_keys(keys, data)
+--------------
+Pop the specified item from the data by key.  If key is absent in data, do nothing and return None.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+keys         *list*  A list of keys that should be present in the filtered dictionary.
+data        *dict* The original dictionary to filter.
+=========== ====== =================================================================================
+
+Return
+      *dict* A new dictionary containing only the required keys.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    # Filters the data to only include the specified required keys.
+    keys = ["a"]
+    data = {"a": "A", "b": "B"}
+    assert vdict.filter_keys(keys=keys, data=data) == {"a": "A"}
 
 
 pop(key, data)

@@ -3,6 +3,11 @@ from pathlib import Path
 
 from vhelpers import vdict
 
+# Filters the data to only include the specified required keys.
+keys = ["a"]
+data = {"a": "A", "b": "B"}
+assert vdict.filter_keys(keys=keys, data=data) == {"a": "A"}
+
 # Pop the specified item from the data by key.
 data = {1: "a", 2: "b"}
 assert vdict.pop(key=1, data=data) == "a"

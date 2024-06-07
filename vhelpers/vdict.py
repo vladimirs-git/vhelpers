@@ -7,6 +7,19 @@ import tomli
 from vhelpers.types_ import UPath, DAny
 
 
+def filter_keys(keys: list, data: dict) -> dict:
+    """Filters the data to only include the specified required keys.
+
+    :param keys: A list of keys that should be present in the filtered dictionary.
+    :param data: The original dictionary to filter.
+    :return: A new dictionary containing only the required keys.
+
+    :example:
+        filter_keys(keys=["a"], data={"a": "A", "b": "B"}) -> {"a": "A"}
+    """
+    return {key: data[key] for key in keys if key in data}
+
+
 def pop(key: Any, data: dict) -> Any:
     """Pop the specified item from the data by key.
 
