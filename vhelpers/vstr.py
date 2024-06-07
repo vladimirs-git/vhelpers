@@ -11,11 +11,9 @@ def cmd_value(key: str, cmd: str) -> str:
     :example:
         cmd_value("description", "description VALUE") -> "VALUE"
     """
-    key = f"{key} "
     value = ""
     if cmd.startswith(key):
-        cmd = cmd.replace(key, "", 1)
-        value = cmd.strip()
+        value = cmd.replace(key, "", 1)
     return value
 
 

@@ -10,13 +10,13 @@ from vhelpers import vlist
 @pytest.mark.parametrize("cmds, expected", [
     ([], ""),
     (["description VALUE", "descriptionTYPO"], "VALUE"),
-    (["description \tVALUE\t"], "VALUE"),
+    (["description \tVALUE\t"], "\tVALUE\t"),
     (["descriptionTYPO"], ""),
     (["    description SPACES"], ""),
 ])
 def test__cmd_value(cmds, expected):
     """interface.cmd_value()."""
-    actual = vlist.cmd_value(key="description", cmds=cmds)
+    actual = vlist.cmd_value(key="description ", cmds=cmds)
     assert actual == expected
 
 

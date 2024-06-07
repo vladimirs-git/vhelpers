@@ -21,8 +21,7 @@ def cmd_value(key: str, cmds: LStr) -> str:
     """
     value = ""
     for cmd in cmds:
-        value = vstr.cmd_value(key, cmd)
-        if value:
+        if value := vstr.cmd_value(key, cmd):
             break
     return value
 
