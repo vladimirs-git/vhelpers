@@ -9,6 +9,18 @@ from vhelpers import vlist
 
 @pytest.mark.parametrize("cmds, expected", [
     ([], ""),
+    (["shutdown", "TYPO"], "shutdown"),
+    (["shutdown TYPO"], ""),
+    (["    shutdown SPACES"], ""),
+])
+def test__cmd_key(cmds, expected):
+    """interface.cmd_key()."""
+    actual = vlist.cmd_key(key="shutdown", cmds=cmds)
+    assert actual == expected
+
+
+@pytest.mark.parametrize("cmds, expected", [
+    ([], ""),
     (["description VALUE", "descriptionTYPO"], "VALUE"),
     (["description \tVALUE\t"], "\tVALUE\t"),
     (["descriptionTYPO"], ""),

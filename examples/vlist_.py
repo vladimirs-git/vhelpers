@@ -1,6 +1,9 @@
 """Examples vlist.py."""
 from vhelpers import vlist
 
+# Find key in list of commands.
+assert vlist.cmd_key(key="shutdown", cmds=["shutdown"]) == "shutdown"
+
 # Find value in command by required key.
 assert vlist.cmd_value(key="description ", cmds=["description VALUE"]) == "VALUE"
 

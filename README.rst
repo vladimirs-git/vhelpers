@@ -248,6 +248,21 @@ vlist
 Helpers for list processing.
 
 
+cmd_key(key, cmds)
+--------------------
+Find key in list of commands.
+
+=========== ====== ===================================================================================
+Parameter   Type   Description
+=========== ====== ===================================================================================
+key         *str*  Key of required command.
+cmds        *list* Commands where need to find key.
+=========== ====== ===================================================================================
+
+Return
+      *str* Key if it is found, empty string otherwise.
+
+
 cmd_value(key, cmds)
 --------------------
 Find value in list of commands by required key.
