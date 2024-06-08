@@ -1,4 +1,4 @@
-"""Unittests vparam.py."""
+"""Tests vparam.py."""
 import pytest
 
 from vhelpers import vparam

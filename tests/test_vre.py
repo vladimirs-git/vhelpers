@@ -1,4 +1,4 @@
-"""Unittests vre.py."""
+"""Tests vre.py."""
 import re
 from typing import Any
 
@@ -7,6 +7,24 @@ import pytest
 from vhelpers import vre
 
 TEXT = "a1\nb2\na1\nc3\nd4"
+
+
+@pytest.mark.parametrize("config, expected", [
+    # str
+    ("", ""),
+    ("  description VALUE\ndescriptionTYPO", "VALUE"),
+    ("  description \tVALUE\t", "\tVALUE\t"),
+    ("  descriptionTYPO", ""),
+    # list
+    ([], ""),
+    (["  description VALUE", "descriptionTYPO"], "VALUE"),
+    (["  description \tVALUE\t"], "\tVALUE\t"),
+    (["  descriptionTYPO"], ""),
+])
+def test__cmd_value(config, expected):
+    """vre.cmd_value()."""
+    actual = vre.cmd_value(key=r"\s+description ", config=config)
+    assert actual == expected
 
 
 @pytest.mark.parametrize("kwargs, expected", [

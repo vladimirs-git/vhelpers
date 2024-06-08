@@ -1,4 +1,4 @@
-"""Unittests vint.py."""
+"""Tests vint.py."""
 
 import pytest
 

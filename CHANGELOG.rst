@@ -8,6 +8,7 @@ CHANGELOG
 -------------------
 * [new] vdict.filter_keys()
 * [new] vcfg.cmd_value()
+* [new] vre.cmd_value()
 
 
 0.1.18 (2024-01-29)

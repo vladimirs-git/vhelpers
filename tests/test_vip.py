@@ -1,4 +1,4 @@
-"""Unittests vip.py."""
+"""Tests vip.py."""
 from typing import Any
 
 import pytest

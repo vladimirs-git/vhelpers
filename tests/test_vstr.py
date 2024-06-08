@@ -1,4 +1,4 @@
-"""Unittests vstr.py."""
+"""Tests vstr.py."""
 
 import pytest
 

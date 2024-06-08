@@ -2,8 +2,28 @@
 
 import re
 
+from vhelpers import helpers as h
 from vhelpers import vint
-from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr
+from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr, UStr
+
+
+def cmd_value(key: str, config: UStr) -> str:
+    """Find value in list of commands by required key.
+
+    :param key: Key of required command.
+    :param config: Config commands where need to find value.
+    :return: Value if key is found, empty string otherwise.
+
+    :example:
+        cmd_value(".+description ", [" description VALUE"]) -> "VALUE"
+    """
+    value = ""
+    pattern = f"{key}(.+)"
+    cmds = h.init_cmds(config)
+    for cmd in cmds:
+        if value := find1(pattern, cmd):
+            break
+    return value
 
 
 def between(

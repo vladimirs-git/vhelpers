@@ -1,4 +1,4 @@
-"""Unittests vdate.py."""
+"""Tests vdate.py."""
 
 import datetime
 from unittest.mock import patch, Mock

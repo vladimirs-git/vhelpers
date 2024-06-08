@@ -1,4 +1,4 @@
-"""Unittests vdict.py."""
+"""Tests vdict.py."""
 from pathlib import Path
 
 import pytest
