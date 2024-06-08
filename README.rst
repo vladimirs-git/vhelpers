@@ -248,36 +248,6 @@ vlist
 Helpers for list processing.
 
 
-cmd_key(key, cmds)
---------------------
-Find key in list of commands.
-
-=========== ====== ===================================================================================
-Parameter   Type   Description
-=========== ====== ===================================================================================
-key         *str*  Key of required command.
-cmds        *list* Commands where need to find key.
-=========== ====== ===================================================================================
-
-Return
-      *str* Key if it is found, empty string otherwise.
-
-
-cmd_value(key, cmds)
---------------------
-Find value in list of commands by required key.
-
-=========== ====== ===================================================================================
-Parameter   Type   Description
-=========== ====== ===================================================================================
-key         *str*  Key of required command.
-cmds        *list* Commands where need to find value.
-=========== ====== ===================================================================================
-
-Return
-      *str* Value if key is found, empty string otherwise.
-
-
 dupl(items)
 -----------
 Find duplicates of the items.
@@ -808,21 +778,6 @@ Return
 
 vstr
 ====
-
-
-cmd_value(key, cmd)
--------------------
-Find value in command by required key.
-
-=========== ====== ===================================================================================
-Parameter   Type   Description
-=========== ====== ===================================================================================
-key         *str*  Key of required command.
-cmd         *str*  Command where need to find value.
-=========== ====== ===================================================================================
-
-Return
-      *str* Value if key is found, empty string otherwise.
 
 
 repr_info(args, kwargs)

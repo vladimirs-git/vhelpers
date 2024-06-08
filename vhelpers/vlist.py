@@ -5,41 +5,7 @@ import re
 from string import punctuation
 from typing import Any, Generator, Sequence
 
-from vhelpers import vstr
 from vhelpers.types_ import SeqTy, ListTy, TList, LStr, LAny, LLAny, LListTy
-
-
-def cmd_key(key: str, cmds: LStr) -> str:
-    """Find key in list of commands.
-
-    :param key: Key of required command.
-    :param cmds: Commands where need to find key.
-    :return: Key if it is found, empty string otherwise.
-
-    :example:
-        cmd_key("shutdown", ["shutdown"]) -> "shutdown"
-    """
-    for cmd in cmds:
-        if key == cmd:
-            return key
-    return ""
-
-
-def cmd_value(key: str, cmds: LStr) -> str:
-    """Find value in list of commands by required key.
-
-    :param key: Key of required command.
-    :param cmds: Commands where need to find value.
-    :return: Value if key is found, empty string otherwise.
-
-    :example:
-        cmd_value("description", ["description VALUE"]) -> "VALUE"
-    """
-    value = ""
-    for cmd in cmds:
-        if value := vstr.cmd_value(key, cmd):
-            break
-    return value
 
 
 def dupl(items: SeqTy) -> ListTy:
@@ -271,5 +237,5 @@ def to_multi(items: LAny, count: int) -> LLAny:
     """
     items_ = []
     for i in range(0, len(items), count):
-        items_.append(items[i: i + count])
+        items_.append(items[i : i + count])
     return items_
