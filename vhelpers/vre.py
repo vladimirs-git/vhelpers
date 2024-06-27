@@ -7,11 +7,12 @@ from vhelpers import vint
 from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr, UStr
 
 
-def cmd_value(key: str, config: UStr) -> str:
+def cmd_value(key: str, config: UStr, flags: int = 0) -> str:
     """Find value in list of commands by required key.
 
     :param key: Key of required command.
     :param config: Config commands where need to find value.
+        :param flags: Optional flags to modify the behavior of the search.
     :return: Value if key is found, empty string otherwise.
 
     :example:
@@ -21,7 +22,7 @@ def cmd_value(key: str, config: UStr) -> str:
     pattern = f"{key}(.+)"
     cmds = h.init_cmds(config)
     for cmd in cmds:
-        if value := find1(pattern, cmd):
+        if value := find1(pattern, cmd, flags):
             break
     return value
 

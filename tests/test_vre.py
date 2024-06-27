@@ -9,21 +9,23 @@ from vhelpers import vre
 TEXT = "a1\nb2\na1\nc3\nd4"
 
 
-@pytest.mark.parametrize("config, expected", [
+@pytest.mark.parametrize("config, flags, expected", [
     # str
-    ("", ""),
-    ("  description VALUE\ndescriptionTYPO", "VALUE"),
-    ("  description \tVALUE\t", "\tVALUE\t"),
-    ("  descriptionTYPO", ""),
+    ("", 0, ""),
+    ("  description VALUE\ndescriptionTYPO", 0, "VALUE"),
+    ("  description \tVALUE\t", 0, "\tVALUE\t"),
+    ("  descriptionTYPO", 0, ""),
     # list
-    ([], ""),
-    (["  description VALUE", "descriptionTYPO"], "VALUE"),
-    (["  description \tVALUE\t"], "\tVALUE\t"),
-    (["  descriptionTYPO"], ""),
+    ([], 0, ""),
+    (["  description VALUE", "descriptionTYPO"], 0, "VALUE"),
+    (["  description \tVALUE\t"], 0, "\tVALUE\t"),
+    (["  descriptionTYPO"], 0, ""),
+    # flags
+    ("  description VALUE\nDESCRIPTIONTYPO", re.I, "VALUE"),
 ])
-def test__cmd_value(config, expected):
+def test__cmd_value(config, flags, expected):
     """vre.cmd_value()."""
-    actual = vre.cmd_value(key=r"\s+description ", config=config)
+    actual = vre.cmd_value(key=r"\s+description ", config=config, flags=flags)
     assert actual == expected
 
 
