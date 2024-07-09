@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vhelpers"
-version = "0.1.20"
+version = "0.1.21"
 description = "Often used functions in vladimirs-git projects"
 authors = ["Vladimir Prusakov <vladimir.prusakovs@gmail.com>"]
 readme = "README.rst"
@@ -40,7 +40,7 @@ test = ["pytest"]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/vladimirs-git/vhelpers/issues"
-"Download URL" = "https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.20.tar.gz"
+"Download URL" = "https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.21.tar.gz"
 
 [tool.setuptools.package-data]
 vhelpers = ["py.typed"]

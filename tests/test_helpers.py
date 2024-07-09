@@ -12,6 +12,6 @@ from vhelpers import helpers
     (["a"], ["a"]),
 ])
 def test__cmd_key(config, expected):
-    """vcfg.cmd_key()."""
+    """helpers.cmd_key()."""
     actual = helpers.init_cmds(config=config)
     assert actual == expected
