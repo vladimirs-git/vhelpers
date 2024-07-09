@@ -1,7 +1,7 @@
 """Helpers for config commands processing."""
 
 from vhelpers import helpers as h
-from vhelpers.types_ import UStr
+from vhelpers.types_ import UStr, LStr
 
 
 def cmd_key(key: str, config: UStr) -> str:
@@ -14,7 +14,7 @@ def cmd_key(key: str, config: UStr) -> str:
     :example:
         cmd_key("shutdown", ["shutdown"]) -> "shutdown"
     """
-    cmds = h.init_cmds(config)
+    cmds: LStr = h.init_cmds(config)
     for cmd in cmds:
         if key == cmd:
             return key
@@ -32,7 +32,7 @@ def cmd_value(key: str, config: UStr) -> str:
         cmd_value("description", ["description VALUE"]) -> "VALUE"
     """
     value = ""
-    cmds = h.init_cmds(config)
+    cmds: LStr = h.init_cmds(config)
     for cmd in cmds:
         if cmd.startswith(key):
             value = cmd.replace(key, "", 1)

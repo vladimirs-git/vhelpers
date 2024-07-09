@@ -4,7 +4,7 @@ import re
 
 from vhelpers import helpers as h
 from vhelpers import vint
-from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr, UStr
+from vhelpers.types_ import T2Str, T3Str, T4Str, T2Int, SeqStr, UStr, LStr
 
 
 def cmd_value(key: str, config: UStr, flags: int = 0) -> str:
@@ -20,7 +20,7 @@ def cmd_value(key: str, config: UStr, flags: int = 0) -> str:
     """
     value = ""
     pattern = f"{key}(.+)"
-    cmds = h.init_cmds(config)
+    cmds: LStr = h.init_cmds(config)
     for cmd in cmds:
         if value := find1(pattern, cmd, flags):
             break
