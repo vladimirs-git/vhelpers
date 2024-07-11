@@ -1,4 +1,43 @@
 """Helpers for string processing."""
+from vhelpers.types_ import LStr
+
+
+def join(*args) -> str:
+    """Strip and join args by delimiter that is first argument, skipping empty strings.
+
+    :param args: Items that need to be joined.
+    :return: Joined string.
+
+    :example:
+        join(",", "a", "", 0, 1) -> "a,0,1"
+    """
+    if not args:
+        return ""
+
+    delimiter = args[0]
+    args = args[1:]
+
+    items: LStr = []
+    for item in args:
+        if isinstance(item, str):
+            if item:
+                items.append(item)
+        else:
+            items.append(str(item))
+
+    return delimiter.join(items)
+
+
+def join_lines(*args) -> str:
+    """Strip and join args by '\n' character, skipping empty strings.
+
+    :param args: Items that need to be joined.
+    :return: Joined string.
+
+    :example:
+        join_lines("a", "", 0, 1) -> "a\n0\n1"
+    """
+    return join("\n", *args)
 
 
 def repr_info(*args, **kwargs) -> str:

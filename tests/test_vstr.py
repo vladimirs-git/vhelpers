@@ -9,6 +9,30 @@ APOSTROPHE = "'"
 SPEECH = "\""
 
 
+@pytest.mark.parametrize("args, expected", [
+    ([], ""),
+    ([",", "a", "", 0,], "a,0"),
+    ([",", " a ", " ", 0], " a , ,0"),
+    (["\n", "a", "", 0], "a\n0"),
+    (["\n", " a\n", " ", 0], " a\n\n \n0"),
+])
+def test__join(args, expected):
+    """vstr.join()"""
+    actual = vstr.join(*args)
+    assert actual == expected
+
+
+@pytest.mark.parametrize("args, expected", [
+    ([], ""),
+    (["a", "", 0], "a\n0"),
+    (["a\n", " ", 0], "a\n\n \n0"),
+])
+def test__join_lines(args, expected):
+    """vstr.join_lines()"""
+    actual = vstr.join_lines(*args)
+    assert actual == expected
+
+
 @pytest.mark.parametrize("args, kwargs, expected", [
     ([], {}, ""),
     (["a"], {}, "a"),

@@ -1,9 +1,6 @@
 """Examples vre.py."""
 from vhelpers import vre
 
-# Find value in list of commands by required key.
-assert vre.cmd_value(".+description ", [" description VALUE"]) == "VALUE"
-
 # Find all substrings between the start and end regexes.
 TEXT = "a1\nb2\nc3\nd4"
 assert vre.between(text=TEXT, start="b2", end="c3", w_start=True, w_end=True) == "b2\nc3"
