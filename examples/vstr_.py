@@ -2,10 +2,10 @@
 
 from vhelpers import vstr
 
-# Strip and join args by delimiter that is first argument, skipping empty strings.
+# Join args by delimiter that is first argument, skipping empty strings.
 assert vstr.join(",", "a", "", 0, 1) == "a,0,1"
 
-# Strip and join args by '\n' character, skipping empty strings.
+# Join args by '\n' character, skipping empty strings.
 assert vstr.join_lines("a", "", 0, 1) == "a\n0\n1"
 
 # Create parameters for the __repr__() method.

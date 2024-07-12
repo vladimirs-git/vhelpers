@@ -781,7 +781,7 @@ vstr
 
 join(args)
 ----------
-Strip and join args by delimiter that is first argument, skipping empty strings.
+Join args by delimiter that is first argument, skipping empty strings.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
@@ -801,7 +801,7 @@ Return
 
 join_lines(args)
 ----------------
-Strip and join args by '\n' character, skipping empty strings.
+Join args by '\n' character, skipping empty strings.
 
 =========== ====== =================================================================================
 Parameter   Type   Description

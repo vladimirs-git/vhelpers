@@ -3,7 +3,7 @@ from vhelpers.types_ import LStr
 
 
 def join(*args) -> str:
-    """Strip and join args by delimiter that is first argument, skipping empty strings.
+    """Join args by delimiter that is first argument, skipping empty strings.
 
     :param args: Items that need to be joined.
     :return: Joined string.
@@ -29,7 +29,7 @@ def join(*args) -> str:
 
 
 def join_lines(*args) -> str:
-    """Strip and join args by '\n' character, skipping empty strings.
+    """Join args by '\n' character, skipping empty strings.
 
     :param args: Items that need to be joined.
     :return: Joined string.
