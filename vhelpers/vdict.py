@@ -20,6 +20,17 @@ def filter_keys(keys: list, data: dict) -> dict:
     return {key: data[key] for key in keys if key in data}
 
 
+def invert(data: dict) -> dict:
+    """Invert keys and values.
+
+    :param data: Dictionary to invert.
+    :return: Dictionary with keys and values inverted.
+    :example:
+        invert(data={1: 2}) -> {2: 1}
+    """
+    return {v: k for k, v in data.items()}
+
+
 def pop(key: Any, data: dict) -> Any:
     """Pop the specified item from the data by key.
 

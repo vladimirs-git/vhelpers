@@ -21,6 +21,16 @@ def test__filter_keys(keys, data, expected):
     assert actual == expected
 
 
+@pytest.mark.parametrize("data, expected", [
+    ({}, {}),
+    ({1: 2}, {2: 1}),
+])
+def test__invert(data, expected):
+    """vdict.invert()."""
+    actual = vdict.invert(data=data)
+    assert actual == expected
+
+
 @pytest.mark.parametrize("key, data, expected", [
     (1, {1: 2}, 2),
     (2, {1: 2}, None),

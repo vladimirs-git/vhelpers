@@ -122,6 +122,27 @@ Return
     assert vdict.filter_keys(keys=keys, data=data) == {"a": "A"}
 
 
+invert(data)
+------------
+Invert keys and values.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+data        *dict* Dictionary to invert.
+=========== ====== =================================================================================
+
+Return
+      *dict* Dictionary with keys and values inverted.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    # Invert keys and values.
+    assert vdict.invert(data={1: 2}) == {2: 1}
+
+
 pop(key, data)
 --------------
 Pop the specified item from the data by key.  If key is absent in data, do nothing and return None.
