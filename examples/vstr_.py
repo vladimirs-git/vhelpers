@@ -14,3 +14,6 @@ assert vstr.repr_params("a", "b", c="c", d="d") == "'a', 'b', c='c', d='d'"
 
 # Reverse the characters in a string.
 assert vstr.reverse("abc") == "cba"
+
+# Split the text at the specified index.
+assert vstr.split_idx(text="before_after", idx=7) == ("before_", "after")

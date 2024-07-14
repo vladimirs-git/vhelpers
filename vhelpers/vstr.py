@@ -1,5 +1,5 @@
 """Helpers for string processing."""
-from vhelpers.types_ import LStr
+from vhelpers.types_ import LStr, T2Str
 
 
 def join(*args) -> str:
@@ -82,3 +82,18 @@ def reverse(line: str) -> str:
         reverse("abc") -> "cba"
     """
     return line[::-1]
+
+
+def split_idx(text: str, idx: int) -> T2Str:
+    """Split the text at the specified index.
+
+    :param text: Text to split.
+    :param idx: Index at which to split the text.
+    :return: Tuple containing the text before the index and the text after the index.
+
+    :example:
+        split_idx(text="before_after", idx=7) -> "before_", "after"
+    """
+    before = text[:idx]
+    after = text[idx:]
+    return before, after

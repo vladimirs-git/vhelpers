@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.21.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.22.tar.gz
 
 or install the package from github.com repository
 
@@ -116,7 +116,6 @@ Return
 
     from vhelpers import vdict
 
-    # Filters the data to only include the specified required keys.
     keys = ["a"]
     data = {"a": "A", "b": "B"}
     assert vdict.filter_keys(keys=keys, data=data) == {"a": "A"}
@@ -139,7 +138,6 @@ Return
 
     from vhelpers import vdict
 
-    # Invert keys and values.
     assert vdict.invert(data={1: 2}) == {2: 1}
 
 
@@ -343,7 +341,6 @@ Return
 
     from vhelpers import vlist
 
-    # Remove duplicates from a list of items.
     assert vlist.no_dupl(items=[1, 2, 1]) == [1, 2]
 
 
@@ -438,7 +435,6 @@ Return
 
     from vhelpers import vlist
 
-    # Convert a flat list into a multidimensional list with a fixed number of inner lists.
     assert vlist.to_lists(items=[1, 2, 3, 4, 5], count=2) == [[1, 2, 3], [4, 5]]
     assert vlist.to_lists(items=(1, 2, 3, 4, 5), count=3) == [[1, 2], [3, 4], [5]]
 
@@ -462,7 +458,6 @@ Return
 
     from vhelpers import vlist
 
-    # Convert the input items from any into a list of string.
     assert vlist.to_lstr(items=[1, "2"]) == ["1", "2"]
     assert vlist.to_lstr(1) == ["1"]
     assert vlist.to_lstr("") == []
@@ -514,7 +509,6 @@ Return
 
     from vhelpers import vparam
 
-    # Convert a dictionary to a list of parameters.
     assert vparam.from_dict(params_d={"a": [1, 1]}) == [("a", 1), ("a", 1)]
 
 
@@ -902,6 +896,27 @@ Return
     assert vstr.reverse("abc") == "cba"
 
 
+split_idx(text, idx)
+--------------------
+Split the text at the specified index.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+text        *str*  Text to split.
+idx         *int*  Index at which to split the text.
+=========== ====== =================================================================================
+
+Return
+      *Tuple[str, str]* Tuple containing the text before the index and the text after the index.
+
+.. code:: python
+
+    from vhelpers import vstr
+
+    assert vstr.split_idx(text="before_after", idx=7) == ("before_", "after")
+
+
 vyml
 ====
 Helpers for YAML processing.
@@ -924,7 +939,6 @@ Return
 
     from vhelpers import vyml
 
-    # Create commands in YAML format.
     items = [("router1", "interface Ethernet1/1", ["description text", "shutdown"])]
     result = """
     ---
