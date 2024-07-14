@@ -31,6 +31,32 @@ def invert(data: dict) -> dict:
     return {v: k for k, v in data.items()}
 
 
+# def dld(key: Any, items: List[dict]) -> dict:
+#     """Create a multidimensional dictionary from a list of dictionaries based on a specified key.
+#
+#     :param key: The key to use for grouping the dictionaries.
+#     :param items: A list of dictionaries to be grouped.
+#     :return: Grouped dictionary of list of dictionaries.
+#     """
+#     data_dld = {}
+#     for data in items:
+#         data_dld.setdefault(data[key], []).append(data)
+#     return data_dld
+#
+#
+# def dlo(key: Any, items: list) -> dict:
+#     """Create a multidimensional dictionary from a list of objects based on a specified attribute.
+#
+#     :param key: Attribute to use for grouping the dictionaries.
+#     :param items: A list of objects to be grouped.
+#     :return: Grouped dictionary of lists of objects.
+#     """
+#     data_dlo = {}
+#     for obj in items:
+#         data_dlo.setdefault(getattr(obj, key), []).append(obj)
+#     return data_dlo
+
+
 def pop(key: Any, data: dict) -> Any:
     """Pop the specified item from the data by key.
 

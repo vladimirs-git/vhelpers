@@ -4,7 +4,7 @@
 CHANGELOG
 =========
 
-0.1.21 (2024-07-13)
+0.1.21 (2024-07-14)
 -------------------
 * [delete] vcfg
 * [new] vstr.join(), vstr.join_lines()
