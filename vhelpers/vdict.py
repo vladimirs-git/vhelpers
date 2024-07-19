@@ -1,4 +1,6 @@
 """Helpers for dictionary processing."""
+import hashlib
+import json
 from pathlib import Path
 from typing import Any
 
@@ -31,30 +33,16 @@ def invert(data: dict) -> dict:
     return {v: k for k, v in data.items()}
 
 
-# def dld(key: Any, items: List[dict]) -> dict:
-#     """Create a multidimensional dictionary from a list of dictionaries based on a specified key.
-#
-#     :param key: The key to use for grouping the dictionaries.
-#     :param items: A list of dictionaries to be grouped.
-#     :return: Grouped dictionary of list of dictionaries.
-#     """
-#     data_dld = {}
-#     for data in items:
-#         data_dld.setdefault(data[key], []).append(data)
-#     return data_dld
-#
-#
-# def dlo(key: Any, items: list) -> dict:
-#     """Create a multidimensional dictionary from a list of objects based on a specified attribute.
-#
-#     :param key: Attribute to use for grouping the dictionaries.
-#     :param items: A list of objects to be grouped.
-#     :return: Grouped dictionary of lists of objects.
-#     """
-#     data_dlo = {}
-#     for obj in items:
-#         data_dlo.setdefault(getattr(obj, key), []).append(obj)
-#     return data_dlo
+def md5hash(data: DAny) -> str:
+    """Create MD5 hash of a dictionary.
+
+    :param data: Dictionary to be hashed.
+    :return: String representing the MD5 hash of the dictionary.
+    """
+    dhash = hashlib.md5()
+    encoded = json.dumps(data, sort_keys=True).encode()
+    dhash.update(encoded)
+    return dhash.hexdigest()
 
 
 def pop(key: Any, data: dict) -> Any:
@@ -87,3 +75,17 @@ def pyproject_d(root: UPath) -> DAny:
     with path.open(mode="rb") as file_:
         data = tomli.load(file_)
     return data
+
+
+def sha256hash(data: dict) -> int:
+    """Create SHA-256 hash of a dictionary.
+
+    :param data: Dictionary to be hashed.
+    :return: Integer representing the SHA-256 hash of the dictionary.
+    """
+    items = tuple(sorted(data.items()))
+    json_string = json.dumps(items)
+    json_bytes = json_string.encode("utf-8")
+    hash_object = hashlib.sha256()
+    hash_object.update(json_bytes)
+    return int(hash_object.hexdigest(), 16)

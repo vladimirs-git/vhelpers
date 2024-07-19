@@ -141,6 +141,20 @@ Return
     assert vdict.invert(data={1: 2}) == {2: 1}
 
 
+md5hash(data)
+-------------
+Create MD5 hash of a dictionary.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+data        *dict* Dictionary to be hashed.
+=========== ====== =================================================================================
+
+Return
+      *str* String representing the MD5 hash of the dictionary.
+
+
 pop(key, data)
 --------------
 Pop the specified item from the data by key.  If key is absent in data, do nothing and return None.
@@ -189,6 +203,20 @@ Return
     root = Path(__file__).parent.parent
     data = vdict.pyproject_d(root)
     assert data["tool"]["poetry"]["name"] == "vhelpers"
+
+
+sha256hash(data)
+----------------
+Create SHA-256 hash of a dictionary.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+root        *dict*              Dictionary to be hashed.
+=========== =================== ====================================================================
+
+Return
+      *int* Integer representing the SHA-256 hash of the dictionary.
 
 
 vint
