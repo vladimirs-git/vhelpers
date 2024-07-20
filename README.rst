@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.1.22.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.2.0.tar.gz
 
 or install the package from github.com repository
 
@@ -98,15 +98,15 @@ vdict
 Helpers for dictionary processing.
 
 
-filter_keys(keys, data)
+filter_keys(data, keys)
 -----------------------
-Pop the specified item from the data by key.  If key is absent in data, do nothing and return None.
+Filters the data to only include the specified required keys.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
 =========== ====== =================================================================================
-keys        *list* A list of keys that should be present in the filtered dictionary.
 data        *dict* The original dictionary to filter.
+keys        *list* A list of keys that should be present in the filtered dictionary.
 =========== ====== =================================================================================
 
 Return
@@ -118,7 +118,7 @@ Return
 
     keys = ["a"]
     data = {"a": "A", "b": "B"}
-    assert vdict.filter_keys(keys=keys, data=data) == {"a": "A"}
+    assert vdict.filter_keys(data=data, keys=keys) == {"a": "A"}
 
 
 invert(data)
@@ -162,8 +162,8 @@ Pop the specified item from the data by key.  If key is absent in data, do nothi
 =========== ====== =================================================================================
 Parameter   Type   Description
 =========== ====== =================================================================================
+data        *dict* The dictionary from which the key is to be popped.
 key         *str*  The key to be popped from the data.
-data        *dict* The data from which the key is to be popped.
 =========== ====== =================================================================================
 
 Return
@@ -173,12 +173,9 @@ Return
 
     from vhelpers import vdict
 
-    # Pop the specified item from the data by key.
     data = {1: "a", 2: "b"}
+    assert vdict.pop(data=data, key=3) is None
     assert vdict.pop(key=1, data=data) == "a"
-    assert data == {2: "b"}
-    # If key is absent in data, do nothing and return None.
-    assert vdict.pop(key=3, data=data) is None
     assert data == {2: "b"}
 
 

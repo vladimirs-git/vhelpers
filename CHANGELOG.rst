@@ -4,14 +4,16 @@
 CHANGELOG
 =========
 
-0.1.22 (2024-07-19)
--------------------
+0.2.0 (2024-07-20)
+------------------
 * [delete] vcfg
 * [new] vstr.join(), vstr.join_lines()
 * [new] vdict.invert()
 * [new] vstr.split_idx()
 * [new] vdict.md5hash()
 * [new] vdict.sha256hash()
+* [change] vdict.filter_keys()
+* [change] vdict.pop()
 
 
 0.1.20 (2024-06-27)

@@ -9,25 +9,16 @@ from vhelpers import vdict
 ROOT = Path(__file__).parent.parent
 
 
-@pytest.mark.parametrize("keys, data, expected", [
-    ([], {}, {}),
-    (["a"], {}, {}),
-    ([], {1: 11, "a": "A"}, {}),
-    ([1], {1: 11, "a": "A"}, {1: 11}),
-    (["a"], {1: 11, "a": "A"}, {"a": "A"}),
+@pytest.mark.parametrize("data, keys, expected", [
+    ({}, [], {}),
+    ({}, ["a"], {}),
+    ({1: 11, "a": "A"}, [], {}),
+    ({1: 11, "a": "A"}, [1], {1: 11}),
+    ({1: 11, "a": "A"}, ["a"], {"a": "A"}),
 ])
-def test__filter_keys(keys, data, expected):
+def test__filter_keys(data, keys, expected):
     """vdict.filter_keys()."""
-    actual = vdict.filter_keys(keys=keys, data=data)
-    assert actual == expected
-
-
-@pytest.mark.parametrize("keys, data, expected", [
-    ([], {}, {}),
-])
-def test__filter_keys(keys, data, expected):
-    """vdict.filter_keys()."""
-    actual = vdict.filter_keys(keys=keys, data=data)
+    actual = vdict.filter_keys(data=data, keys=keys)
     assert actual == expected
 
 
@@ -42,13 +33,13 @@ def test__md5hash(data, expected):
     assert actual == expected
 
 
-@pytest.mark.parametrize("key, data, expected", [
-    (1, {1: 2}, 2),
-    (2, {1: 2}, None),
+@pytest.mark.parametrize("key, expected", [
+    (1, 2),
+    (2, None),
 ])
-def test__pop(key, data, expected):
+def test__pop(key, expected):
     """vdict.pop()."""
-    actual = vdict.pop(key=key, data=data)
+    actual = vdict.pop(data={1: 2}, key=key)
     assert actual == expected
 
 
