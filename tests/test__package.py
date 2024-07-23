@@ -40,7 +40,7 @@ def test__version__changelog():
     text = path.read_text(encoding="utf-8")
     regex = r"(.+)\s\(\d\d\d\d-\d\d-\d\d\)$"
     version_log = vre.find1(regex, text, re.M)
-    assert version_toml == version_log, f"version in {path=}"
+    assert version_toml == version_log, f"Need update version in {path=}"
 
 
 def test__last_modified_date():
@@ -51,4 +51,4 @@ def test__last_modified_date():
     date_log = vre.find1(regex, text, re.M)
     files = vpath.get_files(ROOT, ext=".py")
     last_modified = vdate.last_modified(files)
-    assert last_modified == date_log, "last modified file"
+    assert last_modified == date_log, f"Need update last modified date in {path}"
