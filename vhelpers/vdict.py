@@ -6,20 +6,27 @@ from typing import Any
 
 import tomli
 
-from vhelpers.types_ import UPath, DAny
+from vhelpers.types_ import UPath, DAny, OLAny
 
 
-def filter_keys(data: dict, keys: list) -> dict:
-    """Filters the data to only include the specified required keys.
+def filter_keys(data: dict, include: OLAny = None, exclude: OLAny = None) -> dict:
+    """Filter the data to only required keys by include/exclude parameters.
 
-    :param data: The original dictionary to filter.
-    :param keys: A list of keys that should be present in the filtered dictionary.
-    :return: A new dictionary containing only the required keys.
+    :param data: Dictionary to be filtered.
+    :param include: Keys that should be present in the filtered dictionary.
+    :param exclude: Keys that should not be present in the filtered dictionary.
+    :return: New dictionary containing only the required keys.
 
     :example:
-        filter_keys(data={"a": "A", "b": "B"}, keys=["a"]) -> {"a": "A"}
+        filter_keys(data={"a": "A", "b": "B"}, include=["a"]) -> {"a": "A"}
+        filter_keys(data={"a": "A", "b": "B"}, exclude=["a"]) -> {"b": "B"}
     """
-    return {key: data[key] for key in keys if key in data}
+    data_: dict = {k: v for k, v in data.items()}
+    if include:
+        data_ = {k: v for k, v in data_.items() if k in include}
+    if exclude:
+        data_ = {k: v for k, v in data_.items() if k not in exclude}
+    return data_
 
 
 def invert(data: dict) -> dict:

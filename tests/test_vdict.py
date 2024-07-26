@@ -9,16 +9,25 @@ from vhelpers import vdict
 ROOT = Path(__file__).parent.parent
 
 
-@pytest.mark.parametrize("data, keys, expected", [
-    ({}, [], {}),
-    ({}, ["a"], {}),
-    ({1: 11, "a": "A"}, [], {}),
-    ({1: 11, "a": "A"}, [1], {1: 11}),
-    ({1: 11, "a": "A"}, ["a"], {"a": "A"}),
+@pytest.mark.parametrize("data, include, exclude, expected", [
+    # include
+    ({1: 11, "a": "A", "b": "B"}, [1], None, {1: 11}),
+    ({1: 11, "a": "A", "b": "B"}, ["a"], None, {"a": "A"}),
+    ({1: 11, "a": "A", "b": "B"}, [1, "a"], None, {1: 11, "a": "A"}),
+    # exclude
+    ({1: 11, "a": "A", "b": "B"}, None, [1], {"a": "A", "b": "B"}),
+    ({1: 11, "a": "A", "b": "B"}, None, ["a"], {1: 11, "b": "B"}),
+    ({1: 11, "a": "A", "b": "B"}, None, [1, "a"], {"b": "B"}),
+    # combo
+    ({1: 11, "a": "A", "b": "B"}, [1, "a"], ["a"], {1: 11}),
+    # any
+    ({1: 11, "a": "A", "b": "B"}, None, None, {1: 11, "a": "A", "b": "B"}),
+    ({1: 11, "a": "A", "b": "B"}, [], [], {1: 11, "a": "A", "b": "B"}),
+    ({}, [], [], {}),
 ])
-def test__filter_keys(data, keys, expected):
+def test__filter_keys(data, include, exclude, expected):
     """vdict.filter_keys()."""
-    actual = vdict.filter_keys(data=data, keys=keys)
+    actual = vdict.filter_keys(data=data, include=include, exclude=exclude)
     assert actual == expected
 
 

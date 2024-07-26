@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.2.1.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.2.2.tar.gz
 
 or install the package from github.com repository
 
@@ -98,27 +98,27 @@ vdict
 Helpers for dictionary processing.
 
 
-filter_keys(data, keys)
------------------------
-Filters the data to only include the specified required keys.
+filter_keys(data, include, exclude)
+-----------------------------------
+Filter the data to only required keys by include/exclude parameters.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
 =========== ====== =================================================================================
-data        *dict* The original dictionary to filter.
-keys        *list* A list of keys that should be present in the filtered dictionary.
+data        *dict* Dictionary to be filtered.
+include     *list* Keys that should be present in the filtered dictionary.
+exclude     *list* Keys that should not be present in the filtered dictionary.
 =========== ====== =================================================================================
 
 Return
-      *dict* A new dictionary containing only the required keys.
+      *dict* New dictionary containing only the required keys.
 
 .. code:: python
 
     from vhelpers import vdict
 
-    keys = ["a"]
-    data = {"a": "A", "b": "B"}
-    assert vdict.filter_keys(data=data, keys=keys) == {"a": "A"}
+    assert vdict.filter_keys(data={"a": "A", "b": "B"}, include=["a"]) == {"a": "A"}
+    assert vdict.filter_keys(data={"a": "A", "b": "B"}, exclude=["a"]) == {"b": "B"}
 
 
 invert(data)

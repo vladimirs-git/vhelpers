@@ -3,10 +3,9 @@ from pathlib import Path
 
 from vhelpers import vdict
 
-# Filters the data to only include the specified required keys.
-keys = ["a"]
-data = {"a": "A", "b": "B"}
-assert vdict.filter_keys(data=data, keys=keys) == {"a": "A"}
+# Filter the data to only required keys by include/exclude parameters.
+assert vdict.filter_keys(data={"a": "A", "b": "B"}, include=["a"]) == {"a": "A"}
+assert vdict.filter_keys(data={"a": "A", "b": "B"}, exclude=["a"]) == {"b": "B"}
 
 # Invert keys and values.
 assert vdict.invert(data={1: 2}) == {2: 1}

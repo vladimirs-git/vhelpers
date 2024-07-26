@@ -24,6 +24,7 @@ TList = (list, set, tuple)
 UPath = Union[Path, str]
 
 # 2 level
+OLAny = Optional[LAny]
 DLStr = Dict[str, LStr]
 LLAny = List[LAny]
 LParam = List[Param]

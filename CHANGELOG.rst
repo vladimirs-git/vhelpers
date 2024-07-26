@@ -4,6 +4,11 @@
 CHANGELOG
 =========
 
+0.2.2 (2024-07-26)
+------------------
+* [change] vdict.filter_keys(exclude)
+
+
 0.2.1 (2024-07-23)
 ------------------
 * [delete] vcfg
