@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 
 from vhelpers import vdate, vdict, vpath, vre
+from vhelpers.types_ import LStr
 
 ROOT = Path(__file__).parent.parent
 PYPROJECT_D = vdict.pyproject_d(ROOT)
@@ -49,6 +50,6 @@ def test__last_modified_date():
     text = path.read_text(encoding="utf-8")
     regex = r".+\((\d\d\d\d-\d\d-\d\d)\)$"
     date_log = vre.find1(regex, text, re.M)
-    files = vpath.get_files(ROOT, ext=".py")
+    files: LStr = vpath.get_files(ROOT, pattern=r"\.py$")
     last_modified = vdate.last_modified(files)
     assert last_modified == date_log, f"Need update last modified date in {path}"

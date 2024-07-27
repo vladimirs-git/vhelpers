@@ -4,102 +4,132 @@
 CHANGELOG
 =========
 
-0.2.2 (2024-07-26)
+0.3.0 (2024-07-27)
 ------------------
-* [change] vdict.filter_keys(exclude)
 
+**Changed** vpath.get_files(pattern)
+
+**Changed** vdict.filter_keys(exclude)
 
 0.2.1 (2024-07-23)
 ------------------
-* [delete] vcfg
-* [new] vstr.join(), vstr.join_lines()
-* [new] vdict.invert()
-* [new] vstr.split_idx()
-* [new] vdict.md5hash()
-* [new] vdict.sha256hash()
-* [change] vdict.filter_keys()
-* [change] vdict.pop()
+
+**Deleted** vcfg
+
+**Added** vstr.join(), vstr.join_lines()
+
+**Added** vdict.invert()
+
+**Added** vstr.split_idx()
+
+**Added** vdict.md5hash()
+
+**Added** vdict.sha256hash()
+
+**Changed** vdict.filter_keys()
+
+**Changed** vdict.pop()
 
 
 0.1.20 (2024-06-27)
 -------------------
-* [change] vre.cmd_value(flags)
+
+**Changed** vre.cmd_value(flags)
 
 
 0.1.19 (2024-06-08)
 -------------------
-* [new] vdict.filter_keys()
-* [new] vcfg.cmd_value()
-* [new] vre.cmd_value()
+
+**Added** vdict.filter_keys()
+
+**Added** vcfg.cmd_value()
+
+**Added** vre.cmd_value()
 
 
 0.1.18 (2024-01-29)
 -------------------
-* [new] vlist.to_lstr()
+
+**Added** vlist.to_lstr()
 
 
 0.1.17 (2024-01-08)
 -------------------
-* [new] vpath.to_dir()
+
+**Added** vpath.to_dir()
 
 
 0.1.16 (2023-12-19)
 -------------------
-* [change] vlist.to_multi(mode)
+
+**Changed** vlist.to_multi(mode)
 
 
 0.1.14 (2023-11-26)
 -------------------
-* [new] vlist.is_in()
-* [fix] requirements tomli
+
+**Added** vlist.is_in()
+
+**Fixed** requirements tomli
 
 
 0.1.13 (2023-11-04)
 -------------------
-* [new] vlist.replace()
+
+**Added** vlist.replace()
 
 
 0.1.11 (2023-11-01)
 -------------------
-* [change] vre.find_ip() > vre.ip()
-* [new] vip.ip_prefixlen()
+
+**Changed** vre.find_ip() > vre.ip()
+
+**Added** vip.ip_prefixlen()
 
 
 0.1.10 (2023-10-31)
 -------------------
-* [new] vlist.vlist.dupl()
+
+**Added** vlist.vlist.dupl()
 
 
 0.1.9 (2023-10-28)
 ------------------
-* [new] vlist.flatten(), vstr.reverse()
+
+**Added** vlist.flatten(), vstr.reverse()
 
 
 0.1.8 (2023-10-27)
 ------------------
-* [new] vstr
+
+**Added** vstr
 
 
 0.1.7 (2023-10-26)
 ------------------
-* [change] vlist.from_any > to_list
+
+**Changed** vlist.from_any > to_list
 
 
 0.1.6 (2023-10-26)
 ------------------
-* [new] vint, vre.find1i
+
+**Added** vint, vre.find1i
 
 
 0.1.5 (2023-10-25)
 ------------------
-* [new] vlist.split()
+
+**Added** vlist.split()
 
 
 0.1.4 (2023-10-24)
 ------------------
-* [new] vyml
+
+**Added** vyml
 
 
 0.1.3 (2023-10-24)
 ------------------
-* [new] vhelpers vdict, vlist, vparam, vre
+
+**Added** vhelpers vdict, vlist, vparam, vre

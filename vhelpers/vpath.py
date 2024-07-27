@@ -1,21 +1,25 @@
 """Helpers for path processing."""
 import os
+import re
 from pathlib import Path
 
 from vhelpers.types_ import LStr, UPath
 
 
-def get_files(root: UPath, ext: str) -> LStr:
-    """Get paths to files with required extension in root directory.
+def get_files(root: UPath, pattern: str) -> LStr:
+    """Get Path objects to files that match required regex pattern in root directory.
 
-    :param str root: Root directory to search for files with required extension.
-    :param ext: Extension, end of file name.
-    :return: A list of paths with required extension.
+    :param root: Root directory to search for files with required pattern.
+    :param pattern: Regex pattern to match file path.
+    :return: Path objects that match regex pattern.
+
+    :example:
+        get_files(root="/var/log/", pattern="log$") -> ["/var/log/dir/file.log"]
     """
     paths: LStr = []
     for root_i, _, files_i in os.walk(str(root)):
         for file_ in files_i:
-            if file_.endswith(ext):
+            if re.search(pattern, file_):
                 path = os.path.join(root_i, file_)
                 paths.append(path)
     return paths
