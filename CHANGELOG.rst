@@ -4,12 +4,15 @@
 CHANGELOG
 =========
 
-0.3.0 (2024-07-27)
+0.3.0 (2024-07-28)
 ------------------
+
+**Added** vpath.get_dirs()
 
 **Changed** vpath.get_files(pattern)
 
 **Changed** vdict.filter_keys(exclude)
+
 
 0.2.1 (2024-07-23)
 ------------------

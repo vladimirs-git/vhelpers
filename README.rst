@@ -555,9 +555,25 @@ vpath
 =====
 Helpers for path processing.
 
+
+get_dirs(root, pattern)
+-----------------------
+Get paths to directories that match required regex pattern in root directory.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+root        *str*  Root directory to search for files with required pattern.
+pattern     *str*  Regex pattern to match directory path.
+=========== ====== =================================================================================
+
+Return
+      *List[str]* Paths to directories that match regex pattern.
+
+
 get_files(root, pattern)
 ------------------------
-Get Path objects to files that match required regex pattern in root directory.
+Get paths to files that match required regex pattern in root directory.
 
 =========== ====== =================================================================================
 Parameter   Type   Description
@@ -567,7 +583,7 @@ pattern     *str*  Regex pattern to match file path.
 =========== ====== =================================================================================
 
 Return
-      *List[str]* Path objects that match regex pattern.
+      *List[str]* Paths to files that match regex pattern.
 
 
 from_dict(params_d)
