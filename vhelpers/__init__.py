@@ -1,5 +1,4 @@
 """vhelpers."""
-# TODO delete from pypi 0.2.1
 from vhelpers import vdate
 from vhelpers import vdict
 from vhelpers import vint
