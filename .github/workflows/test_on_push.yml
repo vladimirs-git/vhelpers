@@ -35,13 +35,13 @@ jobs:
       - name: Run tests
         run: poetry run pytest -v ./tests
 
-      - name: Run pylint
-        run: pylint vhelpers tests
+#      - name: Run pylint
+#        run: pylint vhelpers tests
 #      - name: mypy
 #        run: mypy --namespace-packages --explicit-package-bases fortigate_api tests
 #      - name: coverage
 #        run: pytest --cov=tests
-#      - name: pydocstyle
-#        run: pydocstyle .
-#      - name: rst-lint
-#        run: rst-lint README.rst CHANGELOG.rst
+      - name: pydocstyle
+        run: pydocstyle .
+      - name: rst-lint
+        run: rst-lint README.rst CHANGELOG.rst
