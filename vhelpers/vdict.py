@@ -21,7 +21,7 @@ def filter_keys(data: dict, include: OLAny = None, exclude: OLAny = None) -> dic
         filter_keys(data={"a": "A", "b": "B"}, include=["a"]) -> {"a": "A"}
         filter_keys(data={"a": "A", "b": "B"}, exclude=["a"]) -> {"b": "B"}
     """
-    data_: dict = {k: v for k, v in data.items()}
+    data_: dict = data.copy()
     if include:
         data_ = {k: v for k, v in data_.items() if k in include}
     if exclude:
