@@ -32,8 +32,10 @@ jobs:
           poetry install --with test
 
       - name: Run tests
-        # run: poetry run pytest -v -m "not skip" ./tests
         run: poetry run pytest -v -m "not skip" ./tests
 
       - name: Run pylint
-        run: pylint fortigate_api tests
+        run: pylint vhelpers tests
+
+      - name: mypy
+        run: mypy --namespace-packages --explicit-package-bases vhelpers tests
