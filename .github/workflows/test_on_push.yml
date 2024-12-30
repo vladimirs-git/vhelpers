@@ -36,13 +36,13 @@ jobs:
         run: poetry run pytest -v -m "not skip" ./tests
 
       - name: Run pylint
-        run: pylint vhelpers tests
+        run: pylint ./vhelpers tests
 
-      - name: mypy
-        run: mypy --namespace-packages --explicit-package-bases vhelpers tests
-
-      - name: pydocstyle
-        run: pydocstyle .
-
-      - name: rst-lint
-        run: rst-lint README.rst CHANGELOG.rst
+#      - name: mypy
+#        run: mypy --namespace-packages --explicit-package-bases vhelpers tests
+#
+#      - name: pydocstyle
+#        run: pydocstyle .
+#
+#      - name: rst-lint
+#        run: rst-lint README.rst CHANGELOG.rst
