@@ -34,3 +34,6 @@ jobs:
       - name: Run tests
         # run: poetry run pytest -v -m "not skip" ./tests
         run: poetry run pytest -v -m "not skip" ./tests
+
+      - name: Run pylint
+        run: pylint fortigate_api tests
