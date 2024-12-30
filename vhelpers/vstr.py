@@ -29,7 +29,7 @@ def join(*args) -> str:
 
 
 def join_lines(*args) -> str:
-    """Join args by '\n' character, skipping empty strings.
+    r"""Join args by new-line character, skipping empty strings.
 
     :param args: Items that need to be joined.
     :return: Joined string.

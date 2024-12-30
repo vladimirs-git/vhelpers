@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vhelpers"
-version = "0.3.0"
+version = "0.3.1"
 description = "Often used functions in vladimirs-git projects"
 authors = ["Vladimir Prusakov <vladimir.prusakovs@gmail.com>"]
 readme = "README.rst"
@@ -16,6 +16,11 @@ classifiers = [
     "Natural Language :: English",
 ]
 
+# FIX: Package docutils (0.21.post1) not found. #9293
+[[tool.poetry.source]]
+name = "pypi-public"
+url = "https://pypi.org/simple/"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 tomli = "^2.0.1"
@@ -30,7 +35,6 @@ mypy = "^1.6.1"
 pygments = "^2.16.1"
 pylint = "^3.0.1"
 pytest = "^7.4.2"
-pytest-cov = "^4.1.0"
 restructuredtext-lint = "^1.4.0"
 ruff = "^0.1.8"
 tabulate = "^0.9.0"
@@ -40,7 +44,7 @@ test = ["pytest"]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/vladimirs-git/vhelpers/issues"
-"Download URL" = "https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.3.0.tar.gz"
+"Download URL" = "https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.3.1.tar.gz"
 
 [tool.setuptools.package-data]
 vhelpers = ["py.typed"]
