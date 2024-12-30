@@ -19,6 +19,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 tomli = "^2.0.1"
+docutils = "*"
 pytest = "^7.4.2"
 
 [tool.poetry.group.test.dependencies]
