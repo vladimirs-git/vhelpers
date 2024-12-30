@@ -10,7 +10,7 @@ on:
 
 jobs:
   run_tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
          python-version: [ "3.8" ]
@@ -34,17 +34,17 @@ jobs:
       - name: Run tests
         run: poetry run pytest -v -m "not skip" ./tests
 
-#      - name: Run pylint
-#        run: pylint vhelpers tests
-#
-#      - name: mypy
-#        run: mypy --namespace-packages --explicit-package-bases vhelpers tests
-#
-#      - name: coverage
-#        run: pytest --cov=tests
-#
-#      - name: pydocstyle
-#        run: pydocstyle .
-#
-#      - name: rst-lint
-#        run: rst-lint README.rst CHANGELOG.rst
+      - name: Run pylint
+        run: pylint vhelpers tests
+
+      - name: mypy
+        run: mypy --namespace-packages --explicit-package-bases vhelpers tests
+
+      - name: coverage
+        run: pytest --cov=tests
+
+      - name: pydocstyle
+        run: pydocstyle .
+
+      - name: rst-lint
+        run: rst-lint README.rst CHANGELOG.rst
