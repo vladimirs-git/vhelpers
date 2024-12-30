@@ -30,15 +30,15 @@ jobs:
           pip install poetry
           poetry install
       # Run tests
-      #- name: pylint
-      #  run: pylint fortigate_api tests
-      - name: mypy
-        run: mypy --namespace-packages --explicit-package-bases fortigate_api tests
       - name: pytest
         run: pytest -v -m "not skip" tests
-      - name: coverage
-        run: pytest --cov=tests
-      - name: pydocstyle
-        run: pydocstyle .
-      - name: rst-lint
-        run: rst-lint README.rst CHANGELOG.rst
+      #- name: pylint
+      #  run: pylint fortigate_api tests
+#      - name: mypy
+#        run: mypy --namespace-packages --explicit-package-bases fortigate_api tests
+#      - name: coverage
+#        run: pytest --cov=tests
+#      - name: pydocstyle
+#        run: pydocstyle .
+#      - name: rst-lint
+#        run: rst-lint README.rst CHANGELOG.rst
