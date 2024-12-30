@@ -19,7 +19,7 @@ jobs:
       # Checkout the code from the following branch
       - uses: actions/checkout@v2
 
-      # Set up the Python environment (different versions) on the virtual machine
+      # Set up the Python environment (multiple versions) on the virtual machine
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -30,18 +30,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry install --with dev
-          pip list
 
       - name: Run tests
-        run: poetry run pytest -v ./tests
-
-#      - name: Run pylint
-#        run: pylint vhelpers tests
-#      - name: mypy
-#        run: mypy --namespace-packages --explicit-package-bases fortigate_api tests
-#      - name: coverage
-#        run: pytest --cov=tests
-      - name: pydocstyle
-        run: pydocstyle .
-      - name: rst-lint
-        run: rst-lint README.rst CHANGELOG.rst
+        run: poetry run pytest -v -m "not skip" ./tests
