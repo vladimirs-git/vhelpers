@@ -24,7 +24,7 @@ or install the package from github.com release
 
 .. code:: bash
 
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.3.0.tar.gz
+    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.3.1.tar.gz
 
 or install the package from github.com repository
 
