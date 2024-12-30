@@ -26,6 +26,9 @@ python = "^3.8"
 tomli = "^2.0.1"
 
 [tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+
+[tool.poetry.group.tdevest.dependencies]
 dictdiffer = "^0.9.0"
 mypy = "^1.6.1"
 pygments = "^2.16.1"
