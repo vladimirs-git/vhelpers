@@ -40,9 +40,6 @@ jobs:
       - name: mypy
         run: mypy --namespace-packages --explicit-package-bases vhelpers tests
 
-      - name: coverage
-        run: pytest --cov=tests
-
       - name: pydocstyle
         run: pydocstyle .
 
