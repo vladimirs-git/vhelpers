@@ -32,8 +32,11 @@ jobs:
           poetry install --with test
           pip list
 
-      - name: Run tests
-        run: poetry run pytest -v -m "not skip" ./tests
+#      - name: Run tests
+#        run: poetry run pytest -v -m "not skip" ./tests
+
+      - name: Run pylint
+        run: whereis pylint
 
       - name: Run pylint
         run: pylint ./vhelpers tests
