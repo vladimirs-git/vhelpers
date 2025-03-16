@@ -29,6 +29,40 @@ def filter_keys(data: dict, include: OLAny = None, exclude: OLAny = None) -> dic
     return data_
 
 
+def for_json(data: dict) -> dict:
+    """Convert the input data to a format suitable for JSON serialization.
+
+    Replace set with list.
+
+    :param data: Input data to be converted.
+    :return: Data converted to a format suitable for JSON serialization.
+    :raises TypeError: If input data is not a dictionary.
+    :example:
+        for_json(data={1: {2, 3}}) -> {1: [2, 3]}
+    """
+    if not isinstance(data, dict):
+        raise TypeError(f"Invalid {type(data)}, expected dict")
+    return _for_json(data)
+
+
+def _for_json(data: Any) -> Any:
+    """Convert the input data to a format suitable for JSON serialization.
+
+    Replace set with list.
+
+    :param data: Input data to be converted.
+    :return: Data converted to a format suitable for JSON serialization.
+    """
+    if isinstance(data, set):
+        return list(data)  # Convert set to list
+    elif isinstance(data, dict):
+        return {key: _for_json(value) for key, value in data.items()}
+    elif isinstance(data, list):
+        return [_for_json(item) for item in data]
+    else:
+        return data
+
+
 def invert(data: dict) -> dict:
     """Invert keys and values.
 
@@ -81,6 +115,19 @@ def pyproject_d(root: UPath) -> DAny:
     path = Path.joinpath(root, "pyproject.toml")
     with path.open(mode="rb") as file_:
         data = tomli.load(file_)
+    return data
+
+
+def remove_empty(data: dict) -> dict:
+    """Remove empty values from a multidimensional dictionary recursively.
+
+    :param data: Dictionary with empty values.
+    :return: Dictionary without empty values.
+    :example:
+        remove_empty(data={1: 1, 2: 0}) -> {1: 1}
+    """
+    if isinstance(data, dict):
+        return {k: remove_empty(v) for k, v in data.items() if v and remove_empty(v) != {}}
     return data
 
 

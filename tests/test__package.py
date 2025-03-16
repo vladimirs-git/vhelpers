@@ -13,13 +13,10 @@ PYPROJECT_D = vdict.pyproject_d(ROOT)
 def test__version__readme():
     """Version in README, URL."""
     package = PYPROJECT_D["tool"]["poetry"]["name"].replace("_", "-")
-    readme_file = PYPROJECT_D["tool"]["poetry"]["readme"]
     dwl_url = PYPROJECT_D["tool"]["poetry"]["urls"]["Download URL"]
-    readme_text = Path.joinpath(ROOT, readme_file).read_text(encoding="utf-8")
     version_exp = PYPROJECT_D["tool"]["poetry"]["version"]
 
     for source, text in [
-        (readme_file, readme_text),
         ("pyproject.toml project.urls.DownloadURL", dwl_url),
     ]:
         is_regex_found = False

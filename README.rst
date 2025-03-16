@@ -1,4 +1,3 @@
-
 vhelpers
 ========
 
@@ -19,18 +18,6 @@ Install the package from pypi.org release
 .. code:: bash
 
     pip install vhelpers
-
-or install the package from github.com release
-
-.. code:: bash
-
-    pip install https://github.com/vladimirs-git/vhelpers/archive/refs/tags/0.3.1.tar.gz
-
-or install the package from github.com repository
-
-.. code:: bash
-
-    pip install git+https://github.com/vladimirs-git/vhelpers
 
 
 Usage
@@ -121,6 +108,27 @@ Return
     assert vdict.filter_keys(data={"a": "A", "b": "B"}, exclude=["a"]) == {"b": "B"}
 
 
+for_json(data)
+--------------
+Convert the input data to a format suitable for JSON serialization.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+data        *dict* Input data to be converted.
+=========== ====== =================================================================================
+
+Return
+      *dict* Data converted to a format suitable for JSON serialization.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    data = vdict.for_json(data={1: {2, 3}})
+    assert data == {1: [2, 3]}
+
+
 invert(data)
 ------------
 Invert keys and values.
@@ -200,6 +208,27 @@ Return
     root = Path(__file__).parent.parent
     data = vdict.pyproject_d(root)
     assert data["tool"]["poetry"]["name"] == "vhelpers"
+
+
+remove_empty(data)
+------------------
+Remove empty values from a multidimensional dictionary recursively.
+
+=========== ====== =================================================================================
+Parameter   Type   Description
+=========== ====== =================================================================================
+data        *dict* Dictionary with empty values.
+=========== ====== =================================================================================
+
+Return
+      *dict* Dictionary without empty values.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    data = vdict.remove_empty(data={1: 1, 2: 0})
+    assert data == {1: 1}
 
 
 sha256hash(data)

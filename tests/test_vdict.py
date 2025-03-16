@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pytest
+from mypy.types import NoneTyp
 
 from vhelpers import vdict
 
@@ -28,6 +29,29 @@ ROOT = Path(__file__).parent.parent
 def test__filter_keys(data, include, exclude, expected):
     """vdict.filter_keys()."""
     actual = vdict.filter_keys(data=data, include=include, exclude=exclude)
+    assert actual == expected
+
+@pytest.mark.parametrize("data, expected", [
+    # level1
+    ({"k1": "v"}, {"k1": "v"}),
+    ({"k1": ["v"]}, {"k1": ["v"]}),
+    ({"k1": {"v"}}, {"k1": ["v"]}),
+    ({0: 0}, {0: 0}),
+    ({0: None}, {0: None}),
+    # level2
+    ({"k1": {"k2": "v"}}, {"k1": {"k2": "v"}}),
+    ({"k1": {"k2": ["v"]}}, {"k1": {"k2": ["v"]}}),
+    ({"k1": {"k2": {"v"}}}, {"k1": {"k2": ["v"]}}),
+    # # level3
+    ({"k1": {"k2": {"k3": "v"}}}, {"k1": {"k2": {"k3": "v"}}}),
+    ({"k1": {"k2": {"k3": ["v"]}}}, {"k1": {"k2": {"k3": ["v"]}}}),
+    ({"k1": {"k2": {"k3": {"v"}}}}, {"k1": {"k2": {"k3": ["v"]}}}),
+    ({}, {}),
+])
+def test__for_json(data, expected):
+    """helpers.for_json()"""
+    actual = vdict.for_json(data=data)
+
     assert actual == expected
 
 
@@ -60,6 +84,32 @@ def test__pyproject_d(root, expected):
     """vdict.pyproject_d()."""
     data = vdict.pyproject_d(root=root)
     actual = data["tool"]["poetry"]["name"]
+    assert actual == expected
+
+
+@pytest.mark.parametrize("data, expected", [
+    # level1
+    ({}, {}),
+    ({"a": "a"}, {"a": "a"}),
+    ({"a": ""}, {}),
+    ({"a": 0}, {}),
+    ({"a": []}, {}),
+    ({"a": None}, {}),
+    ({1: 1}, {1: 1}),
+    ({1: 0}, {}),
+    # level2
+    ({"a": {"b": "b"}}, {"a": {"b": "b"}}),
+    ({"a": {"b": "b", "c": ""}}, {"a": {"b": "b"}}),
+    ({"a": {"b": ""}}, {}),
+    # level3
+    ({"a": {"b": {"c": "c"}}}, {"a": {"b": {"c": "c"}}}),
+    ({"a": {"b": {"c": "c", "d": ""}}}, {"a": {"b": {"c": "c"}}}),
+    ({"a": {"b": {"c": ""}}}, {}),
+])
+def test__remove_empty_values(data, expected):
+    """helpers.remove_empty_values()."""
+    actual = vdict.remove_empty(data)
+
     assert actual == expected
 
 
