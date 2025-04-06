@@ -21,7 +21,7 @@ def filter_keys(data: dict, include: OLAny = None, exclude: OLAny = None) -> dic
         filter_keys(data={"a": "A", "b": "B"}, include=["a"]) -> {"a": "A"}
         filter_keys(data={"a": "A", "b": "B"}, exclude=["a"]) -> {"b": "B"}
     """
-    data_: dict = {k: v for k, v in data.items()}
+    data_ = data.copy()
     if include:
         data_ = {k: v for k, v in data_.items() if k in include}
     if exclude:
@@ -55,12 +55,11 @@ def _for_json(data: Any) -> Any:
     """
     if isinstance(data, set):
         return list(data)  # Convert set to list
-    elif isinstance(data, dict):
+    if isinstance(data, dict):
         return {key: _for_json(value) for key, value in data.items()}
-    elif isinstance(data, list):
+    if isinstance(data, list):
         return [_for_json(item) for item in data]
-    else:
-        return data
+    return data
 
 
 def invert(data: dict) -> dict:

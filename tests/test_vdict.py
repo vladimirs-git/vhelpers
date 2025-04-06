@@ -3,7 +3,6 @@
 from pathlib import Path
 
 import pytest
-from mypy.types import NoneTyp
 
 from vhelpers import vdict
 
@@ -30,6 +29,7 @@ def test__filter_keys(data, include, exclude, expected):
     """vdict.filter_keys()."""
     actual = vdict.filter_keys(data=data, include=include, exclude=exclude)
     assert actual == expected
+
 
 @pytest.mark.parametrize("data, expected", [
     # level1

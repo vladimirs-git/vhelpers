@@ -271,6 +271,28 @@ Return
     assert vint.to_int(digit="a") == 0
 
 
+to_ordinal(digit)
+-----------------
+Convert an integer or numeric string to its ordinal representation.
+
+=========== ================= ======================================================================
+Parameter   Type              Description
+=========== ================= ======================================================================
+digit       *Union[int, str]* An integer or a string that can be converted to an integer.
+=========== ================= ======================================================================
+
+Return
+      *str* The ordinal string representation of the number.
+
+.. code:: python
+
+    from vhelpers import vint
+
+    assert vint.to_ordinal(digit=1) == "1st"
+    assert vint.to_ordinal(digit=2) == "2nd"
+    assert vint.to_ordinal(digit=21) == "21st"
+
+
 vip
 ===
 Helpers for ip addresses processing.
