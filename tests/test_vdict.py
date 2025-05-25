@@ -1,10 +1,12 @@
 """Tests vdict.py."""
 
 from pathlib import Path
+from typing import Any
 
 import pytest
 
 from vhelpers import vdict
+from vhelpers.types_ import LStr
 
 ROOT = Path(__file__).parent.parent
 
@@ -124,5 +126,147 @@ def test__remove_empty_values(data, expected):
 def test__sha256hash(data, expected):
     """vdict.sha256hash()."""
     actual = vdict.sha256hash(data=data)
+
+    assert actual == expected
+
+
+@pytest.mark.parametrize("keys, data, expected", [
+    (["a"], {"a": None}, None),
+    (["a"], {"a": "A"}, "A"),
+    (["a"], {"a": 1}, 1),
+    (["a"], {"a": {}}, {}),
+    (["a"], {"a": {"k": "A"}}, {"k": "A"}),
+    (["a", "b"], {"a": {"b": None}}, None),
+    (["a", "b"], {"a": {"b": "A"}}, "A"),
+    (["a", "b"], {"a": {"b": 1}}, 1),
+    (["a", "b"], {"a": {"b": {"k": "B"}}}, {"k": "B"}),
+    (["a", "b", "c"], {"a": {"b": {"c": None}}}, None),
+    (["a", "b", "c"], {"a": {"b": {"c": "A"}}}, "A"),
+    (["a", "b", "c"], {"a": {"b": {"c": 1}}}, 1),
+    (["a", "b", "c"], {"a": {"b": {"c": {}}}}, {}),
+    (["a", "b", "c"], {"a": {"b": {"c": {"k": "C"}}}}, {"k": "C"}),
+    # list
+    (["a", 0, "b"], {"a": [{"b": None}]}, None),
+    (["a", 0, "b"], {"a": [{"b": "B"}]}, "B"),
+    (["a", 0, "b"], {"a": {"b": "B"}}, None),
+])
+def test__get_any(keys: LStr, data: dict, expected: Any):
+    """vdict.get_any()."""
+    actual = vdict.get_any(data, *keys)
+
+    assert actual == expected
+
+
+@pytest.mark.parametrize("keys, data, expected", [
+    (["a"], {"a": None}, False),
+    (["a"], {"a": 1}, False),
+    (["a"], {"a": True}, True),
+    (["a"], {"a": False}, False),
+    (["a", "b"], {"a": {"b": True}}, True),
+    (["a", "b"], {"a": {"b": None}}, False),
+    (["a", "b", "c"], {"a": {"b": {"c": True}}}, True),
+    (["a", "b", "c"], {"a": {"b": {"c": None}}}, False),
+    # list
+    (["a", 0, "b"], {"a": [{"b": None}]}, False),
+    (["a", 0, "b"], {"a": [{"b": True}]}, True),
+    (["a", 0, "b"], {"a": {"b": True}}, False),
+])
+def test__get_bool(keys: LStr, data: dict, expected: Any):
+    """vdict.get_bool()."""
+    actual = vdict.get_bool(data, *keys)
+
+    assert actual == expected
+
+
+@pytest.mark.parametrize("keys, data, expected", [
+    (["a"], {"a": None}, {}),
+    (["a"], {"a": 1}, {}),
+    (["a"], {"a": {}}, {}),
+    (["a"], {"a": {"k": "A"}}, {"k": "A"}),
+    (["a", "b"], {"a": {"b": {"k": "B"}}}, {"k": "B"}),
+    (["a", "b", "c"], {"a": {"b": {"c": {"k": "C"}}}}, {"k": "C"}),
+    # list
+    (["a", 0, "b"], {"a": [{"b": None}]}, {}),
+    (["a", 0, "b"], {"a": [{"b": {"k": "B"}}]}, {"k": "B"}),
+    (["a", 0, "b"], {"a": {"b": {"k": "B"}}}, {}),
+])
+def test__get_dict(keys: LStr, data: dict, expected: Any):
+    """vdict.get_dict()."""
+    actual = vdict.get_dict(data, *keys)
+
+    assert actual == expected
+
+@pytest.mark.parametrize("keys, data, expected", [
+    (["id"], {"id": "1"}, 1),
+    (["id"], {"id": 0}, 0),
+    (["id"], {"id": "0"}, 0),
+    (["a", "b"], {"a": {"b": 1}}, 1),
+    (["a", "b"], {"a": {"b": None}}, 0),
+    (["a", "b"], {"a": {"b": "1"}}, 1),
+    (["a", "b", "c"], {"a": {"b": {"c": 3}}}, 3),
+    (["a", "b", "c"], {"a": {"b": {"c": None}}}, 0),
+    (["id"], None, 0),
+    # list
+    (["a", 0, "b"], {"a": [{"b": None}]}, 0),
+    (["a", 0, "b"], {"a": [{"b": 1}]}, 1),
+    (["a", 0, "b"], {"a": {"b": 1}}, 0),
+])
+def test__get_int(keys: LStr, data: dict, expected: Any):
+    """vdict.get_int()."""
+    actual = vdict.get_int(data, *keys)
+
+    assert actual == expected
+
+
+@pytest.mark.parametrize("keys, data, expected", [
+    (["a"], {"a": None}, []),
+    (["a"], {"a": 1}, []),
+    (["a"], {"a": ["A"]}, ["A"]),
+    (["a"], {"a": [""]}, [""]),
+    (["a", "b"], {"a": {"b": ["B"]}}, ["B"]),
+    (["a", "b"], {"a": {"b": None}}, []),
+    (["a", "b", "c"], {"a": {"b": {"c": ["C"]}}}, ["C"]),
+    (["a", "b", "c"], {"a": {"b": {"c": None}}}, []),
+    # list
+    (["a", 0, "b"], {"a": [{"b": "B"}]}, []),
+    (["a", 0, "b"], {"a": [{"b": ["B"]}]}, ["B"]),
+    (["a", 0, "b"], {"a": {"b": ["B"]}}, []),
+])
+def test__get_list(keys: LStr, data: dict, expected: Any):
+    """vdict.get_list()."""
+    actual = vdict.get_list(data, *keys)
+
+    assert actual == expected
+
+
+@pytest.mark.parametrize("keys, data, expected", [
+    (["a"], {"a": None}, ""),
+    (["a"], {"a": 1}, ""),
+    (["a"], {"a": "A"}, "A"),
+    (["a"], {"a": ""}, ""),
+    (["a", "b"], {"a": {"b": "B"}}, "B"),
+    (["a", "b"], {"a": {"b": None}}, ""),
+    (["a", "b", "c"], {"a": {"b": {"c": "C"}}}, "C"),
+    (["a", "b", "c"], {"a": {"b": {"c": None}}}, ""),
+    # list
+    (["a", 0, "b"], {"a": [{"b": None}]}, ""),
+    (["a", 0, "b"], {"a": [{"b": "B"}]}, "B"),
+    (["a", 0, "b"], {"a": {"b": "B"}}, ""),
+])
+def test__get_str(keys: LStr, data: dict, expected: Any):
+    """vdict.get_str()."""
+    actual = vdict.get_str(data, *keys)
+
+    assert actual == expected
+
+@pytest.mark.parametrize("keys, data, type_, expected", [
+    (["a"], {"a": None}, str, ""),
+    (["a"], {"a": 1}, str, ""),
+    (["a"], {"a": None}, int, 0),
+    (["a"], {"a": 1}, int, 1),
+])
+def test__get_keys(keys: LStr, data: dict, type_, expected: Any):
+    """vdict._get_keys()."""
+    actual = vdict._get_keys(data, *keys, type_=type_)
 
     assert actual == expected

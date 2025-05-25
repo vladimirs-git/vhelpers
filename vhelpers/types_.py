@@ -24,15 +24,15 @@ TList = (list, set, tuple)
 UPath = Union[Path, str]
 
 # 2 level
-OLAny = Optional[LAny]
 DLStr = Dict[str, LStr]
 LLAny = List[LAny]
 LParam = List[Param]
-ListTy = List[T]
 LT3Str = List[T3Str]
+ListTy = List[T]
+OLAny = Optional[LAny]
 SParam = Set[Param]
-SetTy = Set[T]
 SeqTy = Sequence[T]
+SetTy = Set[T]
 TParam = Tuple[Param, ...]
 TupleTy = Tuple[T]
 UStr = Union[str, SeqStr]

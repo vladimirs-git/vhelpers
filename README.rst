@@ -245,6 +245,144 @@ Return
       *int* Integer representing the SHA-256 hash of the dictionary.
 
 
+get_any(*args)
+--------------
+Retrieve a nested value from a dictionary using a sequence of keys.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+args                            Arguments where the first is the dictionary and the rest are keys used to retrieve the desired nested value.
+=========== =================== ====================================================================
+
+Return
+      *Any* Value corresponding to the sequence of keys, or None if any key is not found or if the access fails.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    value = vdict.get_any({"a": {"b": "B"}}, "a", "b")
+    assert value == "B"
+    value = vdict.get_any({"a": {"b": "B"}}, "a", "c")
+    assert value is None
+
+
+get_bool(*args)
+---------------
+Retrieve a nested boolean value from a dictionary using a sequence of keys.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+args                            Arguments where the first is the dictionary and the rest are keys used to retrieve the desired nested value.
+=========== =================== ====================================================================
+
+Return
+      *bool* Boolean value corresponding to the sequence of keys, or False if any key is not found or if the access fails.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    value = vdict.get_bool({"a": {"b": True}}, "a", "b")
+    assert value is True
+    value = vdict.get_bool({"a": {"b": "B"}}, "a", "b")
+    assert value is False
+
+
+get_dict(*args)
+---------------
+Retrieve a nested dictionary value from a dictionary using a sequence of keys.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+args                            Arguments where the first is the dictionary and the rest are keys used to retrieve the desired nested value.
+=========== =================== ====================================================================
+
+Return
+      *dict* Dictionary value corresponding to the sequence of keys, or empty dictionary if any key is not found or if the access fails.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    value = vdict.get_dict({"a": {"b": {"c": "C"}}}, "a", "b")
+    assert value == {"c": "C"}
+    value = vdict.get_dict({"a": {"b": "B"}}, "a", "b")
+    assert value == {}
+
+
+get_int(*args)
+--------------
+Retrieve a nested integer value from a dictionary using a sequence of keys.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+args                            Arguments where the first is the dictionary and the rest are keys used to retrieve the desired nested value.
+=========== =================== ====================================================================
+
+Return
+      *int* Integer value corresponding to the sequence of keys, or 0 if any key is not found or if the access fails.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    value = vdict.get_int({"a": {"b": "1"}}, "a", "b")
+    assert value == 1
+    value = vdict.get_int({"a": {"b": "B"}}, "a", "b")
+    assert value == 0
+
+
+get_list(*args)
+---------------
+Retrieve a nested list value from a dictionary using a sequence of keys.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+args                            Arguments where the first is the dictionary and the rest are keys used to retrieve the desired nested value.
+=========== =================== ====================================================================
+
+Return
+      *list* List value corresponding to the sequence of keys, or empty list if any key is not found or if the access fails.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    value = vdict.get_list({"a": {"b": ["B"]}}, "a", "b")
+    assert value == ["B"]
+    value = vdict.get_list({"a": {"b": "B"}}, "a", "b")
+    assert value == []
+
+
+get_str(*args)
+--------------
+Retrieve a nested string value from a dictionary using a sequence of keys.
+
+=========== =================== ====================================================================
+Parameter   Type                Description
+=========== =================== ====================================================================
+args                            Arguments where the first is the dictionary and the rest are keys used to retrieve the desired nested value.
+=========== =================== ====================================================================
+
+Return
+      *str* String value corresponding to the sequence of keys, or empty string if any key is not found or if the access fails.
+
+.. code:: python
+
+    from vhelpers import vdict
+
+    value = vdict.get_str({"a": {"b": "B"}}, "a", "b")
+    assert value == "B"
+    value = vdict.get_str({"a": {"b": 1}}, "a", "b")
+    assert value == ""
+
+
 vint
 ====
 Helpers for int processing.

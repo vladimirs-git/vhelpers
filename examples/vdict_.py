@@ -28,3 +28,36 @@ assert data["tool"]["poetry"]["name"] == "vhelpers"
 # Remove empty values from a multidimensional dictionary recursively.
 data = vdict.remove_empty(data={1: 1, 2: 0})
 assert data == {1: 1}
+
+# ============================ get typed =============================
+
+# Retrieve a nested value from a dictionary using a sequence of keys.
+value = vdict.get_any({"a": {"b": "B"}}, "a", "b")
+assert value == "B"
+value = vdict.get_any({"a": {"b": "B"}}, "a", "c")
+assert value is None
+
+value = vdict.get_bool({"a": {"b": True}}, "a", "b")
+assert value is True
+value = vdict.get_bool({"a": {"b": "B"}}, "a", "b")
+assert value is False
+
+value = vdict.get_dict({"a": {"b": {"c": "C"}}}, "a", "b")
+assert value == {"c": "C"}
+value = vdict.get_dict({"a": {"b": "B"}}, "a", "b")
+assert value == {}
+
+value = vdict.get_int({"a": {"b": "1"}}, "a", "b")
+assert value == 1
+value = vdict.get_int({"a": {"b": "B"}}, "a", "b")
+assert value == 0
+
+value = vdict.get_list({"a": {"b": ["B"]}}, "a", "b")
+assert value == ["B"]
+value = vdict.get_list({"a": {"b": "B"}}, "a", "b")
+assert value == []
+
+value = vdict.get_str({"a": {"b": "B"}}, "a", "b")
+assert value == "B"
+value = vdict.get_str({"a": {"b": 1}}, "a", "b")
+assert value == ""

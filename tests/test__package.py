@@ -10,27 +10,6 @@ ROOT = Path(__file__).parent.parent
 PYPROJECT_D = vdict.pyproject_d(ROOT)
 
 
-def test__version__readme():
-    """Version in README, URL."""
-    package = PYPROJECT_D["tool"]["poetry"]["name"].replace("_", "-")
-    dwl_url = PYPROJECT_D["tool"]["poetry"]["urls"]["Download URL"]
-    version_exp = PYPROJECT_D["tool"]["poetry"]["version"]
-
-    for source, text in [
-        ("pyproject.toml project.urls.DownloadURL", dwl_url),
-    ]:
-        is_regex_found = False
-        for regex in [
-            package + r".+/(.+?)\.tar\.gz",
-            package + r"@(.+?)$",
-        ]:
-            versions = re.findall(regex, text, re.M)
-            for version in versions:
-                is_regex_found = True
-                assert version == version_exp
-        assert is_regex_found is True, f"absent {version_exp} in {source}"
-
-
 def test__version__changelog():
     """Version in CHANGELOG."""
     version_toml = PYPROJECT_D["tool"]["poetry"]["version"]

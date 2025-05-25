@@ -4,6 +4,12 @@
 CHANGELOG
 =========
 
+0.5.0 (2025-05-25)
+------------------
+
+**Added:** vdict get_any() get_bool() get_dict() get_int() get_list() get_str()
+
+
 0.4.1 (2025-04-13)
 ------------------
 
