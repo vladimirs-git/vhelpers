@@ -245,8 +245,8 @@ Return
       *int* Integer representing the SHA-256 hash of the dictionary.
 
 
-get_any(*args)
---------------
+get_any(\*args)
+---------------
 Retrieve a nested value from a dictionary using a sequence of keys.
 
 =========== =================== ====================================================================
@@ -268,8 +268,8 @@ Return
     assert value is None
 
 
-get_bool(*args)
----------------
+get_bool(\*args)
+----------------
 Retrieve a nested boolean value from a dictionary using a sequence of keys.
 
 =========== =================== ====================================================================
@@ -291,8 +291,8 @@ Return
     assert value is False
 
 
-get_dict(*args)
----------------
+get_dict(\*args)
+----------------
 Retrieve a nested dictionary value from a dictionary using a sequence of keys.
 
 =========== =================== ====================================================================
@@ -314,8 +314,8 @@ Return
     assert value == {}
 
 
-get_int(*args)
---------------
+get_int(\*args)
+---------------
 Retrieve a nested integer value from a dictionary using a sequence of keys.
 
 =========== =================== ====================================================================
@@ -337,8 +337,8 @@ Return
     assert value == 0
 
 
-get_list(*args)
----------------
+get_list(\*args)
+----------------
 Retrieve a nested list value from a dictionary using a sequence of keys.
 
 =========== =================== ====================================================================
@@ -360,8 +360,8 @@ Return
     assert value == []
 
 
-get_str(*args)
---------------
+get_str(\*args)
+---------------
 Retrieve a nested string value from a dictionary using a sequence of keys.
 
 =========== =================== ====================================================================

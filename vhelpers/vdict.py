@@ -1,4 +1,5 @@
 """Helpers for dictionary processing."""
+
 import hashlib
 import json
 from pathlib import Path
@@ -148,6 +149,7 @@ def sha256hash(data: dict) -> int:
 
 
 # ============================ get typed =============================
+
 
 def get_any(*args) -> Any:
     """Retrieve a nested value from a dictionary using a sequence of keys.

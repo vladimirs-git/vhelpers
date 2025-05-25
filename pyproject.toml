@@ -4,9 +4,8 @@ version = "0.5.0"
 description = "Often used functions in vladimirs-git projects"
 authors = ["Vladimir Prusakov <vladimir.prusakovs@gmail.com>"]
 readme = "README.rst"
+package-mode = true
 license = "MIT"
-homepage = "https://github.com/vladimirs-git/vhelpers"
-repository = "https://github.com/vladimirs-git/vhelpers"
 keywords = []
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -16,6 +15,14 @@ classifiers = [
     "Natural Language :: English",
 ]
 
+[tool.poetry.urls]
+homepage = "https://github.com/vladimirs-git/vhelpers"
+repository = "https://github.com/vladimirs-git/vhelpers"
+"Bug Tracker" = "https://github.com/vladimirs-git/vhelpers/issues"
+
+[tool.poetry.extras]
+test = ["pytest"]
+
 # FIX: Package docutils (0.21.post1) not found. #9293
 [[tool.poetry.source]]
 name = "pypi-public"
@@ -23,14 +30,13 @@ url = "https://pypi.org/simple/"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+#
 tomli = "^2.0.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
 
-
 [tool.poetry.group.dev.dependencies]
-dictdiffer = "^0.9.0"
 mypy = "^1.6.1"
 pydocstyle = "^6.3.0"
 pygments = "^2.16.1"
@@ -38,13 +44,7 @@ pylint = "^3.2.7"
 pytest = "^8.3.5"
 restructuredtext-lint = "^1.4.0"
 ruff = "^0.11.4"
-tabulate = "^0.9.0"
-
-[tool.poetry.extras]
-test = ["pytest"]
-
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/vladimirs-git/vhelpers/issues"
+twine= "^6.1.0"
 
 [tool.setuptools.package-data]
 vhelpers = ["py.typed"]
@@ -58,8 +58,22 @@ enable = ["too-many-arguments", "too-many-locals"]
 max-args = 6
 max-locals = 16
 
+[tool.pylint."tests.*"]
+disable = [
+    "duplicate-code",
+    "protected-access",
+    "redefined-outer-name",
+    "too-few-public-methods",
+    "too-many-public-methods",
+    "unsubscriptable-object",
+    "unused-import",
+    "use-dict-literal",
+    "use-implicit-booleaness-not-comparison",
+]
+
 [tool.mypy]
 python_version = "3.8"
+exclude = ["_notes"]
 
 [tool.ruff]
 exclude = [
@@ -71,7 +85,7 @@ exclude = [
     ".venv",
     "_notes",
     "dist",
-    "demo",
+    "sdist",
     "temp",
     "tmp",
     "venv",
@@ -85,6 +99,9 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false  # arguments on separate lines
 line-ending = "auto"
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"  # docstring style
 
 [build-system]
 requires = ["poetry-core"]
