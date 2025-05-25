@@ -196,6 +196,7 @@ def test__get_dict(keys: LStr, data: dict, expected: Any):
 
     assert actual == expected
 
+
 @pytest.mark.parametrize("keys, data, expected", [
     (["id"], {"id": "1"}, 1),
     (["id"], {"id": 0}, 0),
@@ -258,6 +259,7 @@ def test__get_str(keys: LStr, data: dict, expected: Any):
     actual = vdict.get_str(data, *keys)
 
     assert actual == expected
+
 
 @pytest.mark.parametrize("keys, data, type_, expected", [
     (["a"], {"a": None}, str, ""),
