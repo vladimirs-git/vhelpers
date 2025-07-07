@@ -21,7 +21,7 @@ def get_dirs(root: UPath, pattern: str) -> LStr:
     root_path = Path(root)
     for path in root_path.rglob("*"):
         if path.is_dir() and re.search(pattern, path.name):
-            paths.append(str(path))
+            paths.append(path.as_posix())
 
     return paths
 
@@ -41,7 +41,7 @@ def get_files(root: UPath, pattern: str) -> LStr:
     root_path = Path(root)
     for path in root_path.rglob("*"):
         if path.is_file() and re.search(pattern, path.name):
-            paths.append(str(path))
+            paths.append(path.as_posix())
 
     return paths
 

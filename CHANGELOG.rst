@@ -4,7 +4,7 @@
 CHANGELOG
 =========
 
-0.5.1 (2025-07-07)
+0.5.2 (2025-07-07)
 ------------------
 
 **Fixed:** vpath.get_files() vpath.get_dirs()

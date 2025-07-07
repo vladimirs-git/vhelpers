@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vhelpers"
-version = "0.5.1"
+version = "0.5.2"
 description = "Often used functions in vladimirs-git projects"
 authors = ["Vladimir Prusakov <vladimir.prusakovs@gmail.com>"]
 readme = "README.rst"
