@@ -1,6 +1,5 @@
 """Helpers for path processing."""
 
-import os
 import re
 from pathlib import Path
 
@@ -10,7 +9,7 @@ from vhelpers.types_ import LStr, UPath
 def get_dirs(root: UPath, pattern: str) -> LStr:
     """Get paths to directories that match required regex pattern in root directory.
 
-    :param root: Root directory to search for files with required pattern.
+    :param root: Root directory to search for directories with required pattern.
     :param pattern: Regex pattern to match directory path.
     :return: Paths to directories that match regex pattern.
 
@@ -18,11 +17,12 @@ def get_dirs(root: UPath, pattern: str) -> LStr:
         get_dirs(root="/var/log/", pattern="dir") -> ["/var/log/dir"]
     """
     paths: LStr = []
-    for root_i, dirs_i, _ in os.walk(str(root)):
-        for dir_ in dirs_i:
-            if re.search(pattern, dir_):
-                path = os.path.join(root_i, dir_)
-                paths.append(path)
+
+    root_path = Path(root)
+    for path in root_path.rglob("*"):
+        if path.is_dir() and re.search(pattern, path.name):
+            paths.append(str(path))
+
     return paths
 
 
@@ -37,11 +37,12 @@ def get_files(root: UPath, pattern: str) -> LStr:
         get_files(root="/var/log/", pattern="log$") -> ["/var/log/dir/file.log"]
     """
     paths: LStr = []
-    for root_i, _, files_i in os.walk(str(root)):
-        for file_ in files_i:
-            if re.search(pattern, file_):
-                path = os.path.join(root_i, file_)
-                paths.append(path)
+
+    root_path = Path(root)
+    for path in root_path.rglob("*"):
+        if path.is_file() and re.search(pattern, path.name):
+            paths.append(str(path))
+
     return paths
 
 
