@@ -9,7 +9,6 @@ CHANGELOG
 
 **Fixed:** vpath.get_files() vpath.get_dirs()
 
-
 0.5.0 (2025-05-25)
 ------------------
 
