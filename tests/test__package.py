@@ -26,6 +26,7 @@ def test__last_modified_date():
     text = path.read_text(encoding="utf-8")
     regex = r".+\((\d\d\d\d-\d\d-\d\d)\)$"
     date_log = vre.find1(regex, text, re.M)
-    files: LStr = vpath.get_files(ROOT, pattern=r"\.py$")
+    re_extension = "|".join(["py", "toml"])
+    files: LStr = vpath.get_files(ROOT, pattern=f"\.({re_extension})$")
     last_modified = vdate.last_modified(files)
     assert last_modified == date_log, f"Need update last modified date in {path}"

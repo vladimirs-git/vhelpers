@@ -45,6 +45,16 @@ def test__repr_info(args, kwargs, expected):
     assert actual == expected
 
 
+@pytest.mark.parametrize("text, quote, expected", [
+    ("a", "'", "'a'"),
+    ("a", "-", "-a-"),
+])
+def test__quoted(text, quote, expected):
+    """vstr.quoted()"""
+    actual = vstr.quoted(text=text, quote=quote)
+    assert actual == expected
+
+
 @pytest.mark.parametrize("args, kwargs, expected", [
     ([], {}, ""),
     (["a"], {}, "\"a\""),

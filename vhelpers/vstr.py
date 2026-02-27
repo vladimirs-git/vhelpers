@@ -41,6 +41,16 @@ def join_lines(*args) -> str:
     return join("\n", *args)
 
 
+def quoted(text: str, quote: str = '"') -> str:
+    """Wrap string with quotes.
+
+    :param text: Text to be wrapped.
+    :param quote: Quote character. Default is double quote.
+    :return: Text wrapped with quotes.
+    """
+    return f"{quote}{text}{quote}"
+
+
 def repr_info(*args, **kwargs) -> str:
     """Create info without qutes for the __repr__() method.
 
