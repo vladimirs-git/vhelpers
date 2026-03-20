@@ -88,3 +88,20 @@ def test__split_idx(text, idx, expected):
     """vstr.split_idx()"""
     actual = vstr.split_idx(text=text, idx=idx)
     assert actual == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    (None, ""),
+    ("", ""),
+    (0, ""),
+    (1, "1"),
+    (-1.9, "-1.9"),
+    ("a", "a"),
+    ("\ta\t", "a"),
+    ("\t-1.9\t", "-1.9"),
+
+])
+def test__to_str(text, expected):
+    """vstr.to_str()."""
+    actual = vstr.to_str(text=text)
+    assert actual == expected

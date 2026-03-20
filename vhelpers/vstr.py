@@ -1,4 +1,5 @@
 """Helpers for string processing."""
+from typing import Any
 
 from vhelpers.types_ import LStr, T2Str
 
@@ -108,3 +109,18 @@ def split_idx(text: str, idx: int) -> T2Str:
     before = text[:idx]
     after = text[idx:]
     return before, after
+
+
+def to_str(text: Any) -> str:
+    """Convert any to integer.
+
+    :param text: Digit, string or integer.
+    :return: Integer or 0 if value is not text.
+
+    :example:
+        to_str(text=1) -> "1"
+        to_str(text=0) -> ""
+    """
+    if not text:
+        return ""
+    return str(text).strip()

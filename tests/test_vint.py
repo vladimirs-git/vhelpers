@@ -7,6 +7,7 @@ from vhelpers.types_ import IntStr
 
 
 @pytest.mark.parametrize("digit, expected", [
+    (None, 0),
     (0, 0),
     (1, 1),
     ("", 0),
@@ -14,9 +15,19 @@ from vhelpers.types_ import IntStr
     ("a1", 0),
     ("0", 0),
     ("1", 1),
-    ("1 ", 1),
+    ("\t1\t", 1),
+    ("1.", 0),
+    ("1.9", 1),
+    ("\t1.9\t", 1),
+    ("1. 9", 0),
+    ("1 .9", 0),
+    ("-1", -1),
+    ("-1.9", -1),
+    ("\t-1.9\t", -1),
+    ("-1. 9", 0),
+    ("-1 .9", 0),
 ])
-def test__to_int(digit: IntStr, expected: int):
+def test__to_int(digit, expected):
     """vint.to_int()."""
     actual = vint.to_int(digit=digit)
     assert actual == expected

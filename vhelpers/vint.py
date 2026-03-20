@@ -1,24 +1,41 @@
 """Helpers for int processing."""
+import re
+from typing import Any
 
 from vhelpers.types_ import IntStr
 
 
-def to_int(digit: IntStr) -> int:
-    """Convert string digit to integer.
+def to_int(digit: Any) -> int:
+    """Convert any to integer.
 
-    :param digit: Digit, string ot integer.
+    :param digit: Digit, string or integer.
     :return: Integer or 0 if value is not digit.
 
     :example:
         to_int(digit="1") -> 1
         to_int(digit="a") -> 0
     """
-    if isinstance(digit, int):
-        return digit
-    digit = digit.strip()
-    if not digit.isdigit():
+    if not digit:
         return 0
-    return int(digit)
+
+    if isinstance(digit, (int, float)):
+        return int(digit)
+
+    digit_ = str(digit).strip()
+    if digit_.isdigit():
+        return int(digit_)
+    # Reject cases like "1."
+    if digit_.endswith("."):
+        return 0
+
+    items = re.search(r"^(-)?(\d+)(\.\d+)?$", digit_)
+    if items:
+        try:
+            return int(float(digit_))
+        except ValueError:
+            pass
+
+    return 0
 
 
 def to_ordinal(digit: IntStr) -> str:
