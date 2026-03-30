@@ -88,24 +88,6 @@ def md5hash(data: DAny) -> str:
     return dhash.hexdigest()
 
 
-def pop(data: dict, key: Any) -> Any:
-    """Pop the specified item from the data by key.
-
-    If key is absent in data, do nothing and return None.
-
-    :param data: The dictionary from which the key is to be popped.
-    :param key: The key to be popped from the data.
-    :return: The popped item if key is present in data, otherwise None.
-
-    :example:
-        pop(data={1: 2}, key=1) -> 2
-        pop(data={1: 2}, key=3) -> None
-    """
-    if key in data:
-        return data.pop(key)
-    return None
-
-
 def pyproject_d(root: UPath) -> DAny:
     """Convert pyproject.toml to a dictionary.
 

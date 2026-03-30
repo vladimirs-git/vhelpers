@@ -68,20 +68,6 @@ def test__md5hash(data, expected):
     assert actual == expected
 
 
-@pytest.mark.parametrize("key, expected", [
-    (1, 2),
-    (2, None),
-])
-def test__pop(key, expected):
-    """vdict.pop()."""
-    data = {1: 2}
-
-    actual = vdict.pop(data=data, key=key)
-
-    assert actual == expected
-    assert data.get(key) is None
-
-
 @pytest.mark.parametrize("root, expected", [
     (ROOT, "vhelpers"),
     (str(ROOT), "vhelpers"),
